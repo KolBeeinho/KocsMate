@@ -1,45 +1,62 @@
 import bcrypt from "bcryptjs";
-import { configDotenv } from "dotenv";
-import jwt from "jsonwebtoken";
-import { NextApiRequest, NextApiResponse } from "next";
-import clientPromise from "../../../../lib/mongodb";
-configDotenv();
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method === "POST") {
-    const { username, password } = req.body;
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { prisma, User } from "./../../../prisma";
 
-    // Csatlakozás az adatbázishoz
-    const client = await clientPromise;
-    const db = client.db("myDatabase");
+export default NextAuth({
+  providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        username: { label: "Felhasználónév", type: "text" },
+        password: { label: "Jelszó", type: "password" },
+      },
+      async authorize(credentials) {
+        const { password, email } = credentials as User;
 
-    // Felhasználó keresése MongoDB-ben
-    const user = await db
-      .collection(process.env.DB_COLLECTION as string)
-      .findOne({ username });
-    if (!user) {
-      return res.status(401).json({ error: "Invalid username or password" });
-    }
+        const user = await prisma.user.findUnique({
+          where: { email: email },
+        });
 
-    // Jelszó ellenőrzése bcrypttel
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ error: "Invalid username or password" });
-    }
+        if (!user) {
+          console.log("Invalid username or password");
+          return null;
+        }
 
-    // JWT token generálása
-    const token = jwt.sign(
-      { userId: user._id, username: user.username },
-      process.env.JWT_SECRET as string,
-      { expiresIn: "1h" }
-    );
-
-    // Visszaküldjük a tokent
-    res.status(200).json({ token });
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
-}
+        // Jelszó ellenőrzése bcrypttel
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+          console.log("Invalid username or password");
+        }
+        return {
+          id: user.id,
+          name: user.fullName,
+          email: user.email,
+          username: user.username,
+          password: user.password,
+          createdAt: user.createdAt,
+        };
+      },
+    }),
+  ],
+  pages: {
+    signIn: "/auth/signin",
+  },
+  session: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token && session.user !== undefined) {
+        session.user.id = token.id as string;
+      }
+      return session;
+    },
+  },
+});
