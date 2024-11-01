@@ -11,19 +11,22 @@ $dark-red: #910002ff;
 $betu_szin: #eee5ceff;
 $butterscotch: #df932aff;
 $yinmn-blue: #2f5479ff;
+//Tailwindben is szerepelnek a színek
 
 body {
   padding: 0;
   margin: 0;
   color: $betu_szin;
   font-family: "Roboto", sans-serif;
-  font-weight: 400;
   background-color: $oxford-blue;
-  /* background-image: linear-gradient(90deg, $oxford-blue, $yinmn-blue); */
+  // background-image: linear-gradient(90deg, $oxford-blue, $yinmn-blue);
 }
 * {
   box-sizing: border-box;
 }
 html {
   scroll-behavior: smooth;
+}
+input {
+  color: black;
 }

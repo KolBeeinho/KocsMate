@@ -1,0 +1,26 @@
+import maplibregl from "maplibre-gl";
+import Map, { NavigationControl } from "react-map-gl";
+
+const center = {
+  lat: 47.55172, // Szélesség
+  lng: 19.26131, // Hosszúság
+};
+
+const MyMap = () => {
+  return (
+    <Map
+      mapLib={maplibregl as any}
+      initialViewState={{
+        longitude: center.lng, // Hosszúság
+        latitude: center.lat, // Szélesség
+        zoom: 14,
+      }}
+      style={{ width: "100%", height: "calc(100vh - 77px)" }}
+      mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${process.env.NEXT_PUBLIC_MAPTILER_API_KEY}`}
+    >
+      <NavigationControl position="top-left" />
+    </Map>
+  );
+};
+
+export default MyMap;

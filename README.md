@@ -1,2 +1,3 @@
 # KocsMate
- KocsMate 0.1.0
+
+Alapállapot. Alapvető login logika megvalósítva, könyvtárstruktúra létrehozva.

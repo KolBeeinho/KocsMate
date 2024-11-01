@@ -1,8 +1,9 @@
+import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import "../styles/build.css";
 import "../styles/styles.scss";
-
+import { AuthProvider } from "../utils/providers/AuthContext";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -22,7 +23,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         ></link>
       </Head>
-      <Component {...pageProps} />
+      <SessionProvider session={pageProps.session}>
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
+      </SessionProvider>
     </>
   );
 }
