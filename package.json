@@ -1,0 +1,50 @@
+{
+  "name": "template-nextjs-tailwind",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "start": "yarn dev",
+    "dev": "concurrently \"yarn:dev:*\"",
+    "dev:next": "next dev",
+    "dev:tailwind": "npx tailwindcss -o src/styles/build.css --minify --watch",
+    "build": "yarn build:tailwind && yarn build:next",
+    "build:next": "next build",
+    "build:tailwind": "npx tailwindcss -o src/styles/build.css --minify --watch",
+    "update:all": "yarn upgrade-interactive",
+    "generate": "yarn prisma generate"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/cli": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/ios": "^6.1.2",
+    "@prisma/client": "^5.16.2",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.0",
+    "next": "15.0.2",
+    "prisma": "^5.16.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "sass": "^1.80.5",
+    "tailwindcss": "^3.4.4",
+    "template-nextjs-tailwind": "file:"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
+    "@types/bcryptjs": "^2",
+    "@types/jsonwebtoken": "^9",
+    "@types/node": "18.19.39",
+    "@types/react": "18.3.3",
+    "concurrently": "^8.2.2",
+    "fluid-tailwind": "^1.0.3",
+    "postcss": "8.4.39",
+    "supervisor": "^0.12.0",
+    "typescript": "5.5.3"
+  },
+  "packageManager": "yarn@4.0.1",
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
