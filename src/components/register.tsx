@@ -1,53 +1,101 @@
-import { FormEvent, useState } from "react";
+import { useRouter } from "next/router";
+import React, { FormEvent, useState } from "react";
+import { styles } from "../styles/styles";
+import checkIfUnderEightTeen from "../utils/checkIfUnder18";
+import useLoading from "../utils/hooks/useLoad";
 import KocsMateLogo from "./KocsMateLogo";
-
+// import en from "../../../public/locales/en/Reviews/reviewsection";
+// import en2 from "../../../public/locales/en/Reviews/reviews";
+// import hu from "../../../public/locales/hu/Vélemények/reviewsection";
+// import hu2 from "../../../public/locales/hu/Vélemények/reviews";
 export default function Register() {
-  //#region Fields
-  const [username, setUsername] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [full_name, setFullName] = useState<string>("");
-  //#endregion
-  const [error, setError] = useState<string | undefined>("");
-  const [loading, setLoading] = useState(false);
+  // const { locale } = useRouter();
+  // const h = locale === "hu" ? hu : en;
+  // const e = locale === "hu" ? hu2 : en2;
+  //Transition
+  const { loading } = useLoading();
+  const [transition, setTransition] = React.useState<boolean>(false);
+  React.useEffect(() => {
+    if (loading) {
+      setTransition(transition);
+    } else {
+      setTransition(!transition);
+    }
+  }, [loading]);
+  const [submitProcess, setSubmitProcess] = React.useState<boolean>(false);
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    full_name: "",
+    date_of_birth: "",
+  });
+  const [error, setError] = useState<string>("");
+  const Router = useRouter();
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setSubmitProcess(true);
     setError("");
+
+    const errors: Array<string> = [];
+
+    //18 éves-e?
+    const dob = new Date(formData.date_of_birth);
+
+    if (checkIfUnderEightTeen(dob)) {
+      console.log("18 évnél fiatalabb, nem lehet regisztrálni.");
+      errors.push("Nem 18.");
+    } else {
+      console.log("Regisztráció engedélyezett.");
+    }
 
     const fullNamePattern =
       /^[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+ [A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+$/;
     const passwordPattern =
       /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).+/;
 
-    const errors: Array<string> = [];
-
-    if (!username) errors.push("Hiányzó felhasználónév!");
-    if (!email) errors.push("Hiányzó email-cím!");
-    if (!password) errors.push("Hiányzó jelszó!");
-    if (!full_name) errors.push("Hiányzó teljes név!");
-    if (!fullNamePattern.test(full_name))
+    if (!formData.username) errors.push("Hiányzó felhasználónév!");
+    if (!formData.email) errors.push("Hiányzó email-cím!");
+    if (!formData.password) errors.push("Hiányzó jelszó!");
+    if (!formData.full_name) errors.push("Hiányzó teljes név!");
+    if (!fullNamePattern.test(formData.full_name))
       errors.push("A teljes név nem megfelelő!");
-    if (password.length < 8 || !passwordPattern.test(password))
+    if (
+      formData.password.length < 8 ||
+      !passwordPattern.test(formData.password)
+    )
       errors.push(
         "A jelszónak legalább 8 karakterből kell lennie, valamint legalább egy kisbetű, egy nagybetű, egy szám, egy speciális karakter!"
       );
     if (errors.length > 0) {
-      setError(errors.join(" "));
-      setLoading(false);
+      setError(errors.join("\n"));
+      setSubmitProcess(false);
+      errors.forEach((e) => {
+        if (e.includes("Nem 18.")) {
+          Router.push("/login");
+        }
+      });
       return;
     }
     try {
+      const requestData = {
+        ...formData,
+        date_of_birth: dob,
+      };
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password, full_name }),
+        body: JSON.stringify(requestData),
       });
       if (res.ok) {
         const data = await res.json();
         localStorage.setItem("token", data.token);
         console.log("Sikeres regisztráció!");
-        window.location.href = "/";
+        Router.push("/login");
       } else {
         const data = await res.json();
         console.error("Sikertelen regisztráció!", data.error);
@@ -57,9 +105,42 @@ export default function Register() {
       console.error(err);
       setError("Hiba történt a regisztráció során.");
     } finally {
-      setLoading(false);
+      setSubmitProcess(false);
     }
   };
+
+  const fields = [
+    {
+      name: "username",
+      label: "Felhasználónév",
+      type: "text",
+      placeholder: "Írd be a felhasználóneved...",
+    },
+    {
+      name: "full_name",
+      label: "Teljes név",
+      type: "text",
+      placeholder: "Írd be a teljes neved...",
+    },
+    {
+      name: "date_of_birth",
+      label: "Születési dátum",
+      type: "date",
+      placeholder: "Írd be a születési dátumod...",
+    },
+    {
+      name: "email",
+      label: "E-mail",
+      type: "email",
+      placeholder: "Írd be az e-mail címed...",
+    },
+    {
+      name: "password",
+      label: "Jelszó",
+      type: "password",
+      placeholder: "Írd be a jelszavad...",
+    },
+  ];
 
   return (
     <div className="flex flex-col items-center">
@@ -68,58 +149,31 @@ export default function Register() {
         onSubmit={handleRegister}
         className="flex flex-col items-center bg-yinmn-blue p-6 rounded-lg shadow-md w-full max-w-md mx-auto"
       >
-        <div className="mb-4 w-full">
-          <label className="block text-betu_szin text-lg mb-2">
-            Felhasználónév:
-          </label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full p-2 border border-glaucous rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch"
-            placeholder="Írd be a felhasználóneved..."
-          />
-        </div>
-        <div className="mb-4 w-full">
-          <label className="block text-betu_szin text-lg mb-2">
-            Teljes név:
-          </label>
-          <input
-            type="text"
-            value={full_name}
-            onChange={(e) => setFullName(e.target.value)}
-            className="w-full p-2 border border-glaucous rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch"
-            placeholder="Írd be a teljes neved..."
-          />
-        </div>
-        <div className="mb-4 w-full">
-          <label className="block text-betu_szin text-lg mb-2">E-mail:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border border-glaucous rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch"
-            placeholder="Írd be az e-mail címed..."
-          />
-        </div>
-        <div className="mb-4 w-full">
-          <label className="block text-betu_szin text-lg mb-2">Jelszó:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 border border-glaucous rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch"
-            placeholder="Írd be a jelszavad..."
-          />
-        </div>
-        {error && <p className="text-dark-red mb-4">{error}</p>}
+        {fields.map((field) => (
+          <div key={field.name} className="mb-4 w-full">
+            <label className="block text-betu_szin text-lg mb-2">
+              {field.label}:
+            </label>
+            <input
+              type={field.type}
+              name={field.name}
+              value={formData[field.name as keyof typeof formData]}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-glaucous rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch"
+              placeholder={field.placeholder}
+            />
+          </div>
+        ))}
+        {error && (
+          <p className="text-dark-red mb-4 bg-slate-600 opacity-80">{error}</p>
+        )}
         <button
           type="submit"
-          disabled={loading}
-          className="w-full disabled:bg-slate-600 bg-butter-scotch font-bold py-2 rounded-md hover:bg-glaucous transition duration-300"
+          disabled={submitProcess}
+          className={`${styles.button.tailwind}`}
         >
-          {loading ? "Folyamatban..." : "Regisztráció"}
-          {/* Ide majd animáció is mehetne */}
+          {submitProcess ? "Regisztráció..." : "Regisztráció"}{" "}
+          {/* Animáció mehet majd */}
         </button>
       </form>
     </div>

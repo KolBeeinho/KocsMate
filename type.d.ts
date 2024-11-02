@@ -4,6 +4,18 @@ export type AuthContextType = {
   logout: () => void;
   isRegistered: boolean;
 };
+
+// export interface GoogleProfile {
+//   sub: string; // A felhasználó egyedi azonosítója
+//   name: string; // A felhasználó neve
+//   given_name: string; // Keresztnév
+//   family_name: string; // Vezetéknév
+//   picture: string; // Profilkép URL
+//   email: string; // E-mail cím
+//   email_verified: boolean; // E-mail megerősítése
+//   locale: string; // Nyelvi beállítás
+// } //csak ha mégis kéne
+
 declare global {
   namespace NodeJS {
     interface ProcessEnv {

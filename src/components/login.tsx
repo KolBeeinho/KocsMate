@@ -1,83 +1,133 @@
-import { signIn } from "next-auth/react"; // NextAuth bejelentkező függvény
-import { FormEvent, useState } from "react";
+import { signIn } from "next-auth/react"; // NextAuth login function
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { FormEvent, useState } from "react";
+import { styles } from "../styles/styles";
+import useLoading from "../utils/hooks/useLoad";
 import GoogleLoginButton from "./GoogleLogin";
 import KocsMateLogo from "./KocsMateLogo";
+// import KocsMateLogo from "./KocsMateLogo";
+// import en from "../../../public/locales/en/Reviews/reviewsection";
+// import en2 from "../../../public/locales/en/Reviews/reviews";
+// import hu from "../../../public/locales/hu/Vélemények/reviewsection";
+// import hu2 from "../../../public/locales/hu/Vélemények/reviews";
 
 export default function Login() {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const { loading } = useLoading();
+  const [transition, setTransition] = React.useState<boolean>(false);
+  React.useEffect(() => {
+    if (loading) {
+      setTransition(transition);
+    } else {
+      setTransition(!transition);
+    }
+  }, [loading]);
+  const [submitProcess, setSubmitProcess] = React.useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const router = useRouter();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
+    setSubmitProcess(true);
     setError("");
-    const no_google_button = document.getElementById("login_no_google");
-    if (e.target !== no_google_button) {
+    // Ellenőrzések
+    const GoogleButton = document.getElementById("data-google-button");
+    if (!formData.username || (!formData.email && e.target === GoogleButton)) {
+      return;
+    } else if (!formData.password && !formData.username) {
+      setError("Hiányzik a felhasználónév vagy az email!");
+      setSubmitProcess(false);
       return;
     }
-    if (!username) {
-      setError("Hiányzik a felhasználónév!");
-      return;
-    }
-    if (!password) {
+    if (!formData.password) {
       setError("Hiányzik a jelszó!");
+      setSubmitProcess(false);
       return;
     }
-    // NextAuth bejelentkezés
-    const result = await signIn("credentials", {
-      redirect: false,
-      username,
-      password,
-    });
 
-    if (result?.error) {
-      console.error("Sikertelen bejelentkezés!", result.error);
-      setError(result.error);
-    } else {
-      console.log("Sikeres bejelentkezés!");
-      window.location.href = "/search";
+    try {
+      //NextAuth login
+      const result = await signIn("credentials", {
+        redirect: false,
+        username: formData.username || formData.email,
+        password: formData.password,
+      });
+
+      if (result?.error) {
+        console.log("Sikertelen bejelentkezés!", result.error);
+        setError(result.error);
+      } else {
+        console.log("Sikeres bejelentkezés!");
+        router.push("/search");
+      }
+    } catch (error) {
+      console.error("Hiba történt a bejelentkezés során:", error);
+      setError("Hiba történt a bejelentkezés során.");
+    } finally {
+      setSubmitProcess(false); // Folyamat vége, állapot frissítése
     }
   };
 
+  const fields = [
+    {
+      name: "username",
+      label: "Felhasználónév",
+      type: "text",
+      placeholder: "Írd be a felhasználóneved, vagy az emailed...",
+    },
+    {
+      name: "password",
+      label: "Jelszó",
+      type: "password",
+      placeholder: "Írd be a jelszavad...",
+    },
+  ];
+
   return (
-    <>
+    <div className="flex flex-col items-center">
       <KocsMateLogo />
       <form
         onSubmit={handleLogin}
         className="flex flex-col items-center bg-yinmn-blue p-6 rounded-lg shadow-md w-full max-w-md mx-auto gap-4"
       >
-        <div className="mb-4 w-full">
-          <label className="block text-betu_szin text-lg mb-2">
-            Felhasználónév:
-          </label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full p-2 border border-glaucous text-black rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch"
-            placeholder="Írd be a felhasználóneved..."
-          />
-        </div>
-        <div className="mb-4 w-full">
-          <label className="block text-betu_szin text-lg mb-2">Jelszó:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 border border-glaucous text-black rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch"
-            placeholder="Írd be a jelszavad..."
-          />
-        </div>
-        {error && <p className="text-dark-red mb-4 text-center">{error}</p>}
-        <button
-          type="submit"
-          id="login_no_google"
-          className="w-full bg-butter-scotch font-bold py-2 rounded-md hover:bg-glaucous transition duration-300"
-        >
-          Bejelentkezés
+        {fields.map((field) => (
+          <div key={field.name} className="mb-4 w-full relative">
+            <label className="block text-betu_szin text-lg mb-2">
+              {field.label}:
+            </label>
+            <input
+              type={field.type}
+              name={field.name}
+              value={formData[field.name as keyof typeof formData]}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-glaucous text-black rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch"
+              placeholder={field.placeholder}
+            />
+          </div>
+        ))}
+        {error && (
+          <p className="text-dark-red mb-4 bg-slate-600 opacity-80">{error}</p>
+        )}
+        <button type="submit" className={`${styles.button.tailwind}`}>
+          {submitProcess ? "Bejelentkezés..." : "Bejelentkezés"}
+          {/* Animáció mehet majd */}
         </button>
         <GoogleLoginButton />
+        <Link href={"/register"}>
+          <button className={`${styles.button.tailwind}`}>
+            Nem regisztrált még?
+          </button>
+        </Link>
       </form>
-    </>
+    </div>
   );
 }

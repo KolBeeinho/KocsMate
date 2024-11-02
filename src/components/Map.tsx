@@ -15,8 +15,12 @@ const MyMap = () => {
         latitude: center.lat, // Szélesség
         zoom: 14,
       }}
-      style={{ width: "100%", height: "calc(100vh - 77px)" }}
-      mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${process.env.NEXT_PUBLIC_MAPTILER_API_KEY}`}
+      style={{
+        width: "100%",
+        height: "calc(100vh - 77px)",
+        marginBottom: "500px",
+      }}
+      mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
     >
       <NavigationControl position="top-left" />
     </Map>
