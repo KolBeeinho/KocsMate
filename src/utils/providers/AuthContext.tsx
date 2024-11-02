@@ -28,7 +28,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     dateOfBirth: session.user.birthday,
   };
 
-  const isRegistered = user !== null;
+  const isRegistered = user !== null && user !== undefined;
 
   const login = async (email: string, password: string) => {
     await signIn("credentials", { email, password, redirect: false });

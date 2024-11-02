@@ -8,6 +8,7 @@ const GoogleLoginButton = () => {
   return (
     <button
       onClick={handleLogin}
+      id="data-google-button"
       className="btn-google p-4 w-full disabled:bg-slate-600 bg-butter-scotch font-bold py-2 rounded-md hover:bg-glaucous transition duration-300"
     >
       Bejelentkezés Google-lel
