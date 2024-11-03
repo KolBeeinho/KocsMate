@@ -1,20 +1,13 @@
-import { signIn } from "next-auth/react"; // NextAuth login function
-import Link from "next/link";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
+import KocsMateLogo from "../components/KocsMateLogo";
 import { styles } from "../styles/styles";
 import useLoading from "../utils/hooks/useLoad";
-import KocsMateLogo from "./KocsMateLogo";
-import LoginButtons from "./LoginMedia";
-// import KocsMateLogo from "./KocsMateLogo";
-// import en from "../../../public/locales/en/Reviews/reviewsection";
-// import en2 from "../../../public/locales/en/Reviews/reviews";
-// import hu from "../../../public/locales/hu/Vélemények/reviewsection";
-// import hu2 from "../../../public/locales/hu/Vélemények/reviews";
 
-export default function Login() {
+const pregister = () => {
+  //TODO Business fiókok
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -40,48 +33,7 @@ export default function Login() {
     setSubmitProcess(true);
     setError("");
     // Ellenőrzések
-    //Ha social media bejelentkezést választottunk, akkor ne dobjon hibát a sima bejelentkezés
-    //#region
-    const social_media = [
-      {
-        id: "google",
-        htmlId: "data-google-button",
-        label: "Bejelentkezés Google-lal",
-        disabled: false,
-      },
-      {
-        id: "facebook",
-        htmlId: "data-facebook-button",
-        label: "Bejelentkezés Facebookkal",
-        disabled: false,
-      },
-      {
-        id: "x",
-        htmlId: "data-x-button",
-        label: "Bejelentkezés X-szel",
-        disabled: true,
-      },
-      {
-        id: "apple",
-        htmlId: "data-apple-button",
-        label: "Bejelentkezés iClouddal",
-        disabled: true,
-      },
-    ];
-    let button_id;
-    let targetIsNotAuthProvider = false;
-    social_media.map((social_media) => {
-      button_id = document.getElementById(`${social_media.htmlId}`);
-      if (!formData.username || (!formData.email && e.target === button_id)) {
-        targetIsNotAuthProvider = true;
-      }
-    });
-    if (targetIsNotAuthProvider) {
-      setSubmitProcess(false);
-      return;
-    }
-    //#endregion
-    if (!formData.password && !formData.username) {
+    if (!formData.password && !formData.email) {
       setError("Hiányzik a felhasználónév vagy az email!");
       setSubmitProcess(false);
       return;
@@ -96,7 +48,7 @@ export default function Login() {
       //Default login
       const result = await signIn("credentials", {
         redirect: false,
-        username: formData.username || formData.email,
+        username: formData.email,
         password: formData.password,
       });
 
@@ -105,7 +57,7 @@ export default function Login() {
         setError(result.error);
       } else {
         console.log("Sikeres bejelentkezés!");
-        router.push("/search");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.error("Hiba történt a bejelentkezés során:", error);
@@ -117,10 +69,10 @@ export default function Login() {
 
   const fields = [
     {
-      name: "username",
-      label: "Felhasználónév",
-      type: "text",
-      placeholder: "Írd be a felhasználóneved, vagy az emailed...",
+      name: "email",
+      label: "Business Email",
+      type: "email",
+      placeholder: "Írd be az üzleti emailed...",
     },
     {
       name: "password",
@@ -159,18 +111,9 @@ export default function Login() {
           {submitProcess ? "Bejelentkezés..." : "Bejelentkezés"}
           {/* Animáció mehet majd */}
         </button>
-        <LoginButtons />
-        <Link href={"/pregister"}>
-          <button className={`${styles.button.tailwind}`}>
-            Kiemelt felhasználó?
-          </button>
-        </Link>
-        <Link href={"/register"}>
-          <button className={`${styles.button.tailwind}`}>
-            Nem regisztrált még?
-          </button>
-        </Link>
       </form>
     </div>
   );
-}
+};
+
+export default pregister;

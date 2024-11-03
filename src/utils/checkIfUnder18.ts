@@ -25,11 +25,9 @@ export default function checkIfUnderEightTeen(
       0
     );
 
-    // Calculate 18 years in milliseconds
     const eighteenYearsInMilliseconds = 18 * 365 * 24 * 60 * 60 * 1000;
 
-    // Check if the user is under 18
-    return birthday.getTime() > today.getTime() - eighteenYearsInMilliseconds;
+    return birthday.getTime() > today.getTime() - eighteenYearsInMilliseconds; //TODO hibakezelés érvénytelen születési dátumra, és átállni UTC+2-re, de 1901-től
   } catch (error) {
     console.log("Hiba történt az életkor megállapítása során: ", error);
     return null;

@@ -2,6 +2,7 @@ import maplibregl from "maplibre-gl";
 import Map, { NavigationControl } from "react-map-gl";
 
 const center = {
+  //Egyelőre Kistarcsa
   lat: 47.55172, // Szélesség
   lng: 19.26131, // Hosszúság
 };

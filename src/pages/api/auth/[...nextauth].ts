@@ -3,6 +3,9 @@ import { User } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import FacebookProvider, {
+  FacebookProfile,
+} from "next-auth/providers/facebook";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import { prisma } from "../../../prisma";
 
@@ -52,7 +55,7 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       authorization: {
         params: {
-          scope: "openid profile email", // Ez biztosítja, hogy az azonosítót és a profilt is lekéri
+          scope: "openid profile email",
         },
       },
       async profile(profile: GoogleProfile) {
@@ -118,6 +121,71 @@ export default NextAuth({
         };
       },
     }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+      authorization: {
+        params: {
+          scope: "public_profile email",
+        },
+      },
+      async profile(profile: FacebookProfile) {
+        console.log("Facebook Profile:", profile);
+        let user = await prisma.user.findFirst({
+          where: { email: profile.email },
+        });
+        console.log("Facebook Profile ID:", profile.id);
+        console.log("Facebook Profile Email:", profile.email);
+
+        if (!user) {
+          user = await prisma.user.create({
+            data: {
+              email: profile.email,
+              username: profile.email.split("@")[0],
+              fullName: profile.name,
+              password: "",
+              createdAt: new Date(Date.now()),
+              dateOfBirth: null,
+            },
+          });
+        }
+
+        await prisma.account.upsert({
+          where: {
+            provider_providerAccountId: {
+              provider: "facebook",
+              providerAccountId: user.id,
+            },
+          },
+          create: {
+            userId: user.id,
+            type: "oauth",
+            provider: "facebook",
+            providerAccountId: user.id,
+            refresh_token: profile.refreshToken,
+            access_token: profile.accessToken,
+            expires_at: profile.expiresAt,
+            token_type: profile.tokenType,
+            scope: profile.scope,
+          },
+          update: {
+            access_token: profile.accessToken,
+            refresh_token: profile.refreshToken,
+            expires_at: profile.expiresAt,
+          },
+        });
+
+        return {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          fullName: user.fullName,
+          createdAt: user.createdAt,
+          dateOfBirth: user.dateOfBirth,
+        };
+      },
+    }),
+    //TODO X, apple
   ],
 
   pages: {
