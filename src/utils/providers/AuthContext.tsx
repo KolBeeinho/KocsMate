@@ -19,13 +19,14 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const { data: session } = useSession();
 
-  const user: User = session?.user && {
+  const user: any = session?.user && {
+    //egyelőre any amúgy User
     id: session.user.id,
-    name: session.user.name,
+    fullName: session.user.name,
     email: session.user.email,
     username: session.user.username,
     createdAt: new Date(session.user.createdAt),
-    dateOfBirth: session.user.birthday,
+    dateOfBirth: session.user.dateOfBirth,
   };
 
   const isRegistered = user !== null && user !== undefined;

@@ -15,13 +15,14 @@ export const Home: NextPage = () => {
 
   const { user } = authContext;
 
-  console.log("Aktív felhasználó: " + user); //Teszt
+  // console.log("Aktív felhasználó: " + user); //Teszt
   return (
     <div className="text-2xl flex flex-col items-center">
       <>
         <KocsMateLogo />
         <div className="flex flex-col items-center bg-yinmn-blue p-6 rounded-lg shadow-md w-full max-w-md mx-auto gap-4">
           {[
+            //más fájlba
             { href: "/login", text: "Bejelentkezek" },
             { href: "/register", text: "Nem regisztrált még?" },
             {

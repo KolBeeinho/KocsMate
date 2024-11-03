@@ -23,6 +23,8 @@ declare global {
       MONGODB_PASS: string;
       GOOGLE_CLIENT_ID: string;
       GOOGLE_CLIENT_SECRET: string;
+      FACEBOOK_CLIENT_ID: string;
+      FACEBOOK_CLIENT_SECRET: string;
       NEXTAUTH_SECRET: string;
       NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: string;
     }
