@@ -2,7 +2,7 @@ import { signIn } from "next-auth/react"; // NextAuth login function
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import { styles } from "../styles/styles";
+import { loginStyles } from "../styles/styles";
 import useLoading from "../utils/hooks/useLoad";
 import KocsMateLogo from "./KocsMateLogo";
 import LoginButtons from "./LoginMedia";
@@ -131,15 +131,12 @@ export default function Login() {
   ];
 
   return (
-    <div className="flex flex-col items-center">
+    <div className={`${loginStyles.loginContainer}`}>
       <KocsMateLogo />
-      <form
-        onSubmit={handleLogin}
-        className="flex flex-col items-center bg-yinmn-blue p-6 rounded-lg shadow-md w-full max-w-md mx-auto gap-4"
-      >
+      <form onSubmit={handleLogin} className={`${loginStyles.loginForm}`}>
         {fields.map((field) => (
-          <div key={field.name} className="mb-4 w-full relative">
-            <label className="block text-betu_szin text-lg mb-2">
+          <div key={field.name} className={`${loginStyles.loginField}`}>
+            <label className={`${loginStyles.loginFormLabel}`}>
               {field.label}:
             </label>
             <input
@@ -147,26 +144,24 @@ export default function Login() {
               name={field.name}
               value={formData[field.name as keyof typeof formData]}
               onChange={handleInputChange}
-              className="w-full p-2 border border-glaucous text-black rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch"
+              className={`${loginStyles.loginFormInput}`}
               placeholder={field.placeholder}
             />
           </div>
         ))}
-        {error && (
-          <p className="text-dark-red mb-4 bg-slate-600 opacity-80">{error}</p>
-        )}
-        <button type="submit" className={`${styles.button.tailwind}`}>
+        {error && <p className={`${loginStyles.loginError}`}>{error}</p>}
+        <button type="submit" className={`${loginStyles.loginButton}`}>
           {submitProcess ? "Bejelentkezés..." : "Bejelentkezés"}
           {/* Animáció mehet majd */}
         </button>
         <LoginButtons />
         <Link href={"/pregister"}>
-          <button className={`${styles.button.tailwind}`}>
+          <button className={`${loginStyles.loginButton}`}>
             Kiemelt felhasználó?
           </button>
         </Link>
         <Link href={"/register"}>
-          <button className={`${styles.button.tailwind}`}>
+          <button className={`${loginStyles.loginButton}`}>
             Nem regisztrált még?
           </button>
         </Link>
