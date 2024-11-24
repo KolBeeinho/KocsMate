@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import { styles } from "../styles/styles";
+import { components, registerStyles } from "../styles/styles";
 import checkIfUnderEightTeen from "../utils/checkIfUnder18";
 import useLoading from "../utils/hooks/useLoad";
 import KocsMateLogo from "./KocsMateLogo";
@@ -143,15 +143,15 @@ export default function Register() {
   ];
 
   return (
-    <div className="flex flex-col items-center">
+    <div className={`${registerStyles.registerContainer}`}>
       <KocsMateLogo />
       <form
         onSubmit={handleRegister}
-        className="flex flex-col items-center bg-yinmn-blue p-6 rounded-lg shadow-md w-full max-w-md mx-auto"
+        className={`${registerStyles.registerForm}`}
       >
         {fields.map((field) => (
-          <div key={field.name} className="mb-4 w-full">
-            <label className="block text-betu_szin text-lg mb-2">
+          <div key={field.name} className={`${registerStyles.registerField}`}>
+            <label className={`${registerStyles.registerFormLabel}`}>
               {field.label}:
             </label>
             <input
@@ -159,18 +159,16 @@ export default function Register() {
               name={field.name}
               value={formData[field.name as keyof typeof formData]}
               onChange={handleInputChange}
-              className="w-full p-2 border border-glaucous rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch"
+              className={`${registerStyles.registerFormInput}`}
               placeholder={field.placeholder}
             />
           </div>
         ))}
-        {error && (
-          <p className="text-dark-red mb-4 bg-slate-600 opacity-80">{error}</p>
-        )}
+        {error && <p className={`${registerStyles.registerError}`}>{error}</p>}
         <button
           type="submit"
           disabled={submitProcess}
-          className={`${styles.button.tailwind}`}
+          className={`${components.button.homePageButton}`}
         >
           {submitProcess ? "Regisztráció..." : "Regisztráció"}{" "}
           {/* Animáció mehet majd */}

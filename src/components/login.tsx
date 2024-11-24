@@ -2,7 +2,7 @@ import { signIn } from "next-auth/react"; // NextAuth login function
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import { loginStyles } from "../styles/styles";
+import { components, loginStyles } from "../styles/styles";
 import useLoading from "../utils/hooks/useLoad";
 import KocsMateLogo from "./KocsMateLogo";
 import LoginButtons from "./LoginMedia";
@@ -150,18 +150,18 @@ export default function Login() {
           </div>
         ))}
         {error && <p className={`${loginStyles.loginError}`}>{error}</p>}
-        <button type="submit" className={`${loginStyles.loginButton}`}>
+        <button type="submit" className={`${components.button.homePageButton}`}>
           {submitProcess ? "Bejelentkezés..." : "Bejelentkezés"}
           {/* Animáció mehet majd */}
         </button>
         <LoginButtons />
         <Link href={"/pregister"}>
-          <button className={`${loginStyles.loginButton}`}>
+          <button className={`${components.button.homePageButton}}`}>
             Kiemelt felhasználó?
           </button>
         </Link>
         <Link href={"/register"}>
-          <button className={`${loginStyles.loginButton}`}>
+          <button className={`${components.button.homePageButton}}`}>
             Nem regisztrált még?
           </button>
         </Link>
