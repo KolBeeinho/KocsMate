@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useContext } from "react";
 import KocsMateLogo from "../components/KocsMateLogo";
-import { styles } from "../styles/styles";
+import { components, indexStyle } from "../styles/styles";
 import { AuthContext } from "../utils/providers/AuthContext";
 
 export const Home: NextPage = () => {
@@ -15,12 +15,12 @@ export const Home: NextPage = () => {
 
   const { user } = authContext;
 
-  // console.log("Aktív felhasználó: " + user); //Teszt
+  // console.info("Aktív felhasználó: " + user); //Teszt
   return (
-    <div className="text-2xl flex flex-col items-center">
+    <div className={`${indexStyle.parent}`}>
       <>
         <KocsMateLogo />
-        <div className="flex flex-col items-center bg-yinmn-blue p-6 rounded-lg shadow-md w-full max-w-md mx-auto gap-4">
+        <div className={`${indexStyle.container}`}>
           {[
             //más fájlba
             { href: "/login", text: "Bejelentkezek" },
@@ -30,8 +30,8 @@ export const Home: NextPage = () => {
               text: "Olvassa el adatvédelmi tájékoztatónkat!",
             },
           ].map(({ href, text }, index) => (
-            <Link key={index} href={href} className="mt-4">
-              <button className={`${styles.button.tailwind}`}>{text}</button>
+            <Link key={index} href={href} className={`${indexStyle.buttons}`}>
+              <button className={`${components.button}`}>{text}</button>
             </Link>
           ))}
         </div>

@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 import Map from "../components/Map";
-import { styles } from "../styles/styles";
+import { components } from "../styles/styles";
 import useLoading from "../utils/hooks/useLoad";
 import { AuthContext } from "../utils/providers/AuthContext";
 const Search = () => {
@@ -43,7 +43,10 @@ const Search = () => {
           leaveTo="transform opacity-0"
           as="div"
         >
-          <button className={`${styles.button.tailwind}`} onClick={logout}>
+          <button
+            className={`${components.button.homePageButton}`}
+            onClick={logout}
+          >
             Kijelentkezés
           </button>
           <Map />

@@ -1,5 +1,15 @@
 //ide jöhetnek majd bármilyen stílusok tömbbe, pl. button
 
+export const eulaStyle = {
+  container: "text-center max-w-80",
+  link: "w-full bg-butter-scotch font-bold p-2 mt-4 rounded-md hover:bg-glaucous transition duration-300 max-w-60",
+};
+
+export const Style404 = {
+  container: "flex items-center flex-col",
+  link: "w-full bg-butter-scotch font-bold p-2 mt-4 rounded-md hover:bg-glaucous transition duration-300 max-w-60",
+};
+
 export const components = {
   button: {
     homePageButton:
@@ -7,15 +17,21 @@ export const components = {
   },
 };
 
-export const loginStyles = {
-  loginContainer: "flex flex-col items-center",
-  loginForm:
-    "flex flex-col items-center bg-yinmn-blue p-6 rounded-lg shadow-md w-full max-w-md mx-auto gap-4",
-  loginFormLabel: "block text-betu_szin text-lg mb-2",
-  loginFormInput:
+export const formStyles = {
+  Container: "flex flex-col items-center",
+  Form: "flex flex-col items-center bg-yinmn-blue p-6 rounded-lg shadow-md w-full max-w-md mx-auto gap-4",
+  FormLabel: "block text-betu_szin text-lg mb-2",
+  FormInput:
     "w-full p-2 border border-glaucous text-black rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch",
-  loginField: "mb-4 w-full relative",
-  loginError: "text-dark-red mb-4 bg-slate-600 opacity-80",
+  Field: "mb-4 w-full relative",
+  Error: "text-dark-red mb-4 bg-slate-600 opacity-80",
+};
+
+export const indexStyle = {
+  parent: "text-2xl flex flex-col items-center",
+  container:
+    "flex flex-col items-center bg-yinmn-blue p-6 rounded-lg shadow-md w-full max-w-md mx-auto gap-4",
+  buttons: "mt-4 px-4 py-2",
 };
 
 export const registerStyles = {

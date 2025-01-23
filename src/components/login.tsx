@@ -2,7 +2,7 @@ import { signIn } from "next-auth/react"; // NextAuth login function
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import { components, loginStyles } from "../styles/styles";
+import { components, formStyles } from "../styles/styles";
 import useLoading from "../utils/hooks/useLoad";
 import KocsMateLogo from "./KocsMateLogo";
 import LoginButtons from "./LoginMedia";
@@ -131,25 +131,23 @@ export default function Login() {
   ];
 
   return (
-    <div className={`${loginStyles.loginContainer}`}>
+    <div className={`${formStyles.Container}`}>
       <KocsMateLogo />
-      <form onSubmit={handleLogin} className={`${loginStyles.loginForm}`}>
+      <form onSubmit={handleLogin} className={`${formStyles.Form}`}>
         {fields.map((field) => (
-          <div key={field.name} className={`${loginStyles.loginField}`}>
-            <label className={`${loginStyles.loginFormLabel}`}>
-              {field.label}:
-            </label>
+          <div key={field.name} className={`${formStyles.Field}`}>
+            <label className={`${formStyles.FormLabel}`}>{field.label}:</label>
             <input
               type={field.type}
               name={field.name}
               value={formData[field.name as keyof typeof formData]}
               onChange={handleInputChange}
-              className={`${loginStyles.loginFormInput}`}
+              className={`${formStyles.FormInput}`}
               placeholder={field.placeholder}
             />
           </div>
         ))}
-        {error && <p className={`${loginStyles.loginError}`}>{error}</p>}
+        {error && <p className={`${formStyles.Error}`}>{error}</p>}
         <button type="submit" className={`${components.button.homePageButton}`}>
           {submitProcess ? "Bejelentkezés..." : "Bejelentkezés"}
           {/* Animáció mehet majd */}
