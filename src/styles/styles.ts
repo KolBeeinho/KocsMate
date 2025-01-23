@@ -1,5 +1,15 @@
 //ide jöhetnek majd bármilyen stílusok tömbbe, pl. button
 
+export const eulaStyle = {
+  container: "text-center max-w-80",
+  link: "w-full bg-butter-scotch font-bold p-2 mt-4 rounded-md hover:bg-glaucous transition duration-300 max-w-60",
+};
+
+export const Style404 = {
+  container: "flex items-center flex-col",
+  link: "w-full bg-butter-scotch font-bold p-2 mt-4 rounded-md hover:bg-glaucous transition duration-300 max-w-60",
+};
+
 export const components = {
   button: {
     homePageButton:

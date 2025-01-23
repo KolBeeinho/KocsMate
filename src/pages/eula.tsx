@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { styles } from "../styles/styles";
+import { components, eulaStyle } from "../styles/styles";
 
 const Eula = () => {
   return (
-    <code className="text-center max-w-80">
+    <code className={`${eulaStyle.container}`}>
       <h2>EULA (Végfelhasználói Licencszerződés)</h2>
 
       <h3>1. Bevezetés</h3>
@@ -81,7 +81,9 @@ const Eula = () => {
         jelen Szerződés feltételeit, és azt elfogadja.
       </p>
       <Link href={"/"}>
-        <button className={`mx-auto ${styles.button.tailwind}`}>Vissza</button>
+        <button className={`mx-auto ${components.button.homePageButton}`}>
+          Vissza
+        </button>
       </Link>
     </code>
   );
