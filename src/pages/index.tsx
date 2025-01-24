@@ -31,7 +31,9 @@ export const Home: NextPage = () => {
             },
           ].map(({ href, text }, index) => (
             <Link key={index} href={href} className={`${indexStyle.buttons}`}>
-              <button className={`${components.button}`}>{text}</button>
+              <button className={`${components.button.homePageButton}`}>
+                {text}
+              </button>
             </Link>
           ))}
         </div>
