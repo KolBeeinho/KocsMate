@@ -1,8 +1,7 @@
-import bcrypt from "bcryptjs";
+import * as argon2 from "argon2";
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../prisma";
 import checkIfUnderEightTeen from "../../../utils/checkIfUnder18";
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -35,8 +34,7 @@ export default async function handler(
         .json({ error: "18 év alattiak nem regisztrálhatnak." });
     }
 
-    // Jelszó hashelése
-    const hashedPassword = await bcrypt.hash(password, 12); // Csökkentett iterációs szám
+    const hashedPassword = await argon2.hash(password);
 
     // Felhasználó létrehozása
     try {

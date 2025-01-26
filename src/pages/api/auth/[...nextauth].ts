@@ -1,6 +1,6 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { User } from "@prisma/client";
-import bcrypt from "bcryptjs";
+import * as argon2 from "argon2";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import FacebookProvider, {
@@ -31,14 +31,14 @@ export default NextAuth({
           throw new Error("Felhasználó nem található.");
         }
 
-        const isPasswordValid = await bcrypt.compare(
+        const isPasswordValid = await argon2.verify(
           credentials.password,
           user.password
         );
         if (!isPasswordValid) {
           throw new Error("Érvénytelen jelszó.");
         }
-        const hashedPassword = await bcrypt.hash(user.password, 16);
+        const hashedPassword = await argon2.hash(user.password);
         return {
           id: user.id,
           username: user.username,
