@@ -1,3 +1,3 @@
 # KocsMate
 
-Alapállapot. Alapvető login logika megvalósítva, könyvtárstruktúra létrehozva.
+Capacitor integrálva, telefonon is futtatható.
