@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import { NextApiRequest, NextApiResponse } from "next";
+import { prisma } from "../../../prisma";
 import checkIfUnderEightTeen from "../../../utils/checkIfUnder18";
-import { prisma } from "./../../../prisma";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,19 +12,22 @@ export default async function handler(
       req.body;
 
     console.log("Received data:", req.body);
-    const existingUser = await prisma.user.findFirst({
-      where: {
-        OR: [{ username: username }, { email: email }],
-      },
-    });
+
+    // Párhuzamos adatbázis lekérdezések
+    const [existingUser, isUnder18] = await Promise.all([
+      prisma.user.findFirst({
+        where: {
+          OR: [{ username: username }, { email: email }],
+        },
+      }),
+      checkIfUnderEightTeen(date_of_birth),
+    ]);
 
     if (existingUser) {
       return res
         .status(400)
         .json({ error: "Már létezik ilyen felhasználónév!" });
     }
-
-    const isUnder18 = checkIfUnderEightTeen(date_of_birth);
 
     if (isUnder18) {
       return res
@@ -33,7 +36,8 @@ export default async function handler(
     }
 
     // Jelszó hashelése
-    const hashedPassword = await bcrypt.hash(password, 16);
+    const hashedPassword = await bcrypt.hash(password, 12); // Csökkentett iterációs szám
+
     // Felhasználó létrehozása
     try {
       const user = await prisma.user.create({
@@ -42,11 +46,12 @@ export default async function handler(
           username: username,
           email: email,
           id: id,
-          createdAt: new Date(Date.now()),
+          createdAt: new Date(),
           dateOfBirth: date_of_birth,
           password: hashedPassword,
         },
       });
+
       res.status(201).json({
         message: "User registered successfully",
         userId: user.id,
