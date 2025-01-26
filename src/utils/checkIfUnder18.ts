@@ -3,7 +3,6 @@ export default function checkIfUnderEightTeen(
 ): boolean | null {
   try {
     let birthday: Date;
-
     if (typeof date_of_birth === "string") {
       birthday = new Date(date_of_birth);
     } else {
@@ -24,9 +23,7 @@ export default function checkIfUnderEightTeen(
       0,
       0
     );
-
     const eighteenYearsInMilliseconds = 18 * 365 * 24 * 60 * 60 * 1000;
-
     return birthday.getTime() > today.getTime() - eighteenYearsInMilliseconds; //TODO hibakezelés érvénytelen születési dátumra, és átállni UTC+2-re, de 1901-től
   } catch (error) {
     console.log("Hiba történt az életkor megállapítása során: ", error);

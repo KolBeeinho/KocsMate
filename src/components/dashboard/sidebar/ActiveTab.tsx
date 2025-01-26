@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import Link from "next/link";
+import { JSX } from "react";
 
 type Props = {
   id: string;
@@ -9,7 +10,14 @@ type Props = {
   open?: boolean;
 };
 
-const ActiveTab: React.FC<Props> = ({ id, title, icon, href, onClick, open = false }) => {
+const ActiveTab: React.FC<Props> = ({
+  id,
+  title,
+  icon,
+  href,
+  onClick,
+  open = false,
+}) => {
   return (
     <Link href={href}>
       <button
@@ -20,7 +28,13 @@ const ActiveTab: React.FC<Props> = ({ id, title, icon, href, onClick, open = fal
       >
         <span className="h-7 w-7">{icon}</span>
         {open && (
-          <a className={`origin-center text-lg duration-300 ${!open && 'scale-0'}`}>{title}</a>
+          <a
+            className={`origin-center text-lg duration-300 ${
+              !open && "scale-0"
+            }`}
+          >
+            {title}
+          </a>
         )}
       </button>
     </Link>

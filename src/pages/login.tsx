@@ -18,10 +18,7 @@ export const login: NextPage = () => {
       router.push("/search");
     }
   }, [user, router]);
-
   console.log(user?.id);
-
   return <>{!user ? <Login /> : <Search />}</>;
 };
-
 export default login;

@@ -1,6 +1,6 @@
 import { HomeIcon } from "@heroicons/react/24/solid";
 
-import React from "react";
+import React, { JSX } from "react";
 import ActiveTab from "./ActiveTab";
 import Tab from "./Tab";
 

@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import Link from "next/link";
+import { JSX } from "react";
 
 type Props = {
   id: string;
@@ -8,7 +9,14 @@ type Props = {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   open?: boolean;
 };
-const Tab: React.FC<Props> = ({ id, title, icon, href, onClick, open = false }) => {
+const Tab: React.FC<Props> = ({
+  id,
+  title,
+  icon,
+  href,
+  onClick,
+  open = false,
+}) => {
   return (
     <Link href={href}>
       <button
@@ -19,7 +27,13 @@ const Tab: React.FC<Props> = ({ id, title, icon, href, onClick, open = false }) 
       >
         <span className="h-7 w-7">{icon}</span>
         {open && (
-          <a className={`origin-center text-lg duration-300 ${!open && 'scale-0'}`}>{title}</a>
+          <a
+            className={`origin-center text-lg duration-300 ${
+              !open && "scale-0"
+            }`}
+          >
+            {title}
+          </a>
         )}
       </button>
     </Link>
