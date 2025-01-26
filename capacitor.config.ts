@@ -3,9 +3,9 @@ import { CapacitorConfig } from "@capacitor/cli";
 const config: CapacitorConfig = {
   appId: "com.example.kocsmate",
   appName: "KocsMate",
-  webDir: "www",
+  webDir: "./src",
   server: {
-    url: "http://localhost:3000",
+    url: "http://192.168.1.8:3000", //ha emulátort használsz, akkor 127.0.0.1 vagy localhost
     cleartext: true,
   },
 };
