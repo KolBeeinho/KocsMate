@@ -32,8 +32,8 @@ export default NextAuth({
         }
 
         const isPasswordValid = await argon2.verify(
-          credentials.password,
-          user.password
+          user.password,
+          credentials.password
         );
         if (!isPasswordValid) {
           throw new Error("Érvénytelen jelszó.");

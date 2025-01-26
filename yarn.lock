@@ -67,6 +67,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@capacitor/device@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@capacitor/device@npm:7.0.0"
+  peerDependencies:
+    "@capacitor/core": ">=7.0.0"
+  checksum: 10c0/b3335035520836fc55460cd2d8a19e8f6e5cc4dd4f03fdf45f608c0bd22c0ededfff758a1e502ea37372e081b975fcb2bdd0c363368d2552d21f42d6a7940a6e
+  languageName: node
+  linkType: hard
+
 "@capacitor/geolocation@npm:^7.0.0":
   version: 7.0.0
   resolution: "@capacitor/geolocation@npm:7.0.0"
@@ -2169,6 +2178,7 @@ __metadata:
     "@capacitor/android": "npm:^7.0.1"
     "@capacitor/cli": "npm:^7.0.1"
     "@capacitor/core": "npm:^7.0.1"
+    "@capacitor/device": "npm:^7.0.0"
     "@capacitor/geolocation": "npm:^7.0.0"
     "@capacitor/ios": "npm:^7.0.1"
     "@headlessui/react": "npm:^2.2.0"

@@ -1,4 +1,4 @@
-import { signIn } from "next-auth/react"; // NextAuth login function
+import { signIn } from "next-auth/react"; //NextAuth login function
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
