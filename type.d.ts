@@ -27,6 +27,8 @@ declare global {
       FACEBOOK_CLIENT_SECRET: string;
       NEXTAUTH_SECRET: string;
       NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: string;
+      RESTORE_USER: string;
+      RESTORE_PASS: string;
     }
   }
 }

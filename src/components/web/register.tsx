@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import { components, registerStyles } from "../styles/styles";
-import checkIfUnderEightTeen from "../utils/checkIfUnder18";
-import useLoading from "../utils/hooks/useLoad";
+import { components, registerStyles } from "../../styles/styles";
+import checkIfUnderEightTeen from "../../utils/checkIfUnder18";
+import useLoading from "../../utils/hooks/useLoad";
 import KocsMateLogo from "./KocsMateLogo";
 // import en from "../../../public/locales/en/Reviews/reviewsection";
 // import en2 from "../../../public/locales/en/Reviews/reviews";

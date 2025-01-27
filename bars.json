@@ -1,0 +1,1692 @@
+[
+  {
+    "name": "Vidor söröző",
+    "fullAddress": "1137 Budapest, Katona József utca 20.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Lumen kávézó",
+    "fullAddress": "1088 Budapest, Mikszáth Kálmán tér 2.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Vinitus Budapest",
+    "fullAddress": "1116 Budapest, Alíz utca 6/B.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "FIRST Craft Beer & BBQ",
+    "fullAddress": "1072 Budapest, Dob utca 3.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Program presszó",
+    "fullAddress": "1117 Budapest, Bölcső utca 9.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Ganz söröző",
+    "fullAddress": "1027 Budapest, Ganz utca 6.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Lakat presszó",
+    "fullAddress": "1115 Budapest, Kelenföldi út 52.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Lánchíd söröző",
+    "fullAddress": "1011 Budapest, Fő utca 4.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "R56 söröző",
+    "fullAddress": "1027 Budapest, Bem rakpart 53.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Esetleg bisztró",
+    "fullAddress": "1097 Budapest, Fővám tér 11-12. (Bálna Budapest),",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Bajor Sarok",
+    "fullAddress": "1072 Budapest, Akácfa utca 7.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Happy Drink Bar",
+    "fullAddress": "1111 Budapest, Bercsényi utca 12.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Szavanna Ivó",
+    "fullAddress": "1111 Budapest, Bercsényi utca 8.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Clock sörbár",
+    "fullAddress": "1111 Budapest, Lágymányosi utca 7.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Két Rombusz",
+    "fullAddress": "1031 Budapest, Római part 43.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Strébeer bár - On/Off Pub",
+    "fullAddress": "1117 Budapest, Karinthy Frigyes út 7.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Tiltott Csíki Söröző",
+    "fullAddress": "1082 Budapest, József körút 35.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Veritas Winebar",
+    "fullAddress": "1074 Budapest, Dohány utca 58-62.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Richard's Café & Pub",
+    "fullAddress": "1117 Budapest, Siroki utca 1.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Gdansk",
+    "fullAddress": "1111 Budapest, Bartók Béla út 46.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Majorka",
+    "fullAddress": "1125 Budapest, Szilágyi Erzsébet fasor 16.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Neked Csak Dezső - Brewpub & Bistro",
+    "fullAddress": "1088 Budapest, Rákóczi út 29.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Beer Brothers",
+    "fullAddress": "1052 Budapest, Kossuth Lajos utca 20.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Red Ruin",
+    "fullAddress": "1056 Budapest, Irányi utca 25.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Čech In - Lónyay",
+    "fullAddress": "1093 Budapest, Lónyai utca 34.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Starter Pub",
+    "fullAddress": "1093 Budapest, Lónyay utca 36.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Beer Point Budapest",
+    "fullAddress": "1073 Budapest, Erzsébet körút 30. Látogatás #01: 2017. május 16. 16:20-20:15 Látogatás #02: 2018. január 17. 17:30-20:45",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Fogadó Sport Pub",
+    "fullAddress": "1116 Budapest, Fehérvári út 120-124.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Cintányéros",
+    "fullAddress": "1083 Budapest, Bókay János utca 52.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Hopaholic",
+    "fullAddress": "1072 Budapest, Akácfa utca 38.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Műhely Pub",
+    "fullAddress": "1111 Budapest, Budafoki út 29.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Mészöly söröző",
+    "fullAddress": "1111 Budapest, Bartók Béla út 44.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Halkakas halbisztró",
+    "fullAddress": "1074 Budapest, Dohány utca 36.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Fapados söröző",
+    "fullAddress": "1111 Budapest, Bartók Béla út 42.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Borpatika",
+    "fullAddress": "1111 Budapest, Bertalan Lajos utca 26.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Gellért Söröző & Brasserie",
+    "fullAddress": "1111 Budapest, Szent Gellért tér 2.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "MAG Pub",
+    "fullAddress": "1111 Budapest, Bercsényi utca 9.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Good Spirit Bar",
+    "fullAddress": "1053 Budapest, Veres Pálné utca 7.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "One Beer",
+    "fullAddress": "1085 Budapest, József körút 63.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "BarCraft 2",
+    "fullAddress": "1065 Budapest, Bajcsy-Zsilinszky út 59.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Transylvania sörház",
+    "fullAddress": "1114 Budapest, Kosztolányi Dezső tér 5.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Nano drinkbár",
+    "fullAddress": "1111 Budapest, Budafoki út 33.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Food Truck udvar",
+    "fullAddress": "1091 Budapest, Üllői út 51.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Cherry presszó",
+    "fullAddress": "1125 Budapest, Szilágyi Erzsébet fasor 14-16.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Alba Regia vendéglő",
+    "fullAddress": "1117 Budapest, Fehérvári út 38.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Kék Ló",
+    "fullAddress": "1084 Budapest, Víg utca 28.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Krak'n Town",
+    "fullAddress": "1085 Budapest, József körút 31/a.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Aranykorsó söröző",
+    "fullAddress": "1111 Budapest, Karinthy Frigyes út 2.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Lustamacska Pub",
+    "fullAddress": "1117 Budapest, Irinyi József utca 38.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "City Beer",
+    "fullAddress": "1075 Budapest, Károly körút 9.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Rizmajer Sörház",
+    "fullAddress": "1085 Budapest, József körút 14.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Hard Rock Cafe Budapest",
+    "fullAddress": "1051 Budapest, Deák Ferenc utca 3-5.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Dózsa söröző",
+    "fullAddress": "1146 Budapest, Dózsa György út 9.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Ogre Bácsi",
+    "fullAddress": "1067 Budapest, Hunyadi tér 11.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Platz",
+    "fullAddress": "1051 Budapest, Szent István tér 4.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Jurányi kávézó",
+    "fullAddress": "1027 Budapest, Csalogány utca 45. / Jurányi utca 1-3.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Zsiráf",
+    "fullAddress": "1062 Budapest, Teréz körút 53.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Két lámpás söröző, borozó",
+    "fullAddress": "1211 Budapest, Karácsony Sándor utca 11.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Hadik",
+    "fullAddress": "1111 Budapest, Bartók Béla út 36.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Bódé büfé",
+    "fullAddress": "1211 Budapest, Vermes Miklós utca 4.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Jurta korcsma",
+    "fullAddress": "1146 Budapest, Thököly út 95.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Italbank",
+    "fullAddress": "1215 Budapest, Ady Endre út 68.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Kandallós söröző",
+    "fullAddress": "1215 Budapest, Ady Endre utca 82.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Üvegház bisztró",
+    "fullAddress": "1211 Budapest, Szent Imre tér 6-8.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Doblo Wine & Bar",
+    "fullAddress": "1072 Budapest, Dob utca 20.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Pivohalle sörvendéglő",
+    "fullAddress": "1027 Budapest, Tölgyfa utca 26.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Platós",
+    "fullAddress": "1074 Budapest, Dohány utca 30/A.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "ParaNoir Pub",
+    "fullAddress": "1074 Budapest, Hársfa utca 41.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Filo Bar",
+    "fullAddress": "1072 Budapest, Dob utca 32.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Marionett Craft Beer House",
+    "fullAddress": "1052 Budapest, Apáczai Csere János utca 4.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Piros Pezsgő piano bár",
+    "fullAddress": "1022 Budapest, Bimbó út 3.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Stone Pub",
+    "fullAddress": "1097 Budapest, Könyves Kálmán körút 12-14. (Lurdy ház)",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Bestia",
+    "fullAddress": "1051 Budapest, Szent István tér 9-11.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Humbák Művek",
+    "fullAddress": "1073 Budapest, Erzsébet körút 12.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Hunyadi Lakásbisztró",
+    "fullAddress": "1011 Budapest, Hunyadi János út 15.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Buborék söröző",
+    "fullAddress": "1077 Budapest, Wesselényi utca 36.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Mazel Tov",
+    "fullAddress": "1073 Budapest, Akácfa utca 47.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Zsiga bár",
+    "fullAddress": "1082 Budapest, Horváth Mihály tér 14.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Liebling",
+    "fullAddress": "1073 Budapest, Akácfa utca 51.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Borbarát borozó",
+    "fullAddress": "1062 Budapest, Nyugati téri aluljáró,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "4es 6os Mamut",
+    "fullAddress": "1024 Budapest, Margit körút 73.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "360 Bar",
+    "fullAddress": "1061 Budapest, Andrássy út 39.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "0,75 bistro",
+    "fullAddress": "1051 Budapest, Sas utca 11.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Rizmajer Kézműves Sörház",
+    "fullAddress": "1211 Budapest, Táncsics Mihály utca 110.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Liquid Rock",
+    "fullAddress": "1074 Budapest, Rákóczi út 10.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Ex klub",
+    "fullAddress": "1114 Budapest, Mészöly utca 3.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Liter bár",
+    "fullAddress": "1072 Budapest, Dob utca 24.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Stifler Bar",
+    "fullAddress": "1073 Budapest, Erzsébet körút 19.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Spitz and Burger",
+    "fullAddress": "1068 Budapest, Király utca 58-60.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Fröccskocsma",
+    "fullAddress": "1051 Budapest, József Attila utca 22.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Hordós söröző, borozó",
+    "fullAddress": "1082 Budapest, Üllői út 42.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Beer Company - Gellért",
+    "fullAddress": "1114 Budapest, Kemenes utca 4.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Illegál Pub",
+    "fullAddress": "1074 Budapest, Kazinczy utca 4,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Az Öszvér pálinkabarlang és sörpince",
+    "fullAddress": "1064 Budapest, Zichy Jenő utca 38.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "4es 6os Király",
+    "fullAddress": "1072 Budapest, Erzsébet körút 58.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Bookta",
+    "fullAddress": "1023 Budapest, Margit utca 3.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Blokk bár",
+    "fullAddress": "1073 Budapest, Erzsébet körút 52.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Fekete Kutya",
+    "fullAddress": "1074 Budapest, Dob utca 31.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Kelet kávézó és galéria",
+    "fullAddress": "1114 Budapest, Bartók Béla út 29.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Kis Kapucinus söröző",
+    "fullAddress": "1087 Budapest, Százados út 25-27.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Budapest PARK",
+    "fullAddress": "1095 Budapest, Soroksári út 60.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Hauzol Cafe",
+    "fullAddress": "1073 Budapest, Erzsébet körút 26.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Léhűtő kézműves söröző",
+    "fullAddress": "1076 Budapest, Holló utca 12-14.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Palack borbár",
+    "fullAddress": "1111 Budapest, Szent Gellért tér 3.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Dzzs bár",
+    "fullAddress": "1072 Budapest, Nagydiófa utca 32.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Előre 57 sz. italbolt",
+    "fullAddress": "1072 Budapest, Akácfa utca 57.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Szimpla kávézó",
+    "fullAddress": "1073 Budapest, Kertész utca 48.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Gólya",
+    "fullAddress": "1083 Budapest, Bókay János utca 34.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Jónás kézműves sörház",
+    "fullAddress": "1093 Budapest, Fővám tér 11-12.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Trabant presszó",
+    "fullAddress": "1144 Budapest, Kerepesi út 104.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Csak a jó sör!",
+    "fullAddress": "1072 Budapest, Kertész utca 42-44.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Rácskert",
+    "fullAddress": "1073 Budapest, Dob utca 40.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Pagony",
+    "fullAddress": "1114 Budapest, Kemenes utca 10.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "UdvarRom",
+    "fullAddress": "1072 Budapest, Klauzál utca 21.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Kertész söröző",
+    "fullAddress": "1073 Budapest, Kertész utca 24-28.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Szőlőskert borozó",
+    "fullAddress": "1213 Budapest, Mázoló utca 14.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Élesztő",
+    "fullAddress": "1094 Budapest, Tűzoltó utca 22.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Prága kávéház és teázó",
+    "fullAddress": "1089 Budapest, Baross utca 8.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Villány-Siklósi borozó",
+    "fullAddress": "1052 Budapest, Gerlóczy utca 13.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Bakegér borozó",
+    "fullAddress": "1066 Budapest, Jókai utca 4.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Kis Itália söröző",
+    "fullAddress": "1095 Budapest, Mester utca 5.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Yes Pub",
+    "fullAddress": "1136 Budapest, Hegedűs Gyula utca 1.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Keksz",
+    "fullAddress": "1075 Budapest, Madách Imre tér 4.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Bohémia söröző",
+    "fullAddress": "1084 Budapest, Déri Miksa utca 1-3.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Ámor söröző",
+    "fullAddress": "1157 Budapest, Erdőkerülő utca 1.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Opera Pub",
+    "fullAddress": "1066 Budapest Zichy Jenő utca 37.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Čech In sörtár",
+    "fullAddress": "1065 Budapest, Lázár utca 7.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Hétker Restrobar",
+    "fullAddress": "1072 Budapest, Akácfa utca 7.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Medikus kávézó",
+    "fullAddress": "1091 Budapest, Üllői út 89/C.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Práter Pub",
+    "fullAddress": "1083 Budapest, Práter utca 3.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Fészek művészklub",
+    "fullAddress": "1074 Budapest, Dob utca 57.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Grund",
+    "fullAddress": "1082 Budapest, Nagytemplom utca 30. Újralátogatás: 2012. július 18. 17:30-22:15Első látogatás: 2010. január 6. 18:00-23:05",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Limit bár",
+    "fullAddress": "1073 Budapest, Erzsébet körút 19.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Kávés Katica",
+    "fullAddress": "1138 Budapest, Váci út 54.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Anker't",
+    "fullAddress": "1061 Budapest, Paulay Ede utca 33.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Púder bárszínház",
+    "fullAddress": "1092 Budapest, Ráday utca 8.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Napközi bisztró",
+    "fullAddress": "1117 Budapest, Szerémi sor 3.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Füge udvar",
+    "fullAddress": "1074 Budapest, Klauzál utca 19.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Volán klub",
+    "fullAddress": "1084 Budapest, József utca 9.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Nemdebár",
+    "fullAddress": "1024 Budapest, Széll Kálmán tér 5.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Cheers Pub",
+    "fullAddress": "1066 Budapest, Nagymező utca 35.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Public Pub",
+    "fullAddress": "1075 Budapest, Madách Imre út 11.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Kisüzem",
+    "fullAddress": "1077 Budapest, Kis Diófa utca 2.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Macska",
+    "fullAddress": "1085 Budapest, Bérkocsis utca 23.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "HaBár",
+    "fullAddress": "1114 Budapest, Bartók Béla út 17. (Baross Gábor Kollégium alagsor),",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Wichmann kocsma",
+    "fullAddress": "1072 Budapest, Kazinczy utca 55.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Bobek Café",
+    "fullAddress": "1075 Budapest, Kazinczy utca 53.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Telep",
+    "fullAddress": "1075 Budapest, Madách Imre út 8.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Doboz",
+    "fullAddress": "1075 Budapest, Károly körút 23.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Avar presszó",
+    "fullAddress": "1118 Budapest, Avar utca 31.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Pinyó klub",
+    "fullAddress": "1111 Budapest, Karinthy Frigyes út 26.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Anker klub",
+    "fullAddress": "1061 Budapest, Anker köz 1-3.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Pista néni söröző",
+    "fullAddress": "1221 Budapest, Ady Endre utca 6.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Pesti sörcsarnok",
+    "fullAddress": "1056 Budapest, Vámház körút 16.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Mátra borozó",
+    "fullAddress": "1011 Budapest, Corvin tér 1.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Zöld kancsó söröző",
+    "fullAddress": "1148 Budapest, Kerepesi út 80. (Örs vezér tere 1.)",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Aréna Corner cseh étterem és söröző",
+    "fullAddress": "1114 Budapest, Bartók Béla út 76.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Bástya borozó",
+    "fullAddress": "1011 Budapest, Székely utca 4.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Tarajos Gőte ARTklub",
+    "fullAddress": "1077 Budapest, Hársfa utca 61. (Király utca sarok)",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "CdFű kultúrpince",
+    "fullAddress": "1056 Budapest, Fejér György utca 1.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Kamra Campus",
+    "fullAddress": "1117 Budapest, Irinyi József utca 30.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Bambi eszpresszó",
+    "fullAddress": "1027 Budapest, Frankel Leó utca 2-4.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Jolly presszó, borozó",
+    "fullAddress": "1093 Budapest, Boráros tér 2.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Fahéj kávézó",
+    "fullAddress": "1052 Budapest, Semmelweis utca 19.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Lámpás pince klub",
+    "fullAddress": "1074 Budapest, Dob utca 15.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Matiné Bistro, kávézó",
+    "fullAddress": "1066 Budapest, Jókai utca 25.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Klub Vittula",
+    "fullAddress": "1073 Budapest, Kertész utca 3.",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "400",
+    "fullAddress": "1075 Budapest, Kazinczy utca 52/b.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  },
+  {
+    "name": "Pótkulcs szórakozóhely",
+    "fullAddress": "1067 Budapest, Csengery utca 65/b.,",
+    "longitude": 0,
+    "latitude": 0,
+    "phone": "+36 1 234 5678",
+    "email": "vsorozok@example.com",
+    "openingHours": "M-P 10:00-18:00, S 11:00-15:00",
+    "products": ["sör", "kebész", "kecses", "kávé"]
+  }
+]
