@@ -43,7 +43,7 @@ export default function ForgotPassword() {
         <button type="submit" className="cursor-pointer">
           Jelszó visszaállítása
         </button>
-        <div className="mt-4">{error && error}</div>{" "}
+        <div className="mt-4">{error && error}</div>
         {/* valami szebb megjelenítés a hibáknak */}
       </form>
     </div>

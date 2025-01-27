@@ -59,19 +59,20 @@ export default NextAuth({
         },
       },
       async profile(profile: GoogleProfile) {
-        console.log("Google Profile:", profile);
+        //console.log("Google Profile:", profile);
         let user = await prisma.user.findFirst({
           where: { email: profile.email },
         });
-        console.log("Google Profile ID:", profile.id);
-        console.log("Google Profile Email:", profile.email);
+        // console.log("Google Profile ID:", profile.id);
+        // console.log("Google Profile Email:", profile.email);
         if (!user) {
+          const hashedPassword = await argon2.hash(profile.name);
           user = await prisma.user.create({
             data: {
               email: profile.email,
               username: profile.email.split("@")[0],
               fullName: profile.name,
-              password: "",
+              password: hashedPassword,
               createdAt: new Date(Date.now()),
               dateOfBirth: null,
             },
@@ -130,20 +131,20 @@ export default NextAuth({
         },
       },
       async profile(profile: FacebookProfile) {
-        console.log("Facebook Profile:", profile);
+        //console.log("Facebook Profile:", profile);
         let user = await prisma.user.findFirst({
           where: { email: profile.email },
         });
-        console.log("Facebook Profile ID:", profile.id);
-        console.log("Facebook Profile Email:", profile.email);
-
+        //console.log("Facebook Profile ID:", profile.id);
+        //console.log("Facebook Profile Email:", profile.email);
         if (!user) {
+          const hashedPassword = await argon2.hash(profile.name);
           user = await prisma.user.create({
             data: {
               email: profile.email,
               username: profile.email.split("@")[0],
               fullName: profile.name,
-              password: "",
+              password: hashedPassword,
               createdAt: new Date(Date.now()),
               dateOfBirth: null,
             },
