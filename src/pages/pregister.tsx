@@ -1,7 +1,7 @@
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import KocsMateLogo from "../components/KocsMateLogo";
+import KocsMateLogo from "../components/web/KocsMateLogo";
 import { components, formStyles } from "../styles/styles";
 import useLoading from "../utils/hooks/useLoad";
 
