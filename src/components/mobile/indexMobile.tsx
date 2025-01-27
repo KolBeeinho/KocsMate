@@ -1,5 +1,5 @@
 const IndexMobile: React.FC = () => {
-  return <div>indexMobile</div>;
+  return <div className="m-10">teszt</div>;
 };
 
 export default IndexMobile;
