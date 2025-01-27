@@ -1,7 +1,7 @@
 import { Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
-import Map from "../components/Map";
+import Map from "../components/web/Map";
 import { components } from "../styles/styles";
 import useLoading from "../utils/hooks/useLoad";
 import { AuthContext } from "../utils/providers/AuthContext";

@@ -2,8 +2,8 @@ import { signIn } from "next-auth/react"; //NextAuth login function
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import { components, formStyles } from "../styles/styles";
-import useLoading from "../utils/hooks/useLoad";
+import { components, formStyles } from "../../styles/styles";
+import useLoading from "../../utils/hooks/useLoad";
 import KocsMateLogo from "./KocsMateLogo";
 import LoginButtons from "./LoginMedia";
 // import KocsMateLogo from "./KocsMateLogo";
@@ -152,6 +152,11 @@ export default function Login() {
           {submitProcess ? "Bejelentkezés..." : "Bejelentkezés"}
           {/* Animáció mehet majd */}
         </button>
+        <Link href={"/passreset"}>
+          <button className={`${components.button.homePageButton}}`}>
+            Elfelejtette a jelszót?
+          </button>
+        </Link>
         <LoginButtons />
         <Link href={"/pregister"}>
           <button className={`${components.button.homePageButton}}`}>

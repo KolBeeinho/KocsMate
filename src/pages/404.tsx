@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import KocsMateLogo from "../components/KocsMateLogo";
+import KocsMateLogo from "../components/web/KocsMateLogo";
 import { Style404 } from "../styles/styles";
 const Custom404: React.FC = () => {
   return (

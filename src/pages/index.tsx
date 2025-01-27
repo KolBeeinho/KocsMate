@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useContext } from "react";
-import KocsMateLogo from "../components/KocsMateLogo";
 import IndexMobile from "../components/mobile/indexMobile";
+import KocsMateLogo from "../components/web/KocsMateLogo";
 import { components, indexStyle } from "../styles/styles";
 import isMobile from "../utils/checkOS";
 import { AuthContext } from "../utils/providers/AuthContext";
