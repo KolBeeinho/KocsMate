@@ -152,7 +152,7 @@ export default function Login() {
           {submitProcess ? "Bejelentkezés..." : "Bejelentkezés"}
           {/* Animáció mehet majd */}
         </button>
-        <Link href={"/passreset"}>
+        <Link href={"/passresetreq"}>
           <button className={`${components.button.homePageButton}}`}>
             Elfelejtette a jelszót?
           </button>
