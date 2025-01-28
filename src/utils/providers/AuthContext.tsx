@@ -25,14 +25,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         username: session.user.username as string,
         email: session.user.email as string,
         fullName: session.user.fullName as string,
-        dateOfBirth: session.user.dateOfBirth
-          ? new Date(session.user.dateOfBirth)
-          : null,
-        createdAt: new Date(session.user.createdAt),
+        dateOfBirth: session.user.dateOfBirth || null,
+        createdAt: session.user.createdAt || new Date(),
         business: session.user.business as boolean,
       }
     : null;
-
   const isRegistered = !!user;
 
   const login = async (email: string, password: string) => {

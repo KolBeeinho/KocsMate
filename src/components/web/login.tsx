@@ -105,7 +105,7 @@ export default function Login() {
         setError(result.error);
       } else {
         console.log("Sikeres bejelentkezés!");
-        router.push("/dashboard");
+        router.push("/");
       }
     } catch (error) {
       console.error("Hiba történt a bejelentkezés során:", error);

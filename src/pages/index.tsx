@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import { useContext } from "react";
 import IndexMobile from "../components/mobile/indexMobile";
 import AppleLogo from "../components/web/AppleLogo";
@@ -17,7 +18,7 @@ export const Home: NextPage = () => {
   }
 
   const { user } = authContext;
-  console.info("Aktív felhasználó: " + user?.business); //Teszt
+  console.info("Aktív felhasználó: " + user); //Teszt
   return (
     <>
       {isMobile() ? (
@@ -47,6 +48,16 @@ export const Home: NextPage = () => {
               <div className="flex justify-center items-center">
                 <KocsMateLogo />
               </div>
+              {/* Átmeneti */}
+              <Link href={"/login"}>
+                <div>Login</div>
+              </Link>
+              <Link href={"/search"}>
+                <div>Search</div>
+              </Link>
+              <Link href={"/dashboard/"}>
+                <div>Dashboard</div>
+              </Link>
             </div>
             {/* <LoginPage /> */}
             {/* az itt lévő kódot a loginPage komponensbe találod */}

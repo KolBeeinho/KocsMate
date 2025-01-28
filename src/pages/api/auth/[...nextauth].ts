@@ -37,15 +37,14 @@ export default NextAuth({
         if (!isPasswordValid) {
           throw new Error("Érvénytelen jelszó.");
         }
-        const hashedPassword = await argon2.hash(user.password as string);
+
         return {
           id: user.id,
-          username: user.username,
+          username: user.username || "", // Ha van, ha nincs
           email: user.email,
-          fullName: user.fullName as string,
+          fullName: user.fullName || "", // Ha van, ha nincs
           createdAt: user.createdAt,
-          dateOfBirth: user.dateOfBirth,
-          password: hashedPassword,
+          dateOfBirth: user.dateOfBirth || null,
           business: user.business,
         };
       },
@@ -202,6 +201,11 @@ export default NextAuth({
       if (user) {
         token.id = user.id;
         token.email = user.email;
+        token.username = user.username;
+        token.fullName = user.fullName;
+        token.createdAt = user.createdAt;
+        token.dateOfBirth = user.dateOfBirth;
+        token.business = user.business;
       }
       return token;
     },
@@ -210,6 +214,11 @@ export default NextAuth({
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.email = token.email as string;
+        session.user.username = token.username as string;
+        session.user.fullName = token.fullName as string;
+        session.user.createdAt = token.createdAt as Date;
+        session.user.dateOfBirth = token.dateOfBirth as Date | null;
+        session.user.business = token.business as boolean;
       }
       return session;
     },

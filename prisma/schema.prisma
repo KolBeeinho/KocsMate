@@ -21,10 +21,12 @@ model User {
   passwordResetTokens PasswordResetToken[]
   business    Boolean
 }
+
 model Admin {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   email String @unique
 }
+
 model PasswordResetToken {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   token     String   @unique
