@@ -3,6 +3,7 @@ import Image from "next/image";
 const GoogleLogo = () => {
   return (
     <a
+      title="Google Logo"
       href="https://play.google.com/store/"
       target="_blank"
       rel="noopener noreferrer"

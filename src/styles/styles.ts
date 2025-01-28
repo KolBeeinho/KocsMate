@@ -3,6 +3,9 @@
 export const eulaStyle = {
   container: "text-center max-w-80",
   link: "w-full bg-butter-scotch font-bold p-2 mt-4 rounded-md hover:bg-glaucous transition duration-300 max-w-60",
+  mobileContainer: "p-10 pt-20 text-center text-[16px] space-y-4",
+  mobileLink:
+    "w-full bg-butter-scotch font-bold p-2 mt-4 rounded-md hover:bg-glaucous transition duration-300 max-w-60 ",
 };
 
 export const Style404 = {
@@ -44,4 +47,3 @@ export const registerStyles = {
   registerField: "mb-4 w-full",
   registerError: "text-dark-red mb-4 bg-slate-600 opacity-80",
 };
-//vagy tailwind is
