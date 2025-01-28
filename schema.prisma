@@ -65,6 +65,9 @@ model Pub {
   latitude     Float    
   phone        String
   email        String    @unique
-  openingHours String
-  products     String[]  // Array of products stored as a JSON array
+  openingHours Json
+  products     String[]
+  functioning  Boolean
+  googleRating Float
+  href         String 
 }
