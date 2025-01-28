@@ -3,6 +3,7 @@ import Image from "next/image";
 const AppleLogo = () => {
   return (
     <a
+      title="Apple Logo"
       href="https://www.apple.com/app-store/"
       target="_blank"
       rel="noopener noreferrer"
