@@ -1,27 +1,11 @@
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import { components, registerStyles } from "../../styles/styles";
 import checkIfUnderEightTeen from "../../utils/checkIfUnder18";
 import useLoading from "../../utils/hooks/useLoad";
 import KocsMateLogo from "./KocsMateLogo";
-// import en from "../../../public/locales/en/Reviews/reviewsection";
-// import en2 from "../../../public/locales/en/Reviews/reviews";
-// import hu from "../../../public/locales/hu/Vélemények/reviewsection";
-// import hu2 from "../../../public/locales/hu/Vélemények/reviews";
+
 export default function Register() {
-  // const { locale } = useRouter();
-  // const h = locale === "hu" ? hu : en;
-  // const e = locale === "hu" ? hu2 : en2;
-  //Transition
   const { loading } = useLoading();
-  const [transition, setTransition] = React.useState<boolean>(false);
-  React.useEffect(() => {
-    if (loading) {
-      setTransition(transition);
-    } else {
-      setTransition(!transition);
-    }
-  }, [loading]);
   const [submitProcess, setSubmitProcess] = React.useState<boolean>(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -31,7 +15,8 @@ export default function Register() {
     date_of_birth: "",
   });
   const [error, setError] = useState<string>("");
-  const Router = useRouter();
+  const router = useRouter();
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -42,15 +27,10 @@ export default function Register() {
     setError("");
 
     const errors: Array<string> = [];
-
-    //18 éves-e?
     const dob = new Date(formData.date_of_birth);
 
     if (checkIfUnderEightTeen(dob)) {
-      console.log("18 évnél fiatalabb, nem lehet regisztrálni.");
-      errors.push("Nem 18.");
-    } else {
-      console.log("Regisztráció engedélyezett.");
+      errors.push("Nem vagy még 18 éves, így nem regisztrálhatsz.");
     }
 
     const fullNamePattern =
@@ -69,16 +49,11 @@ export default function Register() {
       !passwordPattern.test(formData.password)
     )
       errors.push(
-        "A jelszónak legalább 8 karakterből kell lennie, valamint legalább egy kisbetű, egy nagybetű, egy szám, egy speciális karakter!"
+        "A jelszónak legalább 8 karakterből kell lennie, tartalmaznia kell nagybetűt és speciális karaktert!"
       );
     if (errors.length > 0) {
       setError(errors.join("\n"));
       setSubmitProcess(false);
-      errors.forEach((e) => {
-        if (e.includes("Nem 18.")) {
-          Router.push("/login");
-        }
-      });
       return;
     }
     try {
@@ -95,11 +70,10 @@ export default function Register() {
         const data = await res.json();
         localStorage.setItem("token", data.token);
         console.log("Sikeres regisztráció!");
-        Router.push("/login");
+        router.push("/login");
       } else {
         const data = await res.json();
-        console.error("Sikertelen regisztráció!", data.error);
-        setError(data.error || "Sikertelen regisztráció");
+        setError(data.error || "Sikertelen regisztráció.");
       }
     } catch (err) {
       console.error(err);
@@ -122,12 +96,7 @@ export default function Register() {
       type: "text",
       placeholder: "Írd be a teljes neved...",
     },
-    {
-      name: "date_of_birth",
-      label: "Születési dátum",
-      type: "date",
-      placeholder: "Írd be a születési dátumod...",
-    },
+    { name: "date_of_birth", label: "Születési dátum", type: "date" },
     {
       name: "email",
       label: "E-mail",
@@ -143,37 +112,36 @@ export default function Register() {
   ];
 
   return (
-    <div className={`${registerStyles.registerContainer}`}>
-      <KocsMateLogo />
-      <form
-        onSubmit={handleRegister}
-        className={`${registerStyles.registerForm}`}
-      >
-        {fields.map((field) => (
-          <div key={field.name} className={`${registerStyles.registerField}`}>
-            <label className={`${registerStyles.registerFormLabel}`}>
-              {field.label}:
-            </label>
-            <input
-              type={field.type}
-              name={field.name}
-              value={formData[field.name as keyof typeof formData]}
-              onChange={handleInputChange}
-              className={`${registerStyles.registerFormInput}`}
-              placeholder={field.placeholder}
-            />
-          </div>
-        ))}
-        {error && <p className={`${registerStyles.registerError}`}>{error}</p>}
-        <button
-          type="submit"
-          disabled={submitProcess}
-          className={`${components.button.homePageButton}`}
-        >
-          {submitProcess ? "Regisztráció..." : "Regisztráció"}{" "}
-          {/* Animáció mehet majd */}
-        </button>
-      </form>
+    <div className="flex min-h-screen justify-center items-center">
+      <div className="w-full max-w-md p-8 rounded-2xl shadow-lg">
+        <KocsMateLogo />
+        <h1 className="text-2xl font-bold text-center mb-6">Regisztráció</h1>
+        <form onSubmit={handleRegister}>
+          {fields.map((field) => (
+            <div key={field.name} className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {field.label}
+              </label>
+              <input
+                type={field.type}
+                name={field.name}
+                value={formData[field.name as keyof typeof formData]}
+                onChange={handleInputChange}
+                placeholder={field.placeholder}
+                className="w-full p-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </div>
+          ))}
+          {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
+          <button
+            type="submit"
+            disabled={submitProcess}
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-blue-400"
+          >
+            {submitProcess ? "Regisztráció folyamatban..." : "Regisztráció"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

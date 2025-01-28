@@ -8,6 +8,8 @@ declare module "next-auth" {
     email: string;
     createdAt: Date;
     dateOfBirth: Date | null;
+    business: boolean;
+    password?: string;
   }
 
   interface Account {
@@ -28,10 +30,15 @@ declare module "next-auth" {
   }
 
   interface Session {
-    id: string;
-    sessionToken: string;
-    userId: string;
-    expires: Date;
-    user: User | null;
+    user: {
+      id: string;
+      username: string;
+      fullName: string;
+      email: string;
+      createdAt: Date;
+      dateOfBirth: Date | null;
+      business: boolean;
+      password?: string;
+    };
   }
 }

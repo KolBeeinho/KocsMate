@@ -8,6 +8,9 @@
   --dark-red: #910002ff;
   --betu-szin: #eee5ceff;
   --butterscotch: #df932aff;
+  --background: #ffcc4d;
+  --kek: #14213d;
+  --szurke: #444554;
   --yinmn-blue: #2f5479ff;
 }
 
@@ -28,9 +31,12 @@ body {
   html {
     scroll-behavior: smooth;
   }
-
+  form {
+    user-select: none;
+  }
   input {
     border: 2px solid var(--glaucous);
+    color: white !important;
   }
   input::placeholder {
     color: white;
@@ -38,5 +44,8 @@ body {
   }
   input:focus {
     outline: none;
+  }
+  button {
+    cursor: pointer !important;
   }
 }

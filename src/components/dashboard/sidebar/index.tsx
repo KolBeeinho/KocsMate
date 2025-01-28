@@ -52,7 +52,8 @@ const Sidebar: React.FC = () => {
     <div
       className={`${
         open ? " lg:w-[200px]" : "lg:w-[70px]"
-      } h-screen bg-[#161418] transition-all duration-300`}
+      } h-screen bg-[#14213D] transition-all duration-300`}
+      id="sidebar"
     >
       {/* Tab icons */}
       <div className="hidden lg:flex lg:flex-col items-center lg:space-y-10 lg:p-4">

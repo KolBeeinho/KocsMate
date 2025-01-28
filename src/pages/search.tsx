@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Map from "../components/web/Map";
 import { components } from "../styles/styles";
 import useLoading from "../utils/hooks/useLoad";
@@ -9,10 +9,9 @@ const Search = () => {
   //Login részek kommentelve
   const authContext = useContext(AuthContext);
   const router = useRouter();
-
-  // if (!authContext) {
-  //   return;
-  // }
+  if (!authContext) {
+    return;
+  }
   const { loading } = useLoading();
   const [transition, setTransition] = React.useState<boolean>(false);
   React.useEffect(() => {
@@ -23,13 +22,13 @@ const Search = () => {
     }
   }, [loading]);
 
-  // const { user, logout } = authContext;
-  // console.log(user);
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push("/");
-  //   }
-  // }, [user, router]);
+  const { user, logout } = authContext;
+  console.info("Aktív felhasználó: " + user); //Teszt
+  useEffect(() => {
+    if (!user) {
+      router.push("/");
+    }
+  }, [user, router]);
 
   return (
     <>

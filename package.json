@@ -7,7 +7,7 @@
     "dev": "(cls || clear) && yarn prisma generate && concurrently \"yarn:dev:*\"",
     "dev:next": "next dev",
     "dev:tailwind": "npx tailwindcss -o src/styles/build.css --minify --watch",
-    "build": "yarn build:next && npx cap sync",
+    "build": "(cls || clear) && yarn build:next && npx cap sync",
     "build:next": "next build",
     "build:tailwind": "npx tailwindcss -o src/styles/build.css --minify --watch",
     "update:all": "yarn upgrade-interactive",
@@ -33,7 +33,7 @@
     "jsonwebtoken": "^9.0.2",
     "kocsmate": "file:",
     "mapbox-gl": "^3.9.3",
-    "maplibre-gl": "^5.0.1",
+    "maplibre-gl": "4.7.1",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.5",
     "next": "^15.1.6",
@@ -43,7 +43,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-map-gl": "^7.1.8",
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "^4.0.0",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
@@ -56,5 +57,6 @@
     "postcss": "^8.5.1",
     "supervisor": "^0.12.0",
     "typescript": "^5.7.3"
-  }
+  },
+  "packageManager": "yarn@4.6.0"
 }
