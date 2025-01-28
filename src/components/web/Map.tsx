@@ -3,7 +3,6 @@ import maplibregl from "maplibre-gl";
 import { useEffect, useState } from "react";
 import Map, { Marker, NavigationControl } from "react-map-gl";
 import { Bar } from "../../../type";
-
 // Default Kossuth Lajos tér
 const center = {
   lat: 47.5057199, // Szélesség

@@ -105,7 +105,7 @@ export default function Login() {
         setError(result.error);
       } else {
         console.log("Sikeres bejelentkezés!");
-        router.push("/search");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.error("Hiba történt a bejelentkezés során:", error);
@@ -158,7 +158,7 @@ export default function Login() {
           </button>
         </Link>
         <LoginButtons />
-        <Link href={"/pregister"}>
+        <Link href={"/adminregister"}>
           <button className={`${components.button.homePageButton}}`}>
             Kiemelt felhasználó?
           </button>

@@ -19,7 +19,7 @@ export const components = {
 
 export const formStyles = {
   Container: "flex flex-col items-center",
-  Form: "flex flex-col items-center bg-yinmn-blue p-6 rounded-lg shadow-md w-full max-w-md mx-auto gap-4",
+  Form: "flex flex-col items-center bg-yinmn-blue p-6 rounded-lg w-full max-w-md mx-auto gap-4",
   FormLabel: "block text-betu_szin text-lg mb-2",
   FormInput:
     "w-full p-2 border border-glaucous text-black rounded-md focus:outline-none focus:ring-2 focus:ring-butter-scotch",

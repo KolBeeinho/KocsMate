@@ -5,6 +5,7 @@ export type AuthContextType = {
   isRegistered: boolean;
 };
 export type Bar = {
+  id: string;
   name: string;
   fullAddress: string;
   longitude: number;

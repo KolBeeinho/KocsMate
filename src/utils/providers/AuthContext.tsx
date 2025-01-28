@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { User } from "next-auth";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { createContext, ReactNode } from "react";
 
@@ -19,17 +19,21 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const { data: session } = useSession();
 
-  const user: any = session?.user && {
-    //egyelőre any amúgy User
-    id: session.user.id,
-    fullName: session.user.name,
-    email: session.user.email,
-    username: session.user.username,
-    createdAt: new Date(session.user.createdAt),
-    dateOfBirth: session.user.dateOfBirth,
-  };
+  const user: User | null = session?.user
+    ? {
+        id: session.user.id as string,
+        username: session.user.username as string,
+        email: session.user.email as string,
+        fullName: session.user.fullName as string,
+        dateOfBirth: session.user.dateOfBirth
+          ? new Date(session.user.dateOfBirth)
+          : null,
+        createdAt: new Date(session.user.createdAt),
+        business: session.user.business as boolean,
+      }
+    : null;
 
-  const isRegistered = user !== null && user !== undefined;
+  const isRegistered = !!user;
 
   const login = async (email: string, password: string) => {
     await signIn("credentials", { email, password, redirect: false });

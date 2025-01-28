@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import "./styles.css";
 @layer base {
   * {
     box-sizing: border-box;
@@ -11,10 +11,17 @@
   div::-webkit-scrollbar {
     display: none;
   }
+  body {
+    padding: 0;
+    margin: 0;
+    background-color: var(--background);
+  }
 }
 @layer components {
   /* Sidebar Classes */
-
+  #sidebar {
+    @apply bg-[var(--kek)];
+  }
   .sidebarIcon {
     @apply h-7 w-7 rounded-xl;
   }

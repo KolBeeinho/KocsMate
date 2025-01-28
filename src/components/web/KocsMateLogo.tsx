@@ -9,7 +9,7 @@ const KocsmateLogo = () => {
       draggable={false}
       priority={true}
       alt="Our official company logo"
-      className=""
+      className="mx-auto"
     />
   );
 };

@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../prisma/prisma/generated/client";
 
 export const prisma: PrismaClient =
   (global as any).prisma ||
@@ -11,3 +11,36 @@ export * from "@prisma/client";
 if (process.env.NODE_ENV !== "production") {
   (global as any).prisma = prisma;
 }
+
+//#region Emailek feltöltése manuálisan, egyszeri futtatás mindig
+//egyelőre véletlenszerű
+// const generateRandomEmail = () => {
+//   const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+//   let email = "";
+//   for (let i = 0; i < 10; i++) {
+//     email += characters.charAt(Math.floor(Math.random() * characters.length));
+//   }
+//   return `${email}@example.com`;
+// };
+
+// const uploadAdminEmails = async () => {
+//   const randomEmails = Array.from({ length: 3 }).map(generateRandomEmail); // Három véletlenszerű email generálása
+
+//   for (const email of randomEmails) {
+//     await prisma.admin.create({
+//       data: {
+//         email,
+//       },
+//     });
+//     console.log(`Admin e-mail hozzáadva: ${email}`);
+//   }
+// };
+
+// uploadAdminEmails()
+//   .catch((e) => {
+//     console.error("Hiba történt az admin e-mailek feltöltésekor:", e);
+//   })
+//   .finally(() => {
+//     prisma.$disconnect();
+//   });
+//#endregion

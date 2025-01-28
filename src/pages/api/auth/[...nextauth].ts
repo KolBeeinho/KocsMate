@@ -1,7 +1,6 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { User } from "@prisma/client";
 import * as argon2 from "argon2";
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import FacebookProvider, {
   FacebookProfile,
@@ -32,21 +31,22 @@ export default NextAuth({
         }
 
         const isPasswordValid = await argon2.verify(
-          user.password,
+          user.password as string,
           credentials.password
         );
         if (!isPasswordValid) {
           throw new Error("Érvénytelen jelszó.");
         }
-        const hashedPassword = await argon2.hash(user.password);
+        const hashedPassword = await argon2.hash(user.password as string);
         return {
           id: user.id,
           username: user.username,
           email: user.email,
-          fullName: user.fullName,
+          fullName: user.fullName as string,
           createdAt: user.createdAt,
           dateOfBirth: user.dateOfBirth,
           password: hashedPassword,
+          business: user.business,
         };
       },
     }),
@@ -69,12 +69,14 @@ export default NextAuth({
           const hashedPassword = await argon2.hash(profile.name);
           user = await prisma.user.create({
             data: {
+              id: profile.id,
               email: profile.email,
               username: profile.email.split("@")[0],
-              fullName: profile.name,
+              fullName: profile.name as string,
               password: hashedPassword,
               createdAt: new Date(Date.now()),
               dateOfBirth: null,
+              business: false,
             },
           });
         }
@@ -111,14 +113,14 @@ export default NextAuth({
             expires_at: profile.expiresAt,
           },
         });
-
         return {
           id: user.id,
           username: user.username,
           email: user.email,
-          fullName: user.fullName,
+          fullName: user.fullName as string,
           createdAt: user.createdAt,
           dateOfBirth: user.dateOfBirth,
+          business: user.business,
         };
       },
     }),
@@ -147,6 +149,7 @@ export default NextAuth({
               password: hashedPassword,
               createdAt: new Date(Date.now()),
               dateOfBirth: null,
+              business: false,
             },
           });
         }
@@ -180,9 +183,10 @@ export default NextAuth({
           id: user.id,
           username: user.username,
           email: user.email,
-          fullName: user.fullName,
+          fullName: user.fullName as string,
           createdAt: user.createdAt,
           dateOfBirth: user.dateOfBirth,
+          business: user.business,
         };
       },
     }),

@@ -11,7 +11,7 @@ export default function PassReset() {
     newPassword: string
   ) {
     setError("");
-    const response = await fetch("/api/auth/passreset", {
+    const response = await fetch("/api/auth/password-reset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

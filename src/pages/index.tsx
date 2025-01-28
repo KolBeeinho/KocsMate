@@ -14,7 +14,9 @@ export const Home: NextPage = () => {
     console.error("Authentikációs hiba");
     return null;
   }
-  // console.info("Aktív felhasználó: " + user); //Teszt
+
+  const { user } = authContext;
+  console.info("Aktív felhasználó: " + user?.business); //Teszt
   return (
     <>
       {isMobile() ? (

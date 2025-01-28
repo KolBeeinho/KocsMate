@@ -1,5 +1,6 @@
 import * as argon2 from "argon2";
 import { NextApiRequest, NextApiResponse } from "next";
+
 import { prisma } from "../../../prisma";
 import checkIfUnderEightTeen from "../../../utils/checkIfUnder18";
 export default async function handler(
@@ -40,13 +41,14 @@ export default async function handler(
     try {
       const user = await prisma.user.create({
         data: {
-          fullName: full_name,
-          username: username,
-          email: email,
+          fullName: full_name as string,
+          username: username as string,
+          email: email as string,
           id: id,
           createdAt: new Date(),
           dateOfBirth: date_of_birth,
           password: hashedPassword,
+          business: false,
         },
       });
 
