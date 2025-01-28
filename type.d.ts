@@ -5,16 +5,17 @@ export type AuthContextType = {
   isRegistered: boolean;
 };
 export type Bar = {
-  id: string; // A MongoDB ObjectId típusa
   name: string;
   fullAddress: string;
   longitude: number;
   latitude: number;
   phone: string;
   email: string;
-  openingHours: string;
-  products: string[]; // Ha egy bár termékei JSON tömbként vannak tárolva
-  functioning: boolean; // A Functioning mezőt a kérésed alapján hozzáadtam
+  openingHours: { day: string; hours: string }[];
+  products: string[];
+  functioning: boolean;
+  googleRating: number;
+  href: string;
 };
 // export interface GoogleProfile {
 //   sub: string; // A felhasználó egyedi azonosítója
