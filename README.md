@@ -1,3 +1,7 @@
 # KocsMate
 
-Capacitor integrálva, telefonon is futtatható.
+Admin:
+
+Felhasználónév: Musicfromfood
+
+Jelszó: xe0WKUJaPD!@
