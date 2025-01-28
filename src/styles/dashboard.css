@@ -22,6 +22,9 @@
   #sidebar {
     @apply bg-[var(--kek)];
   }
+  #dashboard {
+    @apply bg-[var(--desert-sand)];
+  }
   .sidebarIcon {
     @apply h-7 w-7 rounded-xl;
   }

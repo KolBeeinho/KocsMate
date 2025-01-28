@@ -16,7 +16,6 @@ const Home: NextPage = () => {
   console.log(user, user?.business);
   useEffect(() => {
     if (!user || !user.business) {
-      // alert("Nincs hozzáférése a panelhez!");
       router.push("/");
     }
   }, [user, router]);
@@ -38,7 +37,7 @@ const Home: NextPage = () => {
             <meta name="viewport" content="initial-scale=1.0" />
             <meta name="language" content="English" />
           </Head>
-          <div className="md:grid md:grid-flow-col">
+          <div className="md:grid md:grid-flow-col" id="dashboard">
             <Sidebar />
             <div className="mx-4 flex flex-col space-y-8 md:mt-[80px] md:ml-[100px] lg:flex-row lg:space-y-0 lg:space-x-10 xl:space-x-12">
               <HomeJFWCoin />

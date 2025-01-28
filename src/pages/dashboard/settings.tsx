@@ -22,7 +22,7 @@ const Settings: NextPage = () => {
   return (
     <>
       {user ? (
-        <div className="md:grid md:grid-flow-col">
+        <div className="md:grid md:grid-flow-col" id="dashboard">
           <Sidebar />
           <div className="mx-4 flex flex-col space-y-8 md:mt-[80px] md:ml-[100px] lg:flex-row lg:space-y-0 lg:space-x-10 xl:space-x-12">
             <HomeJFWCoin />

@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Map from "../components/web/Map";
 import { components } from "../styles/styles";
 import useLoading from "../utils/hooks/useLoad";
@@ -23,35 +23,35 @@ const Search = () => {
   }, [loading]);
 
   const { user, logout } = authContext;
-  console.info("Aktív felhasználó: " + user); //Teszt
-  useEffect(() => {
-    if (!user) {
-      router.push("/");
-    }
-  }, [user, router]);
+  console.log(user, user?.business);
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push("/");
+  //   }
+  // }, [user, router]);
 
   return (
     <>
-      {/* {user ? ( */}
-      <Transition
-        show={transition}
-        enter="transition duration-1000 ease-out"
-        enterFrom="transform opacity-0"
-        enterTo="transform opacity-100"
-        leave="transition duration-300 ease-out"
-        leaveFrom="transform opacity-100"
-        leaveTo="transform opacity-0"
-        as="div"
-      >
-        <button
-          className={`${components.button.homePageButton}`}
-          //onClick={logout}
+      {true ? ( //User
+        <Transition
+          show={transition}
+          enter="transition duration-1000 ease-out"
+          enterFrom="transform opacity-0"
+          enterTo="transform opacity-100"
+          leave="transition duration-300 ease-out"
+          leaveFrom="transform opacity-100"
+          leaveTo="transform opacity-0"
+          as="div"
         >
-          Kijelentkezés
-        </button>
-        <Map />
-      </Transition>
-      {/* ) : null} */}
+          <button
+            className={`${components.button.homePageButton}`}
+            onClick={logout}
+          >
+            Kijelentkezés
+          </button>
+          <Map />
+        </Transition>
+      ) : null}
     </>
   );
 };
