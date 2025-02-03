@@ -44,3 +44,34 @@ if (process.env.NODE_ENV !== "production") {
 //     prisma.$disconnect();
 //   });
 //#endregion
+//#region Pub lekérdezései
+async function assignPubToAdmin(pubId: string, adminEmail: string) {
+  try {
+    // Admin keresése az email alapján
+    const admin = await prisma.admin.findUnique({
+      where: { email: adminEmail },
+    });
+
+    if (!admin) {
+      console.error("Admin nem található!");
+      return;
+    }
+
+    // Admin frissítése a megfelelő pub-hoz kapcsolva
+    await prisma.admin.update({
+      where: { id: admin.id },
+      data: {
+        pubId: pubId,
+      },
+    });
+
+    console.log("Admin sikeresen hozzá lett rendelve a pubhoz!");
+  } catch (error) {
+    console.error("Hiba a pub és admin összekapcsolásakor:", error);
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+//assignPubToAdmin(, );
+//#endregion

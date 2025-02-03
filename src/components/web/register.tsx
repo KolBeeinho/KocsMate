@@ -1,11 +1,10 @@
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
 import checkIfUnderEightTeen from "../../utils/checkIfUnder18";
-import useLoading from "../../utils/hooks/useLoad";
 import KocsMateLogo from "./KocsMateLogo";
 
 export default function Register() {
-  const { loading } = useLoading();
+  // const { loading } = useLoading();
   const [submitProcess, setSubmitProcess] = React.useState<boolean>(false);
   const [formData, setFormData] = useState({
     username: "",

@@ -1,79 +1,109 @@
+// Adatbázis kapcsolat konfigurációja
 datasource db {
-  provider = "mongodb"
-  url      = env("MONGODB_URI")
+  provider = "mongodb"  // MongoDB-t használunk adatbázisként
+  url      = env("MONGODB_URI")  // Az adatbázis URL-je egy környezeti változóból jön
 }
 
+// Prisma kliens generálása (ha lekérdezéseket akarunk, ezen keresztül kell)
 generator client {
-  provider = "prisma-client-js"
-  output = "./prisma/generated/client"
+  provider = "prisma-client-js"  // JavaScript Prisma kliens generálása
+  output   = "./prisma/generated/client"  // Generált Prisma kliens elérési útvonala
 }
 
+// User (Felhasználó) modell
 model User {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  username    String   @unique
-  email       String   @unique
-  password    String?
-  fullName    String?
-  createdAt   DateTime @default(now())
-  dateOfBirth DateTime?
-  accounts    Account[]
-  sessions    Session[]
-  passwordResetTokens PasswordResetToken[]
-  business    Boolean
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító (MongoDB ObjectId)
+  username    String   @unique // Egyedi felhasználónév
+  email       String   @unique // Egyedi email cím
+  password    String?  // Opcionális jelszó (ha van hitelesítés)
+  fullName    String?  // Opcionális teljes név
+  createdAt   DateTime @default(now()) // Fiók létrehozásának dátuma
+  dateOfBirth DateTime? // Születési dátum (opcionális)
+  accounts    Account[] // Kapcsolat az Account modellel (külső fiókok, pl. Google, Facebook)
+  sessions    Session[] // Kapcsolat a Session modellel (belépési munkamenetek)
+  passwordResetTokens PasswordResetToken[] // Kapcsolat jelszó visszaállítási tokenekkel
+  business    Boolean // Megmondja, hogy az illető üzleti fiókot használ-e
+  admins      Admin[] // Admin kapcsolat (ha az illető admin egy pubnál)
+  reviews     Review[] @relation("UserReviews") // Kapcsolat a Review modellel (felhasználó véleményei)
 }
 
+// Admin (Pub admin) modell
 model Admin {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  email String @unique
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
+  userId   String   @unique @db.ObjectId  // Admin felhasználójának azonosítója
+  pubId    String?  @db.ObjectId  // Az admin által kezelt pub azonosítója
+  email    String   @unique // Admin e-mail címe
+  pub      Pub?     @relation(fields: [pubId], references: [id], onDelete: Cascade, name: "PubAdmins") // Kapcsolat a Pub modellel
+  user     User     @relation(fields: [userId], references: [id]) // Kapcsolat a User modellel
 }
 
+// Jelszó-visszaállítási tokenek
 model PasswordResetToken {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  token     String   @unique
-  userId    String   @db.ObjectId
-  user      User     @relation(fields: [userId], references: [id])
-  expiresAt DateTime
-  createdAt DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
+  token     String   @unique // Egyedi visszaállítási token
+  userId    String   @db.ObjectId // Felhasználó azonosítója
+  user      User     @relation(fields: [userId], references: [id]) // Kapcsolat a User modellel
+  expiresAt DateTime // Token lejárati dátuma
+  createdAt DateTime @default(now()) // Token létrehozási ideje
 }
 
+// Külső fiókok (OAuth, például Google, Facebook)
 model Account {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String   @db.ObjectId
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?  @db.String
-  access_token      String?  @db.String
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?  @db.String
-  session_state     String?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  @@unique([provider, providerAccountId])
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
+  userId            String   @db.ObjectId // Felhasználó azonosítója
+  type              String // Fiók típusa (pl. "oauth")
+  provider          String // Szolgáltató neve (pl. "google")
+  providerAccountId String // Szolgáltatói fiók azonosítója
+  refresh_token     String?  @db.String // Opcionális frissítési token
+  access_token      String?  @db.String // Opcionális hozzáférési token
+  expires_at        Int? // Token lejárati ideje
+  token_type        String? // Token típusa (pl. "Bearer")
+  scope             String? // Jogosultsági körök
+  id_token          String?  @db.String // Opcionális ID token
+  session_state     String? // Munkamenet állapota
+  createdAt         DateTime @default(now()) // Fiók létrehozásának dátuma
+  updatedAt         DateTime @updatedAt // Utolsó frissítés időpontja
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade) // Kapcsolat a User modellel
+  @@unique([provider, providerAccountId]) // Szolgáltatónként egyedi fiók
 }
 
+// Belépési munkamenetek
 model Session {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  sessionToken String   @unique
-  userId      String    @db.ObjectId
-  expires     DateTime
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
+  sessionToken String   @unique // Egyedi munkamenet token
+  userId       String   @db.ObjectId // Felhasználó azonosítója
+  expires      DateTime // Lejárati idő
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade) // Kapcsolat a User modellel
 }
 
+// Pub (Kocsma, bár, helyszín) modell
 model Pub {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  fullAddress  String
-  longitude    Float   
-  latitude     Float    
-  phone        String
-  email        String    @unique
-  openingHours Json
-  products     String[]
-  functioning  Boolean
-  googleRating Float
-  href         String 
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
+  name         String // Kocsma neve
+  fullAddress  String // Cím
+  longitude    Float // Hosszúsági koordináta
+  latitude     Float // Szélességi koordináta
+  phone        String // Telefonszám
+  email        String // E-mail cím
+  openingHours Json // Nyitvatartási idők JSON formátumban
+  products     String[] // Termékek listája
+  functioning  Boolean // Működik-e a hely
+  href         String // Külső hivatkozás
+  googleRating Float // Google értékelés (pl. 4.5)
+  admins       Admin[] @relation("PubAdmins") // Kapcsolat az adminokkal
+  reviews      Review[] @relation("PubReviews") // Kapcsolat a véleményekkel
+}
+
+// Review (Felhasználói vélemény) modell
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
+  rating    Int      // 1-5 közötti értékelés
+  comment   String   // Vélemény szövege
+  createdAt DateTime @default(now()) // Vélemény létrehozásának dátuma
+
+  pubId     String   @db.ObjectId // Kapcsolódó pub azonosítója
+  pub       Pub      @relation(fields: [pubId], references: [id], onDelete: Cascade, name: "PubReviews") // Kapcsolat a Pub modellel
+
+  userId    String   @db.ObjectId // Véleményt író felhasználó azonosítója
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, name: "UserReviews") // Kapcsolat a User modellel
 }

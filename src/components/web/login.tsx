@@ -133,7 +133,11 @@ export default function Login() {
   return (
     <div className={`${formStyles.Container}`}>
       <KocsMateLogo />
-      <form onSubmit={handleLogin} className={`${formStyles.Form}`}>
+      <form
+        onSubmit={handleLogin}
+        id="loginform"
+        className={`${formStyles.Form}`}
+      >
         {fields.map((field) => (
           <div key={field.name} className={`${formStyles.Field}`}>
             <label className={`${formStyles.FormLabel}`}>{field.label}:</label>
@@ -166,6 +170,11 @@ export default function Login() {
         <Link href={"/register"}>
           <button className={`${components.button.homePageButton}}`}>
             Nem regisztrált még?
+          </button>
+        </Link>
+        <Link href={"/"}>
+          <button className={`${components.button.homePageButton}}`}>
+            Vissza
           </button>
         </Link>
       </form>

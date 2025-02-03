@@ -2,7 +2,7 @@ import { MapPinIcon } from "@heroicons/react/24/solid"; // Heroicons importálá
 import maplibregl from "maplibre-gl";
 import { useEffect, useState } from "react";
 import Map, { Marker, NavigationControl } from "react-map-gl";
-import { Bar } from "../../../type";
+import { Pub } from "../../../type";
 // Default Kossuth Lajos tér
 const center = {
   lat: 47.5057199, // Szélesség
@@ -10,7 +10,7 @@ const center = {
 };
 
 const MyMap = () => {
-  const [bars, setBars] = useState<Bar[]>([]);
+  const [bars, setBars] = useState<Pub[]>([]);
 
   // A JSON fájl betöltése (helyben)
   useEffect(() => {
