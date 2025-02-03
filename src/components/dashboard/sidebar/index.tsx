@@ -1,11 +1,14 @@
 import {
+  ArrowLeftStartOnRectangleIcon,
   Bars3BottomLeftIcon,
+  ChatBubbleBottomCenterTextIcon,
   EllipsisHorizontalIcon,
   HomeIcon,
 } from "@heroicons/react/24/solid";
 
 import Link from "next/link";
-import React, { JSX } from "react";
+import React, { JSX, useContext } from "react";
+import { AuthContext } from "../../../utils/providers/AuthContext";
 import ActiveTab from "./ActiveTab";
 import MobileSidebar from "./MobileSidebar";
 import Tab from "./Tab";
@@ -18,12 +21,24 @@ type Tab = {
 };
 
 const Sidebar: React.FC = () => {
+  const authContext = useContext(AuthContext);
+  if (!authContext) {
+    return;
+  }
+  const { user, logout } = authContext;
+
   const tabs: Array<Tab> = [
     {
-      id: "dashboard",
+      id: "home",
       title: "Home",
       icon: <HomeIcon />,
       href: "/dashboard",
+    },
+    {
+      id: "reviews",
+      title: "reviews",
+      icon: <ChatBubbleBottomCenterTextIcon />,
+      href: "/dashboard/reviews",
     },
   ];
 
@@ -60,11 +75,23 @@ const Sidebar: React.FC = () => {
         {/* Top icon */}
         <div className="hidden xl:flex">
           <button
-            className="sidebarbtn duration-300"
+            className="sidebarbtn duration-300 flex gap-9"
             title="Open"
             onClick={handleSidebarButton}
           >
-            <Bars3BottomLeftIcon className="h-7 w-7 rounded-xl" />
+            <Bars3BottomLeftIcon
+              className="h-7 w-7 rounded-xl hover:transition hover:text-[#4F4A56]"
+              id="extendButton"
+            />
+            {open && (
+              <span
+                className={`origin-center text-lg duration-300 ${
+                  !open && "scale-0"
+                }`}
+              >
+                zár
+              </span>
+            )}
           </button>
         </div>
         {activeTab !== undefined && (
@@ -94,21 +121,40 @@ const Sidebar: React.FC = () => {
             ))}
           </>
         )}
+        {/* Kijelentkezés */}
+        <div
+          className="fixed bottom-4 hover:transition hover:text-[#4F4A56]"
+          id="settingsButton"
+        >
+          <Link href="/">
+            <button
+              className="sidebarbtn"
+              title="Kijelentkezés"
+              onClick={logout}
+            >
+              <ArrowLeftStartOnRectangleIcon />
+              <span className="invisible">gomb</span> {/* valami bug */}
+            </button>
+          </Link>
+        </div>
         {/* Settings tab icon */}
-        <div className="fixed bottom-0">
+        <div
+          className="fixed bottom-0 hover:transition hover:text-[#4F4A56]"
+          id="settingsButton"
+        >
           <Link href="/dashboard/settings">
             <button
               className="sidebarbtn"
               title="Settings"
               onClick={handleTabChange}
             >
-              <EllipsisHorizontalIcon className="" />
+              <EllipsisHorizontalIcon />
               <span className="invisible">gomb</span> {/* valami bug */}
             </button>
           </Link>
         </div>
       </div>
-      {/* On Handheld devices*/}
+      {/* On mobile devices*/}
       <MobileSidebar />
     </div>
   );

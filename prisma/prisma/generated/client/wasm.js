@@ -123,6 +123,8 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.AdminScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
+  pubId: 'pubId',
   email: 'email'
 };
 
@@ -169,8 +171,17 @@ exports.Prisma.PubScalarFieldEnum = {
   openingHours: 'openingHours',
   products: 'products',
   functioning: 'functioning',
-  googleRating: 'googleRating',
-  href: 'href'
+  href: 'href',
+  googleRating: 'googleRating'
+};
+
+exports.Prisma.ReviewScalarFieldEnum = {
+  id: 'id',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  pubId: 'pubId',
+  userId: 'userId'
 };
 
 exports.Prisma.SortOrder = {
@@ -190,7 +201,8 @@ exports.Prisma.ModelName = {
   PasswordResetToken: 'PasswordResetToken',
   Account: 'Account',
   Session: 'Session',
-  Pub: 'Pub'
+  Pub: 'Pub',
+  Review: 'Review'
 };
 
 /**

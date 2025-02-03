@@ -17,7 +17,7 @@
 body {
   padding: 0;
   margin: 0;
-  color: var(--betu-szin);
+  /*color: var(--betu-szin);*/
   font-family: "Roboto", sans-serif;
   background-color: var(--oxford-blue);
   /* background-image: linear-gradient(90deg, var(--oxford-blue), var(--yinmn-blue)); */
@@ -47,5 +47,10 @@ body {
   }
   button {
     cursor: pointer !important;
+  }
+}
+@layer components {
+  #loginform {
+    color: white !important;
   }
 }

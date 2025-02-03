@@ -4,7 +4,7 @@ export type AuthContextType = {
   logout: () => void;
   isRegistered: boolean;
 };
-export type Bar = {
+export type Pub = {
   id: string;
   name: string;
   fullAddress: string;
@@ -18,6 +18,10 @@ export type Bar = {
   googleRating: number;
   href: string;
 };
+export interface OpeningHoursEntry {
+  day: string;
+  hours: string;
+}
 // export interface GoogleProfile {
 //   sub: string; // A felhasználó egyedi azonosítója
 //   name: string; // A felhasználó neve

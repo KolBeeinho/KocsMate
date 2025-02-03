@@ -18,7 +18,7 @@ export const Home: NextPage = () => {
   }
 
   const { user } = authContext;
-  console.info("Aktív felhasználó: " + user); //Teszt
+  // console.info("Aktív felhasználó: " + user); //Teszt
   return (
     <>
       {isMobile() ? (

@@ -21,7 +21,7 @@ const Tab: React.FC<Props> = ({
     <Link href={href}>
       <button
         id={id}
-        className="flex duration-300 hover:text-[#4F4A56] hover:transition lg:gap-x-9"
+        className="flex duration-300 hover:text-[#4F4A56] text-white hover:transition lg:gap-x-9"
         title={title}
         onClick={onClick}
       >
