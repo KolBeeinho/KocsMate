@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { Pub } from "../../../../../prisma/prisma/generated/client";
+import { useState } from "react";
+import { Product, Pub } from "../../../../../prisma/prisma/generated/client";
 import { JsonValue } from "../../../../../prisma/prisma/generated/client/runtime/library";
 import { OpeningHoursEntry } from "../../../../../type";
 
 interface DisplayPubInfoProps {
-  pubData: Pub;
-  updatePubData: (updatedData: Pub) => void;
+  pubData: Pub & { products?: Product[] }; // products opcionális
+  updatePubData: (updatedData: Pub & { products?: Product[] }) => void;
 }
 
 const daysOfWeek = [
@@ -22,18 +22,18 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
   pubData,
   updatePubData,
 }) => {
-  const [display, setDisplay] = useState(false);
-  const [editing, setEditing] = useState(false);
-  const [formData, setFormData] = useState<Pub>(pubData);
-  const [error, setError] = useState<string>("");
+  //const [show, setShow] = useState(false);
+  const [editingBaseInfo, setEditingBaseInfo] = useState(false);
+  const [editingProducts, setEditingProducts] = useState(false);
+  const [formData, setFormData] = useState<Pub & { products?: Product[] }>({
+    ...pubData,
+    products: pubData.products || [],
+  });
+  // useEffect(() => {
+  //   console.log("Frissített termékek:", formData.products);
+  // }, [formData.products]);
 
-  useEffect(() => {
-    if (window.location.pathname === "/dashboard/") {
-      setDisplay(false);
-    } else if (window.location.pathname === "/dashboard/settings") {
-      setDisplay(true);
-    }
-  }, []);
+  const [error, setError] = useState<string>("");
 
   const parseOpeningHours = (
     openingHours: string | OpeningHoursEntry[] | JsonValue
@@ -69,15 +69,12 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
     console.error("⚠️ Ismeretlen openingHours formátum:", openingHours);
     return daysOfWeek.map((day) => ({ day, hours: "zárva" })); // Ha semmi nincs, zárva
   };
-
+  //Nyitvatartás változásának kezelése
   const handleChangeOpeningHours = (day: string, value: string) => {
     setFormData((prevState) => {
       const openingHoursArray = parseOpeningHours(prevState.openingHours ?? "");
-      const updatedOpeningHoursArray = openingHoursArray.map(
-        (entry) =>
-          entry.day === day
-            ? { ...entry, hours: value.trim() || "zárva" }
-            : entry // Ha üres, "zárva"
+      const updatedOpeningHoursArray = openingHoursArray.map((entry) =>
+        entry.day === day ? { ...entry, hours: value.trim() || "zárva" } : entry
       );
 
       return {
@@ -86,57 +83,69 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
       };
     });
   };
+  //Termékek változásának kezelése
+  const handleProductChange = (
+    productId: string,
+    field: keyof Product,
+    value: string
+  ) => {
+    setFormData((prevState) => {
+      if (!prevState.products) return prevState;
+
+      const updatedProducts = prevState.products.map((product) =>
+        product.id === productId
+          ? {
+              ...product,
+              [field]: field === "price" ? parseFloat(value) || 0 : value,
+            }
+          : product
+      );
+
+      console.log("Frissített termékek:", updatedProducts);
+
+      return {
+        ...prevState,
+        products: [...updatedProducts], // Fontos: új másolat
+      };
+    });
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    if (name === "phone") {
-      const cleanPhone = formData.phone.replace(/\s+/g, "");
-      setFormData((prevState) => ({ ...prevState, phone: cleanPhone }));
-    }
-
-    if (name === "googleRating") {
-      if (value === "") {
-        setFormData((prevState) => ({ ...prevState, googleRating: 0 }));
-        return;
-      }
+    if (name === "googleRating" || name === "rating") {
       const rating = Number(value);
-      if (!isNaN(rating)) {
-        setFormData((prevState) => ({ ...prevState, googleRating: rating }));
+      if (value === "" || (!isNaN(rating) && rating >= 0 && rating <= 5)) {
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: rating, // A megfelelő mező frissítése (googleRating vagy rating)
+        }));
+        setError("");
       } else {
-        setError("Google értékelés csak számokat tartalmazhat.");
-        return;
+        setError(
+          `${
+            name === "googleRating" ? "Google" : "KocsMate"
+          } értékelés 0 és 5 között kell legyen.`
+        );
       }
     } else {
       setFormData((prevState) => ({ ...prevState, [name]: value }));
     }
   };
-
-  const handleSave = () => {
+  const handleSaveBaseInfo = () => {
     const errors: Array<string> = [];
-    // Google értékelés ellenőrzése
-    if (formData.googleRating < 1 || formData.googleRating > 5) {
-      //TODO ez lesz a felhasználói értékelés
-      errors.push("Google értékelés 1 és 5 között kell legyen.");
-    }
-
-    // Telefonszám ellenőrzése, ha nem üres
     const phonePattern = /^(06|\+(\d{1,3}))\s?\d{1,2}\s?\d{1,4}\s?\d{1,4}$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const timePattern = /^(?:\d{2}):(\d{2})\s?[-–]\s?(\d{2}):(\d{2})$/;
+    const openingHoursArray = parseOpeningHours(formData.openingHours);
+
     if (formData.phone && !phonePattern.test(formData.phone)) {
       errors.push("Telefonszám formátuma nem megfelelő.");
     }
-
-    // Email ellenőrzés
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (formData.email && !emailPattern.test(formData.email)) {
       errors.push("Email formátuma nem megfelelő.");
     }
-
-    // Nyitvatartás ellenőrzése
-    const openingHoursArray = parseOpeningHours(formData.openingHours);
-    const timePattern = /^(?:\d{2}):(\d{2})\s?[-–]\s?(\d{2}):(\d{2})$/;
     openingHoursArray.forEach(({ day, hours }) => {
-      //console.log(hours);
       if (hours !== "zárva" && !timePattern.test(hours)) {
         errors.push(`${day} nyitvatartásának formátuma nem megfelelő.`);
       }
@@ -151,19 +160,29 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
       ...formData,
       openingHours: JSON.stringify(openingHoursArray),
     });
-    setEditing(false);
+    setEditingBaseInfo(false);
     setError("");
   };
 
-  const openingHoursArray = parseOpeningHours(
-    formData.openingHours
-  ) as OpeningHoursEntry[];
+  const handleSaveProducts = () => {
+    updatePubData({
+      ...formData,
+      products: formData.products,
+    });
+    setEditingProducts(false);
+  };
+
+  const openingHoursArray = parseOpeningHours(formData.openingHours);
+  const products = formData.products;
+  const drinks = products?.filter((product) => product.type === "drink") || [];
+  const foods = products?.filter((product) => product.type === "food") || [];
 
   return (
-    <section className="relative flex rounded-2xl p-8 max-w-3xl mx-auto mt-8">
+    <section className="relative flex rounded-2xl px-8 max-w-3xl mx-auto mt-4">
       <div className="flex w-full flex-col">
         <div className="shadow-xl bg-[var(--butterscotch)] p-8 w-full">
-          {editing ? (
+          {/* Általános adatok szekció */}
+          {editingBaseInfo && (
             <div>
               <h2 className="text-4xl">Általános adatok</h2>
               <label className="block mb-2">Név:</label>
@@ -206,6 +225,14 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
                 onChange={handleChange}
                 className="w-full mb-4 p-2 border border-gray-300 rounded"
               />
+              <label className="block mb-2">Értékelés:</label>
+              <input
+                type="number"
+                name="rating"
+                value={formData.rating}
+                onChange={handleChange}
+                className="w-full mb-4 p-2 border border-gray-300 rounded"
+              />
               <label className="block mb-2">Nyitvatartás:</label>
               {daysOfWeek.map((day) => (
                 <div key={day} className="flex items-center mb-4">
@@ -215,7 +242,7 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
                     value={
                       openingHoursArray.find(
                         (entry) => entry.day.trim() === day.trim()
-                      )?.hours || "zárva" // Ha üres, "zárva"
+                      )?.hours || "zárva"
                     }
                     onChange={(e) =>
                       handleChangeOpeningHours(day, e.target.value)
@@ -225,52 +252,195 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
                   />
                 </div>
               ))}
-
               <button
-                onClick={handleSave}
-                className="w-full mt-4 py-3 px-6 text-white bg-green-500 font-bold text-center rounded-lg hover:bg-green-600 transition duration-300"
+                onClick={handleSaveBaseInfo}
+                className="bg-blue-500 text-white py-2 px-4 rounded mt-4"
               >
-                Változtatások mentése
+                Mentés
               </button>
-              {error && (
-                <div className="mt-4 p-4 text-red-500 border border-red-500 rounded bg-red-100">
-                  <p>{error}</p>
-                </div>
-              )}
+              <button
+                onClick={() => setEditingBaseInfo(false)}
+                className="bg-gray-300 text-black py-2 px-4 rounded mt-4 ml-4"
+              >
+                Mégse
+              </button>
+              {error && <p className="text-red-500 mt-4">{error}</p>}
             </div>
-          ) : (
+          )}
+
+          {/* Kínálat frissítése szekció */}
+          {editingProducts && (
             <div>
-              <h2 className="text-3xl font-bold text-gray-800">
-                {pubData.name}
-              </h2>
-              <p className="text-lg text-gray-700 mt-2">
-                {pubData.fullAddress}
+              <h2 className="text-4xl">Kínálat frissítése</h2>
+              <h3 className="text-xl font-semibold mb-4">Italok</h3>
+              {drinks.map((drink) => (
+                <div key={drink.id} className="flex mb-4">
+                  <input
+                    type="text"
+                    value={drink.name}
+                    onChange={(e) =>
+                      handleProductChange(drink.id, "name", e.target.value)
+                    }
+                    className="w-full mb-2 p-2 border border-gray-300 rounded"
+                  />
+                  <input
+                    type="number"
+                    value={drink.price}
+                    onChange={(e) =>
+                      handleProductChange(drink.id, "price", e.target.value)
+                    }
+                    className="w-1/3 mb-2 p-2 border border-gray-300 rounded"
+                  />
+                  {/* <input
+                    type="text"
+                    value={drink.description}
+                    onChange={(e) =>
+                      handleProductChange(
+                        drink.id,
+                        "description",
+                        e.target.value
+                      )
+                    }
+                    className="w-full mb-2 p-2 border border-gray-300 rounded"
+                    placeholder="Leírás"
+                  /> */}
+                </div>
+              ))}
+
+              <h3 className="text-xl font-semibold mb-4">Ételek</h3>
+              {foods.map((food) => (
+                <div key={food.id} className="flex mb-4">
+                  <input
+                    type="text"
+                    value={food.name}
+                    onChange={(e) =>
+                      handleProductChange(food.id, "name", e.target.value)
+                    }
+                    className="w-full mb-2 p-2 border border-gray-300 rounded"
+                  />
+                  <input
+                    type="number"
+                    value={food.price}
+                    onChange={(e) =>
+                      handleProductChange(food.id, "price", e.target.value)
+                    }
+                    className="w-1/3 mb-2 p-2 border border-gray-300 rounded"
+                  />
+                </div>
+              ))}
+              <button
+                onClick={handleSaveProducts}
+                className="bg-blue-500 text-white py-2 px-4 rounded mt-4"
+              >
+                Mentés
+              </button>
+              <button
+                onClick={() => setEditingProducts(false)}
+                className="bg-gray-300 text-black py-2 px-4 rounded mt-4 ml-4"
+              >
+                Mégse
+              </button>
+            </div>
+          )}
+          {/* Alapadatok vagy termékek szerkesztésének lehetősége */}
+          {!editingBaseInfo && !editingProducts && (
+            <div>
+              <h2 className="text-4xl">{formData.name}</h2>
+              <p>
+                <strong>Cím:</strong> {formData.fullAddress}
               </p>
-              <p className="text-lg text-gray-700 mt-2">
-                Telefon: {pubData.phone || "N/A"}
+              <p>
+                <strong>Telefonszám:</strong> {formData.phone}
               </p>
-              <p className="text-lg text-gray-700 mt-2">
-                Email-cím: {pubData.email || "N/A"}
+              <p>
+                <strong>Email:</strong> {formData.email}
               </p>
-              <p className="text-lg text-gray-700 mt-2">
-                Google értékelés: {pubData.googleRating} ⭐
+              <p>
+                <strong>Google értékelés:</strong> {formData.googleRating}
               </p>
-              <p className="text-lg text-gray-700 mt-2">Nyitvatartás:</p>
-              <ul className="text-lg text-gray-700 mt-2">
+              <p>
+                <strong>KocsMate értékelés:</strong> {formData.rating}
+              </p>
+              <p>
+                <strong>Működik?</strong>
+                {formData.state === "func" ? "Igen" : "Nem"}
+              </p>
+              <h3 className="text-2xl mt-4">Nyitvatartás</h3>
+              <ul>
                 {openingHoursArray.map(({ day, hours }) => (
                   <li key={day}>
-                    <strong>{day}:</strong> {hours || "zárva"}
+                    <strong>{day}:</strong> {hours}
                   </li>
                 ))}
               </ul>
-              {display && (
-                <button
-                  onClick={() => setEditing(true)}
-                  className="w-full mt-4 py-3 px-6 text-white bg-yellow-500 font-bold text-center rounded-lg hover:bg-yellow-600 transition duration-300"
-                >
-                  Kocsma adatainak szerkesztése
-                </button>
-              )}
+              {/*Később komponensbe, ez átmenetileg jelenik csak meg */}
+              <div className="w-full lg:w-1/2 mt-4">
+                <h2 className="text-2xl font-bold mb-4">Jelenlegi Menük</h2>
+                <div className="space-y-8">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Italok</h3>
+                    {drinks && drinks.length > 0 ? (
+                      <ul className="space-y-4">
+                        {drinks.map((drink) => (
+                          <li
+                            key={drink.name}
+                            className="border p-4 rounded-lg shadow"
+                          >
+                            <p className="font-semibold text-lg">
+                              {drink.name}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              {drink.description}
+                            </p>
+                            <p className="mt-2">Ár: {drink.price} Ft</p>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-gray-500">
+                        Nincsenek italok a menüben.
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Ételek</h3>
+                    {foods && foods.length > 0 ? (
+                      <ul className="space-y-4">
+                        {foods.map((food) => (
+                          <li
+                            key={food.name}
+                            className="border p-4 rounded-lg shadow"
+                          >
+                            <p className="font-semibold text-lg">{food.name}</p>
+                            <p className="text-sm text-gray-600">
+                              {food.description}
+                            </p>
+                            <p className="mt-2">Ár: {food.price} Ft</p>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-gray-500">
+                        Nincsenek ételek a menüben.
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col p-2 gap-2 justify-between mt-4">
+                  <button
+                    onClick={() => setEditingBaseInfo(true)}
+                    className="bg-blue-500 text-white py-2 px-4 rounded"
+                  >
+                    Alapadatok szerkesztése
+                  </button>
+                  <button
+                    onClick={() => setEditingProducts(true)}
+                    className="bg-blue-500 text-white py-2 px-4 rounded"
+                  >
+                    Kínálat szerkesztése
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </div>

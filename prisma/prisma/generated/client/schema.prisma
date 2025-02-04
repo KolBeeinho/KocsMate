@@ -12,18 +12,19 @@ generator client {
 
 // User (Felhasználó) modell
 model User {
-  id                  String               @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító (MongoDB ObjectId)
-  username            String               @unique // Egyedi felhasználónév
-  email               String               @unique // Egyedi email cím
-  password            String? // Opcionális jelszó (ha van hitelesítés)
-  fullName            String? // Opcionális teljes név
-  createdAt           DateTime             @default(now()) // Fiók létrehozásának dátuma
-  dateOfBirth         DateTime? // Születési dátum (opcionális)
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító (MongoDB ObjectId)
+  username    String    @unique // Egyedi felhasználónév
+  email       String    @unique // Egyedi email cím
+  password    String? // Opcionális jelszó (ha van hitelesítés)
+  fullName    String? // Opcionális teljes név
+  createdAt   DateTime  @default(now()) // Fiók létrehozásának dátuma
+  dateOfBirth DateTime? // Születési dátum (opcionális)
+  business    Boolean // Megmondja, hogy az illető üzleti fiókot használ-e
+
+  admins              Admin[] // Admin kapcsolat (ha az illető admin egy pubnál)
   accounts            Account[] // Kapcsolat az Account modellel (külső fiókok, pl. Google, Facebook)
   sessions            Session[] // Kapcsolat a Session modellel (belépési munkamenetek)
   passwordResetTokens PasswordResetToken[] // Kapcsolat jelszó visszaállítási tokenekkel
-  business            Boolean // Megmondja, hogy az illető üzleti fiókot használ-e
-  admins              Admin[] // Admin kapcsolat (ha az illető admin egy pubnál)
   reviews             Review[]             @relation("UserReviews") // Kapcsolat a Review modellel (felhasználó véleményei)
 }
 
@@ -33,18 +34,19 @@ model Admin {
   userId String  @unique @db.ObjectId // Admin felhasználójának azonosítója
   pubId  String? @db.ObjectId // Az admin által kezelt pub azonosítója
   email  String  @unique // Admin e-mail címe
-  pub    Pub?    @relation(fields: [pubId], references: [id], onDelete: Cascade, name: "PubAdmins") // Kapcsolat a Pub modellel
-  user   User    @relation(fields: [userId], references: [id]) // Kapcsolat a User modellel
+
+  pub  Pub? @relation(fields: [pubId], references: [id], onDelete: Cascade, name: "PubAdmins") // Kapcsolat a Pub modellel
+  user User @relation(fields: [userId], references: [id]) // Kapcsolat a User modellel
 }
 
 // Jelszó-visszaállítási tokenek
 model PasswordResetToken {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
   token     String   @unique // Egyedi visszaállítási token
-  userId    String   @db.ObjectId // Felhasználó azonosítója
-  user      User     @relation(fields: [userId], references: [id]) // Kapcsolat a User modellel
   expiresAt DateTime // Token lejárati dátuma
   createdAt DateTime @default(now()) // Token létrehozási ideje
+  userId    String   @db.ObjectId // Felhasználó azonosítója
+  user      User     @relation(fields: [userId], references: [id]) // Kapcsolat a User modellel
 }
 
 // Külső fiókok (OAuth, például Google, Facebook)
@@ -62,8 +64,9 @@ model Account {
   id_token          String?  @db.String // Opcionális ID token
   session_state     String? // Munkamenet állapota
   createdAt         DateTime @default(now()) // Fiók létrehozásának dátuma
-  updatedAt         DateTime @updatedAt // Utolsó frissítés időpontja
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade) // Kapcsolat a User modellel
+  //updatedAt       DateTime @updatedAt // Utolsó frissítés időpontja
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) // Kapcsolat a User modellel
 
   @@unique([provider, providerAccountId]) // Szolgáltatónként egyedi fiók
 }
@@ -74,12 +77,13 @@ model Session {
   sessionToken String   @unique // Egyedi munkamenet token
   userId       String   @db.ObjectId // Felhasználó azonosítója
   expires      DateTime // Lejárati idő
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade) // Kapcsolat a User modellel
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) // Kapcsolat a User modellel
 }
 
 // Pub (Kocsma, bár, helyszín) modell
 model Pub {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
   name         String // Kocsma neve
   fullAddress  String // Cím
   longitude    Float // Hosszúsági koordináta
@@ -87,12 +91,27 @@ model Pub {
   phone        String // Telefonszám
   email        String // E-mail cím
   openingHours Json // Nyitvatartási idők JSON formátumban
-  products     String[] // Termékek listája
-  functioning  Boolean // Működik-e a hely
+  functioning  Boolean // Működik-e a hely -> később lehetne módosítani a statere
   href         String // Külső hivatkozás
   googleRating Float // Google értékelés (pl. 4.5)
-  admins       Admin[]  @relation("PubAdmins") // Kapcsolat az adminokkal
-  reviews      Review[] @relation("PubReviews") // Kapcsolat a véleményekkel
+  rating       Float // KocsMaten belüli értékelés (pl. 4.5)
+  state        String //t_closed, closed, func
+  admins       Admin[]   @relation("PubAdmins") // Kapcsolat az adminokkal
+  reviews      Review[]  @relation("PubReviews") // Kapcsolat a véleményekkel
+  products     Product[] @relation("PubProducts") // Reláció a products modellel
+}
+
+model Product {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  name        String // A termék neve 
+  type        String // 'food' vagy 'drink' típusú termékek
+  price       Float // Termék ára
+  description String // Rövid leírás
+
+  pubId     String   @db.ObjectId
+  pub       Pub      @relation(fields: [pubId], references: [id], onDelete: Cascade, name: "PubProducts")
+  createdAt DateTime @default(now()) // Fiók létrehozásának dátuma
+  //updatedAt         DateTime @updatedAt // Utolsó frissítés időpontja
 }
 
 // Review (Felhasználói vélemény) modell
@@ -100,10 +119,11 @@ model Review {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
   rating    Int // 1-5 közötti értékelés
   comment   String // Vélemény szövege
+  isActive  Boolean  @default(true) //Moderált vélemény
   createdAt DateTime @default(now()) // Vélemény létrehozásának dátuma
-
-  pubId String @db.ObjectId // Kapcsolódó pub azonosítója
-  pub   Pub    @relation(fields: [pubId], references: [id], onDelete: Cascade, name: "PubReviews") // Kapcsolat a Pub modellel
+  //updatedAt          DateTime @updatedAt // Utolsó frissítés időpontja
+  pubId     String   @db.ObjectId // Kapcsolódó pub azonosítója
+  pub       Pub      @relation(fields: [pubId], references: [id], onDelete: Cascade, name: "PubReviews") // Kapcsolat a Pub modellel
 
   userId String @db.ObjectId // Véleményt író felhasználó azonosítója
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, name: "UserReviews") // Kapcsolat a User modellel

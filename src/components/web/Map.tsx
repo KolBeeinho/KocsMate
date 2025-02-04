@@ -32,9 +32,13 @@ const MyMap = () => {
         zoom: 10,
       }}
       style={{
-        width: "100%",
-        height: "calc(100vh - 77px)",
-        marginBottom: "500px",
+        width: "100%", // Az egész szülő szélességét kihasználja
+
+        height: "calc(100vh - 200px)", // Dinamikus magasság a nézőablak méretéhez képest
+        margin: "50px auto",
+        display: "block",
+        borderRadius: "10px",
+        boxShadow: "0px 4px 8px 0px rgba(0,0,0,0.2)",
       }}
       mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
     >
@@ -44,7 +48,7 @@ const MyMap = () => {
       {bars.map((bar, index) => (
         <Marker key={index} latitude={bar.latitude} longitude={bar.longitude}>
           {/* React komponensként rendereljük az ikont */}
-          <MapPinIcon className="h-10 w-10 bg-red" />
+          <MapPinIcon className="h-10 w-10 text-red-500" />
         </Marker>
       ))}
     </Map>

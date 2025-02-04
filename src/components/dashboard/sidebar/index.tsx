@@ -1,9 +1,11 @@
 import {
   ArrowLeftStartOnRectangleIcon,
   Bars3BottomLeftIcon,
+  BuildingStorefrontIcon,
   ChatBubbleBottomCenterTextIcon,
   EllipsisHorizontalIcon,
   HomeIcon,
+  PencilSquareIcon,
 } from "@heroicons/react/24/solid";
 
 import Link from "next/link";
@@ -40,6 +42,18 @@ const Sidebar: React.FC = () => {
       icon: <ChatBubbleBottomCenterTextIcon />,
       href: "/dashboard/reviews",
     },
+    {
+      id: "menu",
+      title: "menu",
+      icon: <BuildingStorefrontIcon />,
+      href: "/dashboard/menu",
+    },
+    {
+      id: "modify",
+      title: "modify",
+      icon: <PencilSquareIcon />,
+      href: "/dashboard/modify",
+    },
   ];
 
   const [open, setOpen] = React.useState(false);
@@ -60,14 +74,14 @@ const Sidebar: React.FC = () => {
 
   const handleTabChange = (e: React.MouseEvent<HTMLElement>) => {
     setActiveTab(e.currentTarget.id);
-    console.log(e.currentTarget.id);
+    //console.log(e.currentTarget.id);
   };
 
   return (
     <div
       className={`${
         open ? " lg:w-[200px]" : "lg:w-[70px]"
-      } h-screen bg-[#14213D] transition-all duration-300`}
+      } min-h-screen bg-[#14213D] transition-all duration-300`}
       id="sidebar"
     >
       {/* Tab icons */}
@@ -88,9 +102,7 @@ const Sidebar: React.FC = () => {
                 className={`origin-center text-lg duration-300 ${
                   !open && "scale-0"
                 }`}
-              >
-                zár
-              </span>
+              ></span>
             )}
           </button>
         </div>
@@ -121,25 +133,9 @@ const Sidebar: React.FC = () => {
             ))}
           </>
         )}
-        {/* Kijelentkezés */}
-        <div
-          className="fixed bottom-4 hover:transition hover:text-[#4F4A56]"
-          id="settingsButton"
-        >
-          <Link href="/">
-            <button
-              className="sidebarbtn"
-              title="Kijelentkezés"
-              onClick={logout}
-            >
-              <ArrowLeftStartOnRectangleIcon />
-              <span className="invisible">gomb</span> {/* valami bug */}
-            </button>
-          </Link>
-        </div>
         {/* Settings tab icon */}
         <div
-          className="fixed bottom-0 hover:transition hover:text-[#4F4A56]"
+          className="fixed bottom-4 hover:transition hover:text-[#4F4A56]"
           id="settingsButton"
         >
           <Link href="/dashboard/settings">
@@ -149,6 +145,22 @@ const Sidebar: React.FC = () => {
               onClick={handleTabChange}
             >
               <EllipsisHorizontalIcon />
+              <span className="invisible">gomb</span> {/* valami bug */}
+            </button>
+          </Link>
+        </div>
+        {/* Kijelentkezés */}
+        <div
+          className="fixed bottom-0 hover:transition hover:text-[#4F4A56]"
+          id="settingsButton"
+        >
+          <Link href="/">
+            <button
+              className="sidebarbtn"
+              title="Kijelentkezés"
+              onClick={logout}
+            >
+              <ArrowLeftStartOnRectangleIcon />
               <span className="invisible">gomb</span> {/* valami bug */}
             </button>
           </Link>
