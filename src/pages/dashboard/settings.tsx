@@ -2,18 +2,20 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { Pub } from "../../../prisma/prisma/generated/client";
-import DisplayPubInfo from "../../components/dashboard/sections/home/displaypubinfo";
-import Sidebar from "../../components/dashboard/sidebar";
+import DashboardLayout from "../../components/dashboard/DashboardLayout";
 import { AuthContext } from "../../utils/providers/AuthContext";
 
-const Settings: NextPage = () => {
+const PubSettings: NextPage = () => {
   const authContext = useContext(AuthContext);
   const router = useRouter();
   const [pubData, setPubData] = useState<Pub | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [pubState, setPubState] = useState<string>("func");
 
   if (!authContext) {
-    return;
+    return null;
   }
+
   const { user } = authContext;
 
   useEffect(() => {
@@ -24,45 +26,78 @@ const Settings: NextPage = () => {
 
   useEffect(() => {
     if (user?.id) {
-      // API hívás a pub adatainak lekérésére
-      fetch(`/api/getAdminPub?adminId=${user.id}`)
-        .then((res) => res.json())
+      setLoading(true);
+      fetch(`/api/getPub?adminId=${user.id}`)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Sikertelen adatlekérés");
+          }
+          return res.json();
+        })
         .then((data) => {
           setPubData(data.pub);
+          setPubState(data.pub?.state || "func"); // Betöltés után állapot beállítása
         })
-        .catch((error) => console.error(error));
+        .catch((error) => console.error("Error fetching pub data:", error))
+        .finally(() => setLoading(false));
     }
   }, [user]);
 
-  const updatePubData = async (updatedData: Pub) => {
-    try {
-      const response = await fetch("/api/updatePub", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
-      const result = await response.json();
-      if (result.success) {
-        setPubData(result.pub);
-      } else {
-        console.error(result.message);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+  const handleStateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newState = event.target.value;
+    setPubState(newState);
+
+    fetch(`/api/updatePubState`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: pubData?.id, state: newState }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Sikertelen állapot frissítés");
+        }
+        return res.json();
+      })
+      .catch((error) => console.error("Error updating pub state:", error));
   };
 
-  if (!user || !pubData) return <p>Loading...</p>;
+  if (loading || !pubData) {
+    return <p>Loading...</p>;
+  }
 
   return (
-    <div className="md:grid md:grid-flow-col" id="dashboard">
-      <Sidebar />
-      <div className="mx-4 flex flex-col space-y-8 md:mt-[80px] md:ml-[100px] lg:flex-row lg:space-y-0 lg:space-x-10 xl:space-x-12">
-        <DisplayPubInfo pubData={pubData} updatePubData={updatePubData} />
+    <DashboardLayout>
+      <div className="w-full lg:w-1/2 p-4">
+        <h2 className="text-2xl font-bold mb-4">Beállítások</h2>
+        <div className="space-y-4">
+          <div>
+            <label
+              htmlFor="pub-state"
+              className="block text-lg font-medium mb-2"
+            >
+              Pub Állapot
+            </label>
+            <select
+              id="pub-state"
+              value={pubState}
+              onChange={handleStateChange}
+              className="block w-full p-2 border rounded-lg shadow-sm focus:ring focus:ring-blue-300"
+            >
+              <option value="func" className="text-green-500">
+                Üzemel
+              </option>
+              <option value="t_closed" className="text-yellow-500">
+                Átmenetileg zárva
+              </option>
+              <option value="closed" className="text-red-500">
+                Végleg bezárt
+              </option>
+            </select>
+          </div>
+        </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 };
-export default Settings;
+
+export default PubSettings;

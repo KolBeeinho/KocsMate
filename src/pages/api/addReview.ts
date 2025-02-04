@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { Review } from "../../../prisma/prisma/generated/client";
 import { prisma } from "../../prisma";
-//TODO search oldallal összekötni, ezt a felhasználó hívja
+//TODO search oldallal összekötni, ezt a felhasználó hívja (frontend)
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "POST") {
+  if (req.method !== "PUT") {
     return res.status(405).json({ message: "Method not allowed" });
   }
 

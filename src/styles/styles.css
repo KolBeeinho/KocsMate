@@ -53,4 +53,11 @@ body {
   #loginform {
     color: white !important;
   }
+  .review {
+    background-color: var(--butterscotch);
+    color: white;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
 }

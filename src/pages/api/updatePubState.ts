@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "../../../prisma/prisma/generated/client";
-import { Pub } from "../../../type";
 
 const prisma = new PrismaClient();
 
@@ -9,38 +8,19 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "PUT") {
-    const {
-      id,
-      name,
-      fullAddress,
-      phone,
-      email,
-      googleRating,
-      rating,
-      state,
-      href,
-      openingHours,
-    } = req.body as Pub;
+    const { id, state } = req.body;
 
     if (!id) {
       return res
         .status(400)
-        .json({ success: false, message: "Pub ID szükséges." });
+        .json({ success: false, message: "Pub ID hiányzik." });
     }
 
     try {
       const updatedPub = await prisma.pub.update({
         where: { id: id },
         data: {
-          name,
-          fullAddress,
-          phone,
-          email,
-          googleRating,
-          rating,
-          href,
           state,
-          openingHours: openingHours,
         },
       });
       return res.status(200).json({ success: true, pub: updatedPub });
@@ -48,7 +28,10 @@ export default async function handler(
       console.error(error);
       return res
         .status(500)
-        .json({ success: false, message: "Nem sikerült a kocsma frissítése!" });
+        .json({
+          success: false,
+          message: "Nem sikerült a kocsma állapotfrissítése!",
+        });
     }
   } else {
     return res

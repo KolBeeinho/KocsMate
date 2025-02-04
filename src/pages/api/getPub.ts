@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../prisma";
-
+//TODO ÁTNEVEZNI GETADMINPUBRA ISMÉT!!!
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -18,7 +18,7 @@ export default async function handler(
       where: { userId: String(adminId) },
       include: {
         pub: {
-          include: { reviews: true }, // 👈 Hozzáadjuk a review-okat
+          include: { reviews: true, products: true },
         },
       },
     });

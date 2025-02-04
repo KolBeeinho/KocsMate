@@ -131,9 +131,9 @@ exports.Prisma.AdminScalarFieldEnum = {
 exports.Prisma.PasswordResetTokenScalarFieldEnum = {
   id: 'id',
   token: 'token',
-  userId: 'userId',
   expiresAt: 'expiresAt',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  userId: 'userId'
 };
 
 exports.Prisma.AccountScalarFieldEnum = {
@@ -149,8 +149,7 @@ exports.Prisma.AccountScalarFieldEnum = {
   scope: 'scope',
   id_token: 'id_token',
   session_state: 'session_state',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {
@@ -169,16 +168,28 @@ exports.Prisma.PubScalarFieldEnum = {
   phone: 'phone',
   email: 'email',
   openingHours: 'openingHours',
-  products: 'products',
   functioning: 'functioning',
   href: 'href',
-  googleRating: 'googleRating'
+  googleRating: 'googleRating',
+  rating: 'rating',
+  state: 'state'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  price: 'price',
+  description: 'description',
+  pubId: 'pubId',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.ReviewScalarFieldEnum = {
   id: 'id',
   rating: 'rating',
   comment: 'comment',
+  isActive: 'isActive',
   createdAt: 'createdAt',
   pubId: 'pubId',
   userId: 'userId'
@@ -202,6 +213,7 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   Session: 'Session',
   Pub: 'Pub',
+  Product: 'Product',
   Review: 'Review'
 };
 

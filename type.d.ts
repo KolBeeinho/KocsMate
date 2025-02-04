@@ -16,22 +16,24 @@ export type Pub = {
   products: string[];
   functioning: boolean;
   googleRating: number;
+  rating: number;
+  state: string;
   href: string;
 };
-export interface OpeningHoursEntry {
+export type OpeningHoursEntry = {
   day: string;
   hours: string;
-}
-// export interface GoogleProfile {
-//   sub: string; // A felhasználó egyedi azonosítója
-//   name: string; // A felhasználó neve
-//   given_name: string; // Keresztnév
-//   family_name: string; // Vezetéknév
-//   picture: string; // Profilkép URL
-//   email: string; // E-mail cím
-//   email_verified: boolean; // E-mail megerősítése
-//   locale: string; // Nyelvi beállítás
-// } //csak ha mégis kéne
+};
+export type GoogleProfile = {
+  sub: string; // A felhasználó egyedi azonosítója
+  name: string; // A felhasználó neve
+  given_name: string; // Keresztnév
+  family_name: string; // Vezetéknév
+  picture: string; // Profilkép URL
+  email: string; // E-mail cím
+  email_verified: boolean; // E-mail megerősítése
+  locale: string; // Nyelvi beállítás
+}; //csak ha mégis kéne
 
 declare global {
   namespace NodeJS {
