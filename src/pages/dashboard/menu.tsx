@@ -11,7 +11,6 @@ const Menu: NextPage = () => {
   const [pubData, setPubData] = useState<
     (Pub & { products: Product[] }) | null
   >(null);
-  const [loading, setLoading] = useState<boolean>(true);
 
   if (!authContext) {
     return null;
@@ -27,25 +26,16 @@ const Menu: NextPage = () => {
 
   useEffect(() => {
     if (user?.id) {
-      setLoading(true);
-      fetch(`/api/getPub?adminId=${user.id}`)
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Sikertelen adatlekérés");
-          }
-          return res.json();
-        })
+      // API hívás a pub adatainak lekérésére
+      fetch(`/api/getAdminPub?adminId=${user.id}`)
+        .then((res) => res.json())
         .then((data) => {
           setPubData(data.pub);
         })
-        .catch((error) => console.error("Error fetching pub data:", error))
-        .finally(() => setLoading(false));
+        .catch((error) => console.error(error));
     }
   }, [user]);
-
-  if (loading || !pubData) {
-    return <p>Loading...</p>;
-  }
+  if (!user || !pubData) return <p>Loading...</p>;
 
   const drinks = pubData.products.filter((product) => product.type === "drink"); //külön segédfüggvényekbe
   const foods = pubData.products.filter((product) => product.type === "food");

@@ -11,37 +11,12 @@ const Reviews: NextPage = () => {
   const [pubData, setPubData] = useState<(Pub & { reviews: Review[] }) | null>(
     null
   );
-  const [loading, setLoading] = useState<boolean>(true);
 
   if (!authContext) {
     return null;
   }
 
   const { user } = authContext;
-
-  useEffect(() => {
-    if (!user || !user.business) {
-      router.push("/");
-    }
-  }, [user, router]);
-
-  useEffect(() => {
-    if (user?.id) {
-      setLoading(true);
-      fetch(`/api/getPub?adminId=${user.id}`)
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Sikertelen adatlekérés");
-          }
-          return res.json();
-        })
-        .then((data) => {
-          setPubData(data.pub); //TODO felhasználónév beleimplementálása a review típusba (reláción keresztül)
-        })
-        .catch((error) => console.error("Error fetching pub data:", error))
-        .finally(() => setLoading(false));
-    }
-  }, [user]);
 
   const handleModerate = async (
     reviewId: string,
@@ -72,7 +47,25 @@ const Reviews: NextPage = () => {
     }
   };
 
-  if (!user || loading || !pubData) {
+  useEffect(() => {
+    if (!user || !user.business) {
+      router.push("/");
+    }
+  }, [user, router]);
+
+  useEffect(() => {
+    if (user?.id) {
+      // API hívás a pub adatainak lekérésére
+      fetch(`/api/getAdminPub?adminId=${user.id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setPubData(data.pub);
+        })
+        .catch((error) => console.error(error));
+    }
+  }, [user]);
+
+  if (!user || !pubData) {
     return <p>Loading...</p>;
   }
 

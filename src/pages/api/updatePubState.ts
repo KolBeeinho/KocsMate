@@ -7,7 +7,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === "PUT") {
+  if (req.method === "PATCH") {
     const { id, state } = req.body;
 
     if (!id) {
@@ -26,12 +26,10 @@ export default async function handler(
       return res.status(200).json({ success: true, pub: updatedPub });
     } catch (error) {
       console.error(error);
-      return res
-        .status(500)
-        .json({
-          success: false,
-          message: "Nem sikerült a kocsma állapotfrissítése!",
-        });
+      return res.status(500).json({
+        success: false,
+        message: "Nem sikerült a kocsma állapotfrissítése!",
+      });
     }
   } else {
     return res

@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/solid";
 
 import Link from "next/link";
-import React, { JSX, useContext } from "react";
+import React, { JSX, useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../utils/providers/AuthContext";
 import ActiveTab from "./ActiveTab";
 import MobileSidebar from "./MobileSidebar";
@@ -29,7 +29,10 @@ const Sidebar: React.FC = () => {
   }
   const { user, logout } = authContext;
 
+  const [newReviewsCount, setNewReviewsCount] = useState<number>(0); //Reviewok megjelenítéséhez állapot
+
   const tabs: Array<Tab> = [
+    //Külön komponensbe majd
     {
       id: "home",
       title: "Home",
@@ -57,14 +60,26 @@ const Sidebar: React.FC = () => {
   ];
 
   const [open, setOpen] = React.useState(false);
+  const [activeTab, setActiveTab] = React.useState<string>();
 
   const handleSidebarButton = () => {
     setOpen(!open);
   };
 
-  const [activeTab, setActiveTab] = React.useState<string>();
+  useEffect(() => {
+    if (!user || !user.business) {
+      return;
+    }
+    // Fetch the pub data and reviews count from getAdminPub endpoint
+    fetch(`/api/getAdminPub?adminId=${user.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setNewReviewsCount(data.reviewsCount || 0); // Set reviews count
+      })
+      .catch((error) => console.error("Error fetching pub data:", error));
+  }, [user]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (window.location.pathname === "/") {
       setActiveTab("home");
     } else {
@@ -74,7 +89,6 @@ const Sidebar: React.FC = () => {
 
   const handleTabChange = (e: React.MouseEvent<HTMLElement>) => {
     setActiveTab(e.currentTarget.id);
-    //console.log(e.currentTarget.id);
   };
 
   return (
@@ -133,6 +147,25 @@ const Sidebar: React.FC = () => {
             ))}
           </>
         )}
+        {/* Reviews tab with notification */}
+        <div className="relative">
+          <Link href="/dashboard/reviews">
+            <button
+              className="sidebarbtn"
+              title="Reviews"
+              onClick={handleTabChange}
+            >
+              <ChatBubbleBottomCenterTextIcon />
+              <span className="invisible">gomb</span>
+            </button>
+          </Link>
+          {newReviewsCount > 0 && (
+            <div className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {newReviewsCount}
+            </div>
+          )}
+        </div>
+
         {/* Settings tab icon */}
         <div
           className="fixed bottom-4 hover:transition hover:text-[#4F4A56]"
@@ -145,11 +178,11 @@ const Sidebar: React.FC = () => {
               onClick={handleTabChange}
             >
               <EllipsisHorizontalIcon />
-              <span className="invisible">gomb</span> {/* valami bug */}
+              <span className="invisible">gomb</span>
             </button>
           </Link>
         </div>
-        {/* Kijelentkezés */}
+        {/* Logout button */}
         <div
           className="fixed bottom-0 hover:transition hover:text-[#4F4A56]"
           id="settingsButton"
@@ -161,12 +194,12 @@ const Sidebar: React.FC = () => {
               onClick={logout}
             >
               <ArrowLeftStartOnRectangleIcon />
-              <span className="invisible">gomb</span> {/* valami bug */}
+              <span className="invisible">gomb</span>
             </button>
           </Link>
         </div>
       </div>
-      {/* On mobile devices*/}
+      {/* On mobile devices */}
       <MobileSidebar />
     </div>
   );

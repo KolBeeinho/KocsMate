@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import { Pub } from "../../../prisma/prisma/generated/client";
+import { Product, Pub } from "../../../prisma/prisma/generated/client";
 import DashboardLayout from "../../components/dashboard/DashboardLayout";
 import DisplayPubInfo from "../../components/dashboard/sections/home/displaypubinfo";
 import { AuthContext } from "../../utils/providers/AuthContext";
@@ -9,7 +9,9 @@ import { AuthContext } from "../../utils/providers/AuthContext";
 const Modify: NextPage = () => {
   const authContext = useContext(AuthContext);
   const router = useRouter();
-  const [pubData, setPubData] = useState<Pub | null>(null);
+  const [pubData, setPubData] = useState<
+    (Pub & { products?: Product[] }) | null
+  >(null);
 
   if (!authContext) {
     return;
@@ -25,42 +27,19 @@ const Modify: NextPage = () => {
   useEffect(() => {
     if (user?.id) {
       // API hívás a pub adatainak lekérésére
-      fetch(`/api/getPub?adminId=${user.id}`)
+      fetch(`/api/getAdminPub?adminId=${user.id}`)
         .then((res) => res.json())
         .then((data) => {
           setPubData(data.pub);
         })
         .catch((error) => console.error(error));
     }
-  }, [user]); //TODO
-  // Ha frissítünk az egyik adathalmazon, nem renderelődik újra, így egy új változót be kell vezetni (pubData használata végtelen ciklust okoz)
-
-  const updatePubData = async (updatedData: Pub) => {
-    try {
-      const response = await fetch("/api/updatePubState", {
-        //TODO updatePub is, jelenleg nem frissülnek az adatok
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
-      const result = await response.json();
-      if (result.success) {
-        setPubData(result.pub);
-      } else {
-        console.error(result.message);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+  }, [user]);
   if (!user || !pubData) return <p>Loading...</p>;
 
   return (
     <DashboardLayout>
-      <DisplayPubInfo pubData={pubData} updatePubData={updatePubData} />
+      <DisplayPubInfo pubData={pubData} updatePubData={setPubData} />
     </DashboardLayout>
   );
 };

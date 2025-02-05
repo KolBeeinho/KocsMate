@@ -23,9 +23,7 @@ const Search = () => {
       setTransition(!transition);
     }
   }, [loading]);
-
   useEffect(() => {
-    // Lekérdezés az API végpontra
     const fetchPubs = async () => {
       try {
         const response = await fetch("/api/getPubs");
@@ -39,25 +37,24 @@ const Search = () => {
         console.error("Hiba a lekérés során:", error);
       }
     };
-
     fetchPubs();
-  }, []); // Csak egyszer fut le, amikor a komponens betöltődik
+  }, []);
 
   const { user, logout } = authContext;
   console.log(user, user?.business);
 
-  // Vélemény küldése
+  //Vélemény küldése lehet majd websocketekkel lesz
   const handleReviewSubmit = async (pubId: string) => {
     try {
       const response = await fetch("/api/addReview", {
-        method: "PUT",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           pubId,
-          userId: user?.id, // Felhasználó azonosítója
-          rating: 5, // Itt az alapértelmezett értéket állítom 5-re, amit később cserélhetsz
+          userId: user?.id,
+          rating: 5,
           comment: review,
         }),
       });
@@ -65,7 +62,7 @@ const Search = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("Vélemény hozzáadva:", data);
-        setReview(""); // Miután elküldtük a véleményt, ürítjük a textarea-t
+        setReview("");
       } else {
         console.error("Hiba a vélemény hozzáadásakor:", response.statusText);
       }
@@ -76,7 +73,7 @@ const Search = () => {
 
   return (
     <>
-      {true ? ( //User
+      {true ? ( //User kell majd
         <Transition
           show={transition}
           enter="transition duration-1000 ease-out"
@@ -159,7 +156,6 @@ const Search = () => {
               </ul>
             </div>
           )}
-
           {/* Vélemény írása textarea */}
           <div className="mt-6 p-4 border rounded-lg shadow-lg bg-white">
             <h3 className="text-xl font-semibold">Vélemény írása</h3>

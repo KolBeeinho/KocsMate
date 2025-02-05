@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { Review } from "../../../prisma/prisma/generated/client";
 import { prisma } from "../../prisma";
-//TODO search oldallal összekötni, ezt a felhasználó hívja (frontend)
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "PUT") {
+  if (req.method !== "POST") {
+    //Később valszeg websocket
     return res.status(405).json({ message: "Method not allowed" });
   }
 
@@ -31,7 +31,6 @@ export default async function handler(
         comment,
       },
     });
-
     return res.status(201).json({ success: true, review });
   } catch (error) {
     console.error("Hiba a vélemény mentésekor:", error);
