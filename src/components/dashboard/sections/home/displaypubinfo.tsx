@@ -1,11 +1,13 @@
+import { TrashIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { Product, Pub } from "../../../../../prisma/prisma/generated/client";
 import { JsonValue } from "../../../../../prisma/prisma/generated/client/runtime/library";
 import { OpeningHoursEntry } from "../../../../../type";
+import DeleteConfirm from "../../DeleteConfim";
 
 interface DisplayPubInfoProps {
-  pubData: Pub & { products?: Product[] }; // products opcionális
-  updatePubData: (updatedData: Pub & { products?: Product[] }) => void;
+  pubData: Pub & { products?: Product[] };
+  updatePubData: (pub: (Pub & { products?: Product[] }) | null) => void;
 }
 
 const daysOfWeek = [
@@ -22,17 +24,16 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
   pubData,
   updatePubData,
 }) => {
-  //const [show, setShow] = useState(false);
   const [editingBaseInfo, setEditingBaseInfo] = useState(false);
   const [editingProducts, setEditingProducts] = useState(false);
   const [formData, setFormData] = useState<Pub & { products?: Product[] }>({
     ...pubData,
     products: pubData.products || [],
   });
-  // useEffect(() => {
-  //   console.log("Frissített termékek:", formData.products);
-  // }, [formData.products]);
-
+  const [deletingProductId, setDeletingProductId] = useState<string | null>(
+    null
+  ); // Törlés előkészítése
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false); // Törlés megerősítő
   const [error, setError] = useState<string>("");
 
   const parseOpeningHours = (
@@ -100,9 +101,6 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
             }
           : product
       );
-
-      console.log("Frissített termékek:", updatedProducts);
-
       return {
         ...prevState,
         products: [...updatedProducts], // Fontos: új másolat
@@ -132,13 +130,58 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
       setFormData((prevState) => ({ ...prevState, [name]: value }));
     }
   };
-  const handleSaveBaseInfo = () => {
+  //Törlés
+  const confirmDeleteProduct = async () => {
+    if (!deletingProductId) return;
+    try {
+      const response = await fetch("/api/deleteProduct", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          pubId: formData.id,
+          productId: deletingProductId,
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setFormData((prevState) => ({
+          ...prevState,
+          products: prevState.products?.filter(
+            (product) => product.id !== deletingProductId
+          ),
+        }));
+        setDeletingProductId(null);
+        setShowDeleteConfirm(false);
+        setError("");
+      } else {
+        setError(result.message);
+      }
+    } catch (error) {
+      console.error("Hiba történt a törlés során:", error);
+      setError("Valami hiba történt a törlés során.");
+    }
+  };
+
+  const cancelDelete = () => {
+    setDeletingProductId(null);
+    setShowDeleteConfirm(false);
+  };
+
+  const handleDeleteProduct = (productId: string) => {
+    setDeletingProductId(productId);
+    setShowDeleteConfirm(true);
+  };
+
+  const handleSaveBaseInfo = async () => {
     const errors: Array<string> = [];
     const phonePattern = /^(06|\+(\d{1,3}))\s?\d{1,2}\s?\d{1,4}\s?\d{1,4}$/;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const timePattern = /^(?:\d{2}):(\d{2})\s?[-–]\s?(\d{2}):(\d{2})$/;
     const openingHoursArray = parseOpeningHours(formData.openingHours);
 
+    // Validáció
     if (formData.phone && !phonePattern.test(formData.phone)) {
       errors.push("Telefonszám formátuma nem megfelelő.");
     }
@@ -151,25 +194,61 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
       }
     });
 
+    // Hibák megjelenítése, ha vannak
     if (errors.length > 0) {
       setError(errors.join("\n"));
       return;
     }
+    try {
+      const response = await fetch("/api/updatePub", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          openingHours: JSON.stringify(openingHoursArray),
+        }),
+      });
 
-    updatePubData({
-      ...formData,
-      openingHours: JSON.stringify(openingHoursArray),
-    });
-    setEditingBaseInfo(false);
-    setError("");
+      const result = await response.json();
+      if (result.success) {
+        updatePubData(result.pub);
+        setEditingBaseInfo(false);
+        setError("");
+      } else {
+        setError(result.message);
+      }
+    } catch (error) {
+      console.error("Hiba történt a frissítés során:", error);
+      setError("Valami hiba történt a frissítés során.");
+    }
   };
 
-  const handleSaveProducts = () => {
-    updatePubData({
-      ...formData,
-      products: formData.products,
-    });
-    setEditingProducts(false);
+  const handleSaveProducts = async () => {
+    try {
+      const response = await fetch("/api/updatePubProducts", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: formData.id,
+          products: formData.products,
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        updatePubData(result.pub);
+        setEditingProducts(false);
+        setError("");
+      } else {
+        setError(result.message);
+      }
+    } catch (error) {
+      console.error("Hiba történt a frissítés során:", error);
+      setError("Valami hiba történt a frissítés során.");
+    }
   };
 
   const openingHoursArray = parseOpeningHours(formData.openingHours);
@@ -304,6 +383,12 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
                     className="w-full mb-2 p-2 border border-gray-300 rounded"
                     placeholder="Leírás"
                   /> */}
+                  <button
+                    onClick={() => handleDeleteProduct(drink.id)}
+                    className="ml-2 text-red-500"
+                  >
+                    <TrashIcon className="h-7 w-7" />
+                  </button>
                 </div>
               ))}
 
@@ -326,8 +411,20 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
                     }
                     className="w-1/3 mb-2 p-2 border border-gray-300 rounded"
                   />
+                  <button
+                    onClick={() => handleDeleteProduct(food.id)}
+                    className="ml-2 text-red-500"
+                  >
+                    <TrashIcon className="h-7 w-7" />
+                  </button>
                 </div>
               ))}
+              {showDeleteConfirm && (
+                <DeleteConfirm
+                  onCancel={cancelDelete}
+                  onConfirm={confirmDeleteProduct}
+                />
+              )}
               <button
                 onClick={handleSaveProducts}
                 className="bg-blue-500 text-white py-2 px-4 rounded mt-4"
@@ -426,20 +523,27 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
                     )}
                   </div>
                 </div>
-                <div className="flex flex-col p-2 gap-2 justify-between mt-4">
-                  <button
-                    onClick={() => setEditingBaseInfo(true)}
-                    className="bg-blue-500 text-white py-2 px-4 rounded"
-                  >
-                    Alapadatok szerkesztése
-                  </button>
-                  <button
-                    onClick={() => setEditingProducts(true)}
-                    className="bg-blue-500 text-white py-2 px-4 rounded"
-                  >
-                    Kínálat szerkesztése
-                  </button>
-                </div>
+                {pubData.state === "func" ? (
+                  <div className="flex flex-col p-2 gap-2 justify-between mt-4">
+                    <button
+                      onClick={() => setEditingBaseInfo(true)}
+                      className="bg-blue-500 text-white py-2 px-4 rounded"
+                    >
+                      Alapadatok szerkesztése
+                    </button>
+                    <button
+                      onClick={() => setEditingProducts(true)}
+                      className="bg-blue-500 text-white py-2 px-4 rounded"
+                    >
+                      Kínálat szerkesztése
+                    </button>
+                  </div>
+                ) : (
+                  <p>
+                    Az oldal {pubData.state} állapotban van, így nem
+                    szerkeszthető!
+                  </p>
+                )}
               </div>
             </div>
           )}

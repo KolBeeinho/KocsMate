@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../prisma";
-//TODO ÁTNEVEZNI GETADMINPUBRA ISMÉT!!!
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -18,10 +18,14 @@ export default async function handler(
       where: { userId: String(adminId) },
       include: {
         pub: {
-          include: { reviews: true, products: true },
+          include: {
+            reviews: true,
+            products: true,
+          },
         },
       },
     });
+
     console.log("Admin id:" + admin?.userId);
     if (!admin || !admin.pub) {
       return res
@@ -29,7 +33,12 @@ export default async function handler(
         .json({ message: "Nem található az admin vagy pubja." });
     }
 
-    return res.status(200).json({ pub: admin.pub });
+    const reviewsCount = admin.pub.reviews.length; //Reviewok száma, majd websockettel
+
+    return res.status(200).json({
+      pub: admin.pub,
+      reviewsCount,
+    });
   } catch (error) {
     console.error("Nem sikerült pub datát kinyerni:", error);
     return res.status(500).json({ message: "Belső szerver hiba." });
