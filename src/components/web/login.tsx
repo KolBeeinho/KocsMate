@@ -2,8 +2,10 @@ import { signIn } from "next-auth/react"; //NextAuth login function
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
+import isMobile from "src/utils/checkOS";
 import { components, formStyles } from "../../styles/styles";
 import useLoading from "../../utils/hooks/useLoad";
+import PopUpOver18 from "../mobile/popUpOver18";
 import KocsMateLogo from "./KocsMateLogo";
 import LoginButtons from "./LoginMedia";
 // import KocsMateLogo from "./KocsMateLogo";
@@ -130,8 +132,58 @@ export default function Login() {
     },
   ];
 
-  return (
+  return isMobile() ? (
+    <div className={`${formStyles.Container} mt-20`}>
+      <KocsMateLogo />
+      <form
+        onSubmit={handleLogin}
+        id="loginform"
+        className={`${formStyles.Form}`}
+      >
+        {fields.map((field) => (
+          <div key={field.name} className={`${formStyles.Field}`}>
+            <label className={`${formStyles.FormLabel}`}>{field.label}:</label>
+            <input
+              type={field.type}
+              name={field.name}
+              value={formData[field.name as keyof typeof formData]}
+              onChange={handleInputChange}
+              className={`${formStyles.FormInput}`}
+              placeholder={field.placeholder}
+            />
+          </div>
+        ))}
+        {error && <p className={`${formStyles.Error}`}>{error}</p>}
+        <button type="submit" className={`${components.button.homePageButton}`}>
+          {submitProcess ? "Bejelentkezés..." : "Bejelentkezés"}
+          {/* Animáció mehet majd */}
+        </button>
+        <Link href={"/passresetreq"}>
+          <button className={`${components.button.homePageButton}}`}>
+            Elfelejtette a jelszót?
+          </button>
+        </Link>
+        <LoginButtons />
+        <Link href={"/adminregister"}>
+          <button className={`${components.button.homePageButton}}`}>
+            Kiemelt felhasználó?
+          </button>
+        </Link>
+        <Link href={"/register"}>
+          <button className={`${components.button.homePageButton}}`}>
+            Nem regisztrált még?
+          </button>
+        </Link>
+        <Link href={"/"}>
+          <button className={`${components.button.homePageButton}}`}>
+            Vissza
+          </button>
+        </Link>
+      </form>
+    </div>
+  ) : (
     <div className={`${formStyles.Container}`}>
+      <PopUpOver18 />
       <KocsMateLogo />
       <form
         onSubmit={handleLogin}
