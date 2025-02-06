@@ -99,6 +99,7 @@ model Pub {
   admins       Admin[]   @relation("PubAdmins") // Kapcsolat az adminokkal
   reviews      Review[]  @relation("PubReviews") // Kapcsolat a véleményekkel
   products     Product[] @relation("PubProducts") // Reláció a products modellel
+  images       Image[]   @relation("PubImages") // Hozzáadva a kapcsolat az Image modellel
 }
 
 model Product {
@@ -127,4 +128,14 @@ model Review {
 
   userId String @db.ObjectId // Véleményt író felhasználó azonosítója
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, name: "UserReviews") // Kapcsolat a User modellel
+}
+
+//Képek feltöltéséhez
+model Image {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  url       String
+  pubId     String   @db.ObjectId
+  createdAt DateTime @default(now())
+
+  pub Pub @relation(fields: [pubId], references: [id], onDelete: Cascade, name: "PubImages")
 }

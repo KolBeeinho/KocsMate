@@ -17,11 +17,11 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.3.0
+ * Prisma Client JS version: 6.3.1
  * Query Engine version: acc0b9dd43eb689cbd20c9470515d719db10d0b0
  */
 Prisma.prismaVersion = {
-  client: "6.3.0",
+  client: "6.3.1",
   engine: "acc0b9dd43eb689cbd20c9470515d719db10d0b0"
 }
 
@@ -195,6 +195,13 @@ exports.Prisma.ReviewScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.ImageScalarFieldEnum = {
+  id: 'id',
+  url: 'url',
+  pubId: 'pubId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -214,7 +221,8 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   Pub: 'Pub',
   Product: 'Product',
-  Review: 'Review'
+  Review: 'Review',
+  Image: 'Image'
 };
 
 /**

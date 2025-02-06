@@ -1,46 +1,19 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
-import { Product, Pub } from "../../../prisma/prisma/generated/client";
 import DashboardLayout from "../../components/dashboard/DashboardLayout";
 import DisplayPubInfo from "../../components/dashboard/sections/home/displaypubinfo";
-import { AuthContext } from "../../utils/providers/AuthContext";
+import { usePubContext } from "../../utils/providers/DashboardContext";
 
 const Modify: NextPage = () => {
-  const authContext = useContext(AuthContext);
-  const router = useRouter();
-  const [pubData, setPubData] = useState<
-    (Pub & { products?: Product[] }) | null
-  >(null);
+  const pubContext = usePubContext();
 
-  if (!authContext) {
-    return;
-  }
-  const { user } = authContext;
+  if (!pubContext) return <p>Loading...</p>;
 
-  useEffect(() => {
-    if (!user || !user.business) {
-      router.push("/");
-    }
-  }, [user, router]);
-
-  useEffect(() => {
-    if (user?.id) {
-      // API hívás a pub adatainak lekérésére
-      fetch(`/api/getAdminPub?adminId=${user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setPubData(data.pub);
-        })
-        .catch((error) => console.error(error));
-    }
-  }, [user]);
-  if (!user || !pubData) return <p>Loading...</p>;
-
+  const { pubData, setPubData } = pubContext;
   return (
     <DashboardLayout>
       <DisplayPubInfo pubData={pubData} updatePubData={setPubData} />
     </DashboardLayout>
   );
 };
+
 export default Modify;

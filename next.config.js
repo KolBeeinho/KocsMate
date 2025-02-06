@@ -4,7 +4,7 @@ const nextConfig = {
   // i18n: {
   //   locales: ["hu"],
   //   defaultLocale: "hu",
-  // },
+  // }, //majd angol nyelvhez
 };
 
 module.exports = nextConfig;

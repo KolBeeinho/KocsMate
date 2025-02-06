@@ -1,6 +1,7 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import * as argon2 from "argon2";
-import NextAuth, { User } from "next-auth";
+import NextAuth, { Session, User } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import FacebookProvider, {
   FacebookProfile,
@@ -17,7 +18,7 @@ export default NextAuth({
         username: {},
         password: {},
       },
-      async authorize(credentials): Promise<User> {
+      async authorize(credentials): Promise<User | null> {
         if (!credentials || !credentials.username || !credentials.password) {
           throw new Error("Kérjük, adja meg a felhasználónevet és a jelszót.");
         }
@@ -40,9 +41,9 @@ export default NextAuth({
 
         return {
           id: user.id,
-          username: user.username || "", // Ha van, ha nincs
+          username: user.username || "",
           email: user.email,
-          fullName: user.fullName || "", // Ha van, ha nincs
+          fullName: user.fullName || "",
           createdAt: user.createdAt,
           dateOfBirth: user.dateOfBirth || null,
           business: user.business,
@@ -57,13 +58,11 @@ export default NextAuth({
           scope: "openid profile email",
         },
       },
-      async profile(profile: GoogleProfile) {
-        //console.log("Google Profile:", profile);
+      async profile(profile: GoogleProfile): Promise<User> {
         let user = await prisma.user.findFirst({
           where: { email: profile.email },
         });
-        // console.log("Google Profile ID:", profile.id);
-        // console.log("Google Profile Email:", profile.email);
+
         if (!user) {
           const hashedPassword = await argon2.hash(profile.name);
           user = await prisma.user.create({
@@ -73,19 +72,13 @@ export default NextAuth({
               username: profile.email.split("@")[0],
               fullName: profile.name as string,
               password: hashedPassword,
-              createdAt: new Date(Date.now()),
+              createdAt: new Date(),
               dateOfBirth: null,
               business: false,
             },
           });
         }
-        //Szerezzük meg a Google fiókot
-        // const providerAccountId = profile.id ? String(profile.id) : null;
-        // if (!providerAccountId) {
-        //   throw new Error("hiányzik a google fiók idje?");
-        // }
 
-        //nem tökéletes, a profile.idjét nem látni
         await prisma.account.upsert({
           where: {
             provider_providerAccountId: {
@@ -112,6 +105,7 @@ export default NextAuth({
             expires_at: profile.expiresAt,
           },
         });
+
         return {
           id: user.id,
           username: user.username,
@@ -131,13 +125,11 @@ export default NextAuth({
           scope: "public_profile email",
         },
       },
-      async profile(profile: FacebookProfile) {
-        //console.log("Facebook Profile:", profile);
+      async profile(profile: FacebookProfile): Promise<User> {
         let user = await prisma.user.findFirst({
           where: { email: profile.email },
         });
-        //console.log("Facebook Profile ID:", profile.id);
-        //console.log("Facebook Profile Email:", profile.email);
+
         if (!user) {
           const hashedPassword = await argon2.hash(profile.name);
           user = await prisma.user.create({
@@ -146,7 +138,7 @@ export default NextAuth({
               username: profile.email.split("@")[0],
               fullName: profile.name,
               password: hashedPassword,
-              createdAt: new Date(Date.now()),
+              createdAt: new Date(),
               dateOfBirth: null,
               business: false,
             },
@@ -189,7 +181,6 @@ export default NextAuth({
         };
       },
     }),
-    //TODO X, apple
   ],
 
   pages: {
@@ -197,7 +188,7 @@ export default NextAuth({
   },
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
@@ -210,7 +201,7 @@ export default NextAuth({
       return token;
     },
 
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.email = token.email as string;

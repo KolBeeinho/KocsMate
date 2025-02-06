@@ -1,13 +1,17 @@
 import { TrashIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
-import { Product, Pub } from "../../../../../prisma/prisma/generated/client";
-import { JsonValue } from "../../../../../prisma/prisma/generated/client/runtime/library";
-import { OpeningHoursEntry } from "../../../../../type";
+import { Product, Pub, Review } from "prisma/generated/client";
+import { useEffect, useState } from "react";
+import { OpeningHoursEntry } from "types";
+
+import { JsonValue } from "prisma/generated/client/runtime/library";
+
 import DeleteConfirm from "../../DeleteConfim";
 
 interface DisplayPubInfoProps {
   pubData: Pub & { products?: Product[] };
-  updatePubData: (pub: (Pub & { products?: Product[] }) | null) => void;
+  updatePubData: (
+    pub: Pub & { products?: Product[] } & { reviews: Review[] }
+  ) => void;
 }
 
 const daysOfWeek = [
@@ -32,9 +36,17 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
   });
   const [deletingProductId, setDeletingProductId] = useState<string | null>(
     null
-  ); // Törlés előkészítése
+  );
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false); // Törlés megerősítő
   const [error, setError] = useState<string>("");
+  const [showEditButtons, setShowEditButtons] = useState(false);
+  useEffect(() => {
+    if (window.location.pathname === "/dashboard/") {
+      setShowEditButtons(false);
+    } else if (window.location.pathname === "/dashboard/modify") {
+      setShowEditButtons(true);
+    }
+  }, []);
 
   const parseOpeningHours = (
     openingHours: string | OpeningHoursEntry[] | JsonValue
@@ -523,7 +535,7 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
                     )}
                   </div>
                 </div>
-                {pubData.state === "func" ? (
+                {pubData.state === "func" && showEditButtons && (
                   <div className="flex flex-col p-2 gap-2 justify-between mt-4">
                     <button
                       onClick={() => setEditingBaseInfo(true)}
@@ -538,11 +550,6 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
                       Kínálat szerkesztése
                     </button>
                   </div>
-                ) : (
-                  <p>
-                    Az oldal {pubData.state} állapotban van, így nem
-                    szerkeszthető!
-                  </p>
                 )}
               </div>
             </div>

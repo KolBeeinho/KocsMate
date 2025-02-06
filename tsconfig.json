@@ -13,8 +13,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "./",
+    "paths": {
+      "prisma/*": ["prisma/*"],
+      "types": ["type.d.ts"],
+      "prisma/generated/*": ["prisma/prisma/generated/*"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/**/*",
+    "prisma/**/*",
+    "type.d.ts"
+  ],
   "exclude": ["node_modules"]
 }
