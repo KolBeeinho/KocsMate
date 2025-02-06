@@ -1,7 +1,7 @@
 import React from "react";
 
 function useOutsideClick(
-  ref: React.RefObject<HTMLDivElement>,
+  ref: React.RefObject<HTMLDivElement | null>,
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   const handleClick = (e: MouseEvent) => {

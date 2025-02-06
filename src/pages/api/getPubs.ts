@@ -15,6 +15,7 @@ export default async function handler(
       include: {
         reviews: true,
         products: true,
+        images: true,
       },
     });
 

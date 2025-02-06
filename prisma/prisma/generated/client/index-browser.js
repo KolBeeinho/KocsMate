@@ -172,7 +172,8 @@ exports.Prisma.PubScalarFieldEnum = {
   href: 'href',
   googleRating: 'googleRating',
   rating: 'rating',
-  state: 'state'
+  state: 'state',
+  description: 'description'
 };
 
 exports.Prisma.ProductScalarFieldEnum = {
@@ -199,7 +200,8 @@ exports.Prisma.ImageScalarFieldEnum = {
   id: 'id',
   url: 'url',
   pubId: 'pubId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  isBackground: 'isBackground'
 };
 
 exports.Prisma.SortOrder = {

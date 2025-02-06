@@ -48,6 +48,9 @@ body {
   button {
     cursor: pointer !important;
   }
+  textarea {
+    resize: none !important;
+  }
 }
 @layer components {
   #loginform {

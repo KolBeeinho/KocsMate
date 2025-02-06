@@ -23,6 +23,7 @@ export default async function handler(
     rating,
     href,
     openingHours,
+    description,
   } = req.body as Pub;
 
   if (!id) {
@@ -43,6 +44,7 @@ export default async function handler(
         rating,
         href,
         openingHours: openingHours,
+        description,
       },
     });
     return res.status(200).json({ success: true, pub: updatedPub });

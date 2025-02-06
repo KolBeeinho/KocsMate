@@ -96,6 +96,7 @@ model Pub {
   googleRating Float // Google értékelés (pl. 4.5)
   rating       Float // KocsMaten belüli értékelés (pl. 4.5)
   state        String //t_closed, closed, func
+  description  String // Rövid leírás
   admins       Admin[]   @relation("PubAdmins") // Kapcsolat az adminokkal
   reviews      Review[]  @relation("PubReviews") // Kapcsolat a véleményekkel
   products     Product[] @relation("PubProducts") // Reláció a products modellel
@@ -119,7 +120,7 @@ model Product {
 model Review {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId // Egyedi azonosító
   rating    Int // 1-5 közötti értékelés
-  comment   String // Vélemény szövege
+  comment   String // Vélemény szövege, remélhetőleg nincs korlátozva 24 karakterre
   isActive  Boolean  @default(true) //Moderált vélemény
   createdAt DateTime @default(now()) // Vélemény létrehozásának dátuma
   //updatedAt          DateTime @updatedAt // Utolsó frissítés időpontja
@@ -135,6 +136,7 @@ model Image {
   url       String
   pubId     String   @db.ObjectId
   createdAt DateTime @default(now())
-
+  isBackground Boolean @default(false)
   pub Pub @relation(fields: [pubId], references: [id], onDelete: Cascade, name: "PubImages")
+  @@unique([pubId, url])
 }

@@ -58,12 +58,14 @@ export type Pub = {
   phone: string;
   email: string;
   openingHours: { day: string; hours: string }[];
+  reviews: string[];
   products: string[];
   functioning: boolean;
   googleRating: number;
   rating: number;
   state: string;
   href: string;
+  description: string;
 };
 export type OpeningHoursEntry = {
   day: string;
