@@ -1,17 +1,23 @@
 import Image from "next/image";
 
-const KocsmateLogo = () => {
+const KocsMateLogo = ({
+  size = 250,
+  className,
+}: {
+  size?: number;
+  className?: string;
+}) => {
   return (
     <Image
-      src="/images/Kocsmate_Logo.webp"
-      width={200}
-      height={200}
+      src="/images/Kocsmate_Logo.png"
+      width={size}
+      height={size}
       draggable={false}
       priority={true}
       alt="Our official company logo"
-      className="mx-auto"
+      className={className} // Az osztályt most kívülről adod meg
     />
   );
 };
 
-export default KocsmateLogo;
+export default KocsMateLogo;
