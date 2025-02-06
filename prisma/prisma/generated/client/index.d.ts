@@ -6900,6 +6900,7 @@ export namespace Prisma {
     googleRating: number | null
     rating: number | null
     state: string | null
+    description: string | null
   }
 
   export type PubMaxAggregateOutputType = {
@@ -6915,6 +6916,7 @@ export namespace Prisma {
     googleRating: number | null
     rating: number | null
     state: string | null
+    description: string | null
   }
 
   export type PubCountAggregateOutputType = {
@@ -6931,6 +6933,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: number
+    description: number
     _all: number
   }
 
@@ -6962,6 +6965,7 @@ export namespace Prisma {
     googleRating?: true
     rating?: true
     state?: true
+    description?: true
   }
 
   export type PubMaxAggregateInputType = {
@@ -6977,6 +6981,7 @@ export namespace Prisma {
     googleRating?: true
     rating?: true
     state?: true
+    description?: true
   }
 
   export type PubCountAggregateInputType = {
@@ -6993,6 +6998,7 @@ export namespace Prisma {
     googleRating?: true
     rating?: true
     state?: true
+    description?: true
     _all?: true
   }
 
@@ -7096,6 +7102,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     _count: PubCountAggregateOutputType | null
     _avg: PubAvgAggregateOutputType | null
     _sum: PubSumAggregateOutputType | null
@@ -7131,6 +7138,7 @@ export namespace Prisma {
     googleRating?: boolean
     rating?: boolean
     state?: boolean
+    description?: boolean
     admins?: boolean | Pub$adminsArgs<ExtArgs>
     reviews?: boolean | Pub$reviewsArgs<ExtArgs>
     products?: boolean | Pub$productsArgs<ExtArgs>
@@ -7154,9 +7162,10 @@ export namespace Prisma {
     googleRating?: boolean
     rating?: boolean
     state?: boolean
+    description?: boolean
   }
 
-  export type PubOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "fullAddress" | "longitude" | "latitude" | "phone" | "email" | "openingHours" | "functioning" | "href" | "googleRating" | "rating" | "state", ExtArgs["result"]["pub"]>
+  export type PubOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "fullAddress" | "longitude" | "latitude" | "phone" | "email" | "openingHours" | "functioning" | "href" | "googleRating" | "rating" | "state" | "description", ExtArgs["result"]["pub"]>
   export type PubInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     admins?: boolean | Pub$adminsArgs<ExtArgs>
     reviews?: boolean | Pub$reviewsArgs<ExtArgs>
@@ -7187,6 +7196,7 @@ export namespace Prisma {
       googleRating: number
       rating: number
       state: string
+      description: string
     }, ExtArgs["result"]["pub"]>
     composites: {}
   }
@@ -7596,6 +7606,7 @@ export namespace Prisma {
     readonly googleRating: FieldRef<"Pub", 'Float'>
     readonly rating: FieldRef<"Pub", 'Float'>
     readonly state: FieldRef<"Pub", 'String'>
+    readonly description: FieldRef<"Pub", 'String'>
   }
     
 
@@ -10169,6 +10180,7 @@ export namespace Prisma {
     url: string | null
     pubId: string | null
     createdAt: Date | null
+    isBackground: boolean | null
   }
 
   export type ImageMaxAggregateOutputType = {
@@ -10176,6 +10188,7 @@ export namespace Prisma {
     url: string | null
     pubId: string | null
     createdAt: Date | null
+    isBackground: boolean | null
   }
 
   export type ImageCountAggregateOutputType = {
@@ -10183,6 +10196,7 @@ export namespace Prisma {
     url: number
     pubId: number
     createdAt: number
+    isBackground: number
     _all: number
   }
 
@@ -10192,6 +10206,7 @@ export namespace Prisma {
     url?: true
     pubId?: true
     createdAt?: true
+    isBackground?: true
   }
 
   export type ImageMaxAggregateInputType = {
@@ -10199,6 +10214,7 @@ export namespace Prisma {
     url?: true
     pubId?: true
     createdAt?: true
+    isBackground?: true
   }
 
   export type ImageCountAggregateInputType = {
@@ -10206,6 +10222,7 @@ export namespace Prisma {
     url?: true
     pubId?: true
     createdAt?: true
+    isBackground?: true
     _all?: true
   }
 
@@ -10286,6 +10303,7 @@ export namespace Prisma {
     url: string
     pubId: string
     createdAt: Date
+    isBackground: boolean
     _count: ImageCountAggregateOutputType | null
     _min: ImageMinAggregateOutputType | null
     _max: ImageMaxAggregateOutputType | null
@@ -10310,6 +10328,7 @@ export namespace Prisma {
     url?: boolean
     pubId?: boolean
     createdAt?: boolean
+    isBackground?: boolean
     pub?: boolean | PubDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["image"]>
 
@@ -10320,9 +10339,10 @@ export namespace Prisma {
     url?: boolean
     pubId?: boolean
     createdAt?: boolean
+    isBackground?: boolean
   }
 
-  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "url" | "pubId" | "createdAt", ExtArgs["result"]["image"]>
+  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "url" | "pubId" | "createdAt" | "isBackground", ExtArgs["result"]["image"]>
   export type ImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pub?: boolean | PubDefaultArgs<ExtArgs>
   }
@@ -10337,6 +10357,7 @@ export namespace Prisma {
       url: string
       pubId: string
       createdAt: Date
+      isBackground: boolean
     }, ExtArgs["result"]["image"]>
     composites: {}
   }
@@ -10734,6 +10755,7 @@ export namespace Prisma {
     readonly url: FieldRef<"Image", 'String'>
     readonly pubId: FieldRef<"Image", 'String'>
     readonly createdAt: FieldRef<"Image", 'DateTime'>
+    readonly isBackground: FieldRef<"Image", 'Boolean'>
   }
     
 
@@ -11203,7 +11225,8 @@ export namespace Prisma {
     href: 'href',
     googleRating: 'googleRating',
     rating: 'rating',
-    state: 'state'
+    state: 'state',
+    description: 'description'
   };
 
   export type PubScalarFieldEnum = (typeof PubScalarFieldEnum)[keyof typeof PubScalarFieldEnum]
@@ -11239,7 +11262,8 @@ export namespace Prisma {
     id: 'id',
     url: 'url',
     pubId: 'pubId',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    isBackground: 'isBackground'
   };
 
   export type ImageScalarFieldEnum = (typeof ImageScalarFieldEnum)[keyof typeof ImageScalarFieldEnum]
@@ -11694,6 +11718,7 @@ export namespace Prisma {
     googleRating?: FloatFilter<"Pub"> | number
     rating?: FloatFilter<"Pub"> | number
     state?: StringFilter<"Pub"> | string
+    description?: StringFilter<"Pub"> | string
     admins?: AdminListRelationFilter
     reviews?: ReviewListRelationFilter
     products?: ProductListRelationFilter
@@ -11714,6 +11739,7 @@ export namespace Prisma {
     googleRating?: SortOrder
     rating?: SortOrder
     state?: SortOrder
+    description?: SortOrder
     admins?: AdminOrderByRelationAggregateInput
     reviews?: ReviewOrderByRelationAggregateInput
     products?: ProductOrderByRelationAggregateInput
@@ -11737,6 +11763,7 @@ export namespace Prisma {
     googleRating?: FloatFilter<"Pub"> | number
     rating?: FloatFilter<"Pub"> | number
     state?: StringFilter<"Pub"> | string
+    description?: StringFilter<"Pub"> | string
     admins?: AdminListRelationFilter
     reviews?: ReviewListRelationFilter
     products?: ProductListRelationFilter
@@ -11757,6 +11784,7 @@ export namespace Prisma {
     googleRating?: SortOrder
     rating?: SortOrder
     state?: SortOrder
+    description?: SortOrder
     _count?: PubCountOrderByAggregateInput
     _avg?: PubAvgOrderByAggregateInput
     _max?: PubMaxOrderByAggregateInput
@@ -11781,6 +11809,7 @@ export namespace Prisma {
     googleRating?: FloatWithAggregatesFilter<"Pub"> | number
     rating?: FloatWithAggregatesFilter<"Pub"> | number
     state?: StringWithAggregatesFilter<"Pub"> | string
+    description?: StringWithAggregatesFilter<"Pub"> | string
   }
 
   export type ProductWhereInput = {
@@ -11928,6 +11957,7 @@ export namespace Prisma {
     url?: StringFilter<"Image"> | string
     pubId?: StringFilter<"Image"> | string
     createdAt?: DateTimeFilter<"Image"> | Date | string
+    isBackground?: BoolFilter<"Image"> | boolean
     pub?: XOR<PubScalarRelationFilter, PubWhereInput>
   }
 
@@ -11936,25 +11966,29 @@ export namespace Prisma {
     url?: SortOrder
     pubId?: SortOrder
     createdAt?: SortOrder
+    isBackground?: SortOrder
     pub?: PubOrderByWithRelationInput
   }
 
   export type ImageWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    pubId_url?: ImagePubIdUrlCompoundUniqueInput
     AND?: ImageWhereInput | ImageWhereInput[]
     OR?: ImageWhereInput[]
     NOT?: ImageWhereInput | ImageWhereInput[]
     url?: StringFilter<"Image"> | string
     pubId?: StringFilter<"Image"> | string
     createdAt?: DateTimeFilter<"Image"> | Date | string
+    isBackground?: BoolFilter<"Image"> | boolean
     pub?: XOR<PubScalarRelationFilter, PubWhereInput>
-  }, "id">
+  }, "id" | "pubId_url">
 
   export type ImageOrderByWithAggregationInput = {
     id?: SortOrder
     url?: SortOrder
     pubId?: SortOrder
     createdAt?: SortOrder
+    isBackground?: SortOrder
     _count?: ImageCountOrderByAggregateInput
     _max?: ImageMaxOrderByAggregateInput
     _min?: ImageMinOrderByAggregateInput
@@ -11968,6 +12002,7 @@ export namespace Prisma {
     url?: StringWithAggregatesFilter<"Image"> | string
     pubId?: StringWithAggregatesFilter<"Image"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Image"> | Date | string
+    isBackground?: BoolWithAggregatesFilter<"Image"> | boolean
   }
 
   export type UserCreateInput = {
@@ -12322,6 +12357,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     admins?: AdminCreateNestedManyWithoutPubInput
     reviews?: ReviewCreateNestedManyWithoutPubInput
     products?: ProductCreateNestedManyWithoutPubInput
@@ -12342,6 +12378,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     admins?: AdminUncheckedCreateNestedManyWithoutPubInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutPubInput
     products?: ProductUncheckedCreateNestedManyWithoutPubInput
@@ -12361,6 +12398,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     admins?: AdminUpdateManyWithoutPubNestedInput
     reviews?: ReviewUpdateManyWithoutPubNestedInput
     products?: ProductUpdateManyWithoutPubNestedInput
@@ -12380,6 +12418,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     admins?: AdminUncheckedUpdateManyWithoutPubNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutPubNestedInput
     products?: ProductUncheckedUpdateManyWithoutPubNestedInput
@@ -12400,6 +12439,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
   }
 
   export type PubUpdateManyMutationInput = {
@@ -12415,6 +12455,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type PubUncheckedUpdateManyInput = {
@@ -12430,6 +12471,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductCreateInput = {
@@ -12565,6 +12607,7 @@ export namespace Prisma {
     id?: string
     url: string
     createdAt?: Date | string
+    isBackground?: boolean
     pub: PubCreateNestedOneWithoutImagesInput
   }
 
@@ -12573,11 +12616,13 @@ export namespace Prisma {
     url: string
     pubId: string
     createdAt?: Date | string
+    isBackground?: boolean
   }
 
   export type ImageUpdateInput = {
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isBackground?: BoolFieldUpdateOperationsInput | boolean
     pub?: PubUpdateOneRequiredWithoutImagesNestedInput
   }
 
@@ -12585,6 +12630,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     pubId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isBackground?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ImageCreateManyInput = {
@@ -12592,17 +12638,20 @@ export namespace Prisma {
     url: string
     pubId: string
     createdAt?: Date | string
+    isBackground?: boolean
   }
 
   export type ImageUpdateManyMutationInput = {
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isBackground?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ImageUncheckedUpdateManyInput = {
     url?: StringFieldUpdateOperationsInput | string
     pubId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isBackground?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -13043,6 +13092,7 @@ export namespace Prisma {
     googleRating?: SortOrder
     rating?: SortOrder
     state?: SortOrder
+    description?: SortOrder
   }
 
   export type PubAvgOrderByAggregateInput = {
@@ -13065,6 +13115,7 @@ export namespace Prisma {
     googleRating?: SortOrder
     rating?: SortOrder
     state?: SortOrder
+    description?: SortOrder
   }
 
   export type PubMinOrderByAggregateInput = {
@@ -13080,6 +13131,7 @@ export namespace Prisma {
     googleRating?: SortOrder
     rating?: SortOrder
     state?: SortOrder
+    description?: SortOrder
   }
 
   export type PubSumOrderByAggregateInput = {
@@ -13227,11 +13279,17 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type ImagePubIdUrlCompoundUniqueInput = {
+    pubId: string
+    url: string
+  }
+
   export type ImageCountOrderByAggregateInput = {
     id?: SortOrder
     url?: SortOrder
     pubId?: SortOrder
     createdAt?: SortOrder
+    isBackground?: SortOrder
   }
 
   export type ImageMaxOrderByAggregateInput = {
@@ -13239,6 +13297,7 @@ export namespace Prisma {
     url?: SortOrder
     pubId?: SortOrder
     createdAt?: SortOrder
+    isBackground?: SortOrder
   }
 
   export type ImageMinOrderByAggregateInput = {
@@ -13246,6 +13305,7 @@ export namespace Prisma {
     url?: SortOrder
     pubId?: SortOrder
     createdAt?: SortOrder
+    isBackground?: SortOrder
   }
 
   export type AdminCreateNestedManyWithoutUserInput = {
@@ -14324,6 +14384,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     reviews?: ReviewCreateNestedManyWithoutPubInput
     products?: ProductCreateNestedManyWithoutPubInput
     images?: ImageCreateNestedManyWithoutPubInput
@@ -14343,6 +14404,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     reviews?: ReviewUncheckedCreateNestedManyWithoutPubInput
     products?: ProductUncheckedCreateNestedManyWithoutPubInput
     images?: ImageUncheckedCreateNestedManyWithoutPubInput
@@ -14412,6 +14474,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     reviews?: ReviewUpdateManyWithoutPubNestedInput
     products?: ProductUpdateManyWithoutPubNestedInput
     images?: ImageUpdateManyWithoutPubNestedInput
@@ -14430,6 +14493,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     reviews?: ReviewUncheckedUpdateManyWithoutPubNestedInput
     products?: ProductUncheckedUpdateManyWithoutPubNestedInput
     images?: ImageUncheckedUpdateManyWithoutPubNestedInput
@@ -14775,12 +14839,14 @@ export namespace Prisma {
     id?: string
     url: string
     createdAt?: Date | string
+    isBackground?: boolean
   }
 
   export type ImageUncheckedCreateWithoutPubInput = {
     id?: string
     url: string
     createdAt?: Date | string
+    isBackground?: boolean
   }
 
   export type ImageCreateOrConnectWithoutPubInput = {
@@ -14877,6 +14943,7 @@ export namespace Prisma {
     url?: StringFilter<"Image"> | string
     pubId?: StringFilter<"Image"> | string
     createdAt?: DateTimeFilter<"Image"> | Date | string
+    isBackground?: BoolFilter<"Image"> | boolean
   }
 
   export type PubCreateWithoutProductsInput = {
@@ -14893,6 +14960,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     admins?: AdminCreateNestedManyWithoutPubInput
     reviews?: ReviewCreateNestedManyWithoutPubInput
     images?: ImageCreateNestedManyWithoutPubInput
@@ -14912,6 +14980,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     admins?: AdminUncheckedCreateNestedManyWithoutPubInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutPubInput
     images?: ImageUncheckedCreateNestedManyWithoutPubInput
@@ -14946,6 +15015,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     admins?: AdminUpdateManyWithoutPubNestedInput
     reviews?: ReviewUpdateManyWithoutPubNestedInput
     images?: ImageUpdateManyWithoutPubNestedInput
@@ -14964,6 +15034,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     admins?: AdminUncheckedUpdateManyWithoutPubNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutPubNestedInput
     images?: ImageUncheckedUpdateManyWithoutPubNestedInput
@@ -14983,6 +15054,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     admins?: AdminCreateNestedManyWithoutPubInput
     products?: ProductCreateNestedManyWithoutPubInput
     images?: ImageCreateNestedManyWithoutPubInput
@@ -15002,6 +15074,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     admins?: AdminUncheckedCreateNestedManyWithoutPubInput
     products?: ProductUncheckedCreateNestedManyWithoutPubInput
     images?: ImageUncheckedCreateNestedManyWithoutPubInput
@@ -15071,6 +15144,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     admins?: AdminUpdateManyWithoutPubNestedInput
     products?: ProductUpdateManyWithoutPubNestedInput
     images?: ImageUpdateManyWithoutPubNestedInput
@@ -15089,6 +15163,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     admins?: AdminUncheckedUpdateManyWithoutPubNestedInput
     products?: ProductUncheckedUpdateManyWithoutPubNestedInput
     images?: ImageUncheckedUpdateManyWithoutPubNestedInput
@@ -15147,6 +15222,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     admins?: AdminCreateNestedManyWithoutPubInput
     reviews?: ReviewCreateNestedManyWithoutPubInput
     products?: ProductCreateNestedManyWithoutPubInput
@@ -15166,6 +15242,7 @@ export namespace Prisma {
     googleRating: number
     rating: number
     state: string
+    description: string
     admins?: AdminUncheckedCreateNestedManyWithoutPubInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutPubInput
     products?: ProductUncheckedCreateNestedManyWithoutPubInput
@@ -15200,6 +15277,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     admins?: AdminUpdateManyWithoutPubNestedInput
     reviews?: ReviewUpdateManyWithoutPubNestedInput
     products?: ProductUpdateManyWithoutPubNestedInput
@@ -15218,6 +15296,7 @@ export namespace Prisma {
     googleRating?: FloatFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
     state?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     admins?: AdminUncheckedUpdateManyWithoutPubNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutPubNestedInput
     products?: ProductUncheckedUpdateManyWithoutPubNestedInput
@@ -15408,6 +15487,7 @@ export namespace Prisma {
     id?: string
     url: string
     createdAt?: Date | string
+    isBackground?: boolean
   }
 
   export type AdminUpdateWithoutPubInput = {
@@ -15476,16 +15556,19 @@ export namespace Prisma {
   export type ImageUpdateWithoutPubInput = {
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isBackground?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ImageUncheckedUpdateWithoutPubInput = {
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isBackground?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ImageUncheckedUpdateManyWithoutPubInput = {
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isBackground?: BoolFieldUpdateOperationsInput | boolean
   }
 
 

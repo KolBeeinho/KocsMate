@@ -7,11 +7,12 @@ const gallery = () => {
 
   if (!pubContext) return <p>Loading...</p>;
 
-  //   const { pubData, setPubData } = pubContext;
+  const { pubData } = pubContext;
+  console.log(pubData.id);
   return (
     <DashboardLayout>
-      <GalleryDisplay />
-      <GalleryUpload />
+      <GalleryDisplay pubId={pubData.id} />
+      <GalleryUpload pubId={pubData.id} />
     </DashboardLayout>
   );
 };

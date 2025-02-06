@@ -2,6 +2,7 @@ import fs from "fs";
 import multer from "multer";
 import { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
+import { Image } from "prisma/generated/client";
 import { prisma } from "../../prisma";
 
 interface NextApiRequestWithFile extends NextApiRequest {
@@ -45,13 +46,14 @@ const handler = async (req: NextApiRequestWithFile, res: NextApiResponse) => {
     }
 
     const imageUrl = `/uploads/${req.file.filename}`;
-    const { pubId } = req.body;
+    const { isBackground, pubId } = req.body as Image; //Adat frontendről
 
     try {
       const newImage = await prisma.image.create({
         data: {
           url: imageUrl,
           pubId: pubId,
+          isBackground: isBackground,
         },
       });
 

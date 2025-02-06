@@ -37,6 +37,7 @@ export const PubProvider: React.FC<DashboardContextProps> = ({ children }) => {
     email: "",
     openingHours: [], //NAGYON FONTOS, HOGY TÖMB LEGYEN (JsonValue miatt)
     functioning: true,
+    description: "",
     href: "",
     googleRating: 0,
     rating: 0,

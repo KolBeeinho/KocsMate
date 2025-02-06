@@ -7,7 +7,7 @@ const DeleteConfirm: React.FC<DeleteConfirmProps> = ({
   onCancel,
 }) => {
   return (
-    <div className="fixed inset-0 bg-[var(--kek)] opacity-75 bg-opacity-50 flex justify-center items-center">
+    <div className="fixed inset-0 bg-[var(--kek)] opacity-75 flex justify-center items-center">
       <div className="bg-[var(--background)] p-8 rounded-lg shadow-lg w-1/3">
         <h2 className="text-xl font-bold mb-4">Biztos benne?</h2>
         <div className="flex justify-between">

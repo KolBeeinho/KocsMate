@@ -5,6 +5,7 @@ import { OpeningHoursEntry } from "types";
 
 import { JsonValue } from "prisma/generated/client/runtime/library";
 
+import { daysOfWeek } from "src/utils/daysOfWeek";
 import DeleteConfirm from "../../DeleteConfim";
 
 interface DisplayPubInfoProps {
@@ -13,16 +14,6 @@ interface DisplayPubInfoProps {
     pub: Pub & { products?: Product[] } & { reviews: Review[] }
   ) => void;
 }
-
-const daysOfWeek = [
-  "hétfő",
-  "kedd",
-  "szerda",
-  "csütörtök",
-  "péntek",
-  "szombat",
-  "vasárnap",
-];
 
 const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
   pubData,
@@ -115,12 +106,14 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
       );
       return {
         ...prevState,
-        products: [...updatedProducts], // Fontos: új másolat
+        products: [...updatedProducts],
       };
     });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
 
     if (name === "googleRating" || name === "rating") {
@@ -128,7 +121,7 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
       if (value === "" || (!isNaN(rating) && rating >= 0 && rating <= 5)) {
         setFormData((prevState) => ({
           ...prevState,
-          [name]: rating, // A megfelelő mező frissítése (googleRating vagy rating)
+          [name]: rating,
         }));
         setError("");
       } else {
@@ -142,6 +135,7 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
       setFormData((prevState) => ({ ...prevState, [name]: value }));
     }
   };
+
   //Törlés
   const confirmDeleteProduct = async () => {
     if (!deletingProductId) return;
@@ -191,7 +185,7 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
     const phonePattern = /^(06|\+(\d{1,3}))\s?\d{1,2}\s?\d{1,4}\s?\d{1,4}$/;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const timePattern = /^(?:\d{2}):(\d{2})\s?[-–]\s?(\d{2}):(\d{2})$/;
-    const openingHoursArray = parseOpeningHours(formData.openingHours);
+    let openingHoursArray = parseOpeningHours(formData.openingHours);
 
     // Validáció
     if (formData.phone && !phonePattern.test(formData.phone)) {
@@ -263,7 +257,7 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
     }
   };
 
-  const openingHoursArray = parseOpeningHours(formData.openingHours);
+  var openingHoursArray = parseOpeningHours(formData.openingHours);
   const products = formData.products;
   const drinks = products?.filter((product) => product.type === "drink") || [];
   const foods = products?.filter((product) => product.type === "food") || [];
@@ -321,6 +315,13 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
                 type="number"
                 name="rating"
                 value={formData.rating}
+                onChange={handleChange}
+                className="w-full mb-4 p-2 border border-gray-300 rounded"
+              />
+              <label className="block mb-2">Bemutatkozó szöveg:</label>
+              <textarea
+                name="description"
+                value={formData.description}
                 onChange={handleChange}
                 className="w-full mb-4 p-2 border border-gray-300 rounded"
               />
@@ -451,7 +452,6 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
               </button>
             </div>
           )}
-          {/* Alapadatok vagy termékek szerkesztésének lehetősége */}
           {!editingBaseInfo && !editingProducts && (
             <div>
               <h2 className="text-4xl">{formData.name}</h2>
@@ -469,6 +469,9 @@ const DisplayPubInfo: React.FC<DisplayPubInfoProps> = ({
               </p>
               <p>
                 <strong>KocsMate értékelés:</strong> {formData.rating}
+              </p>
+              <p>
+                <strong>Bemutatkozás: {formData.description}</strong>
               </p>
               <p>
                 <strong>Működik?</strong>
