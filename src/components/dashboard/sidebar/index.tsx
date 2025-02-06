@@ -6,6 +6,7 @@ import {
   EllipsisHorizontalIcon,
   HomeIcon,
   PencilSquareIcon,
+  PhotoIcon,
 } from "@heroicons/react/24/solid";
 
 import Link from "next/link";
@@ -39,12 +40,12 @@ const Sidebar: React.FC = () => {
       icon: <HomeIcon />,
       href: "/dashboard",
     },
-    {
-      id: "reviews",
-      title: "reviews",
-      icon: <ChatBubbleBottomCenterTextIcon />,
-      href: "/dashboard/reviews",
-    },
+    // {
+    //   id: "reviews",
+    //   title: "reviews",
+    //   icon: <ChatBubbleBottomCenterTextIcon />,
+    //   href: "/dashboard/reviews",
+    // }, //erre más logika van
     {
       id: "menu",
       title: "menu",
@@ -56,6 +57,12 @@ const Sidebar: React.FC = () => {
       title: "modify",
       icon: <PencilSquareIcon />,
       href: "/dashboard/modify",
+    },
+    {
+      id: "gallery",
+      title: "gallery",
+      icon: <PhotoIcon />,
+      href: "/dashboard/gallery",
     },
   ];
 
@@ -74,18 +81,22 @@ const Sidebar: React.FC = () => {
     fetch(`/api/getAdminPub?adminId=${user.id}`)
       .then((res) => res.json())
       .then((data) => {
-        setNewReviewsCount(data.reviewsCount || 0); // Set reviews count
+        setNewReviewsCount(
+          window.location.pathname === "/dashboard/reviews" //ezt még átgondolni
+            ? 0
+            : data.reviewsCount || 0
+        ); // Set reviews count
       })
       .catch((error) => console.error("Error fetching pub data:", error));
   }, [user]);
 
   useEffect(() => {
-    if (window.location.pathname === "/") {
+    if (window.location.pathname === "/dashboard/") {
       setActiveTab("home");
     } else {
       setActiveTab(window.location.pathname.slice(1));
     }
-  }, []);
+  }, [activeTab]);
 
   const handleTabChange = (e: React.MouseEvent<HTMLElement>) => {
     setActiveTab(e.currentTarget.id);

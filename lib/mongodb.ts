@@ -7,7 +7,7 @@ declare global {
 
 const uri = process.env.MONGODB_URI as string;
 
-let client: MongoClient | undefined;
+export var mongo_client: MongoClient | undefined;
 let clientPromise: Promise<MongoClient>;
 
 if (!process.env.MONGODB_URI) {
@@ -16,13 +16,13 @@ if (!process.env.MONGODB_URI) {
 
 if (process.env.NODE_ENV === "development") {
   if (!global._mongoClientPromise) {
-    client = new MongoClient(uri);
-    global._mongoClientPromise = client.connect();
+    mongo_client = new MongoClient(uri);
+    global._mongoClientPromise = mongo_client.connect();
   }
   clientPromise = global._mongoClientPromise;
 } else {
-  client = new MongoClient(uri);
-  clientPromise = client.connect();
+  mongo_client = new MongoClient(uri);
+  clientPromise = mongo_client.connect();
 }
 
 export default clientPromise;

@@ -2,7 +2,7 @@ import { MapPinIcon } from "@heroicons/react/24/solid"; // Heroicons importálá
 import maplibregl from "maplibre-gl";
 import { useEffect, useState } from "react";
 import Map, { Marker, NavigationControl } from "react-map-gl";
-import { Pub } from "../../../type";
+import { Pub } from "types";
 // Default Kossuth Lajos tér
 const center = {
   lat: 47.5057199, // Szélesség

@@ -1,24 +1,18 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
-import { Pub } from "../../../prisma/prisma/generated/client";
+import { useState } from "react";
 import DashboardLayout from "../../components/dashboard/DashboardLayout";
 import DeleteConfirm from "../../components/dashboard/DeleteConfim";
-import { AuthContext } from "../../utils/providers/AuthContext";
+import { usePubContext } from "../../utils/providers/DashboardContext";
 import pubStates from "../../utils/pubStates";
 
 const PubSettings: NextPage = () => {
-  const authContext = useContext(AuthContext);
-  const router = useRouter();
-  const [pubData, setPubData] = useState<Pub | null>(null);
-  const [pubState, setPubState] = useState<string>("func");
-  const [isConfirming, setIsConfirming] = useState<boolean>(false); // A megerősítő logika állapota
-
-  if (!authContext) {
-    return null;
+  const pubContext = usePubContext();
+  if (!pubContext) {
+    return <p>Loading...</p>;
   }
+  const { pubData, pubState, setPubState } = pubContext;
 
-  const { user } = authContext;
+  const [isConfirming, setIsConfirming] = useState<boolean>(false); //A megerősítő logika állapota
 
   const handleStateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newState = event.target.value;
@@ -49,28 +43,9 @@ const PubSettings: NextPage = () => {
 
   const handleCancelChange = () => {
     setIsConfirming(false);
-    setPubState(pubData?.state || "func");
+    setPubState(pubData?.state || "func"); // visszaállítjuk a korábbi állapotot
   };
 
-  useEffect(() => {
-    if (!user || !user.business) {
-      router.push("/");
-    }
-  }, [user, router]);
-
-  useEffect(() => {
-    if (user?.id) {
-      // API hívás a pub adatainak lekérésére
-      fetch(`/api/getAdminPub?adminId=${user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setPubData(data.pub);
-          setPubState(data.pub?.state || "func"); // Betöltés után állapot beállítása
-        })
-        .catch((error) => console.error(error));
-    }
-  }, [user]);
-  if (!user || !pubData) return <p>Loading...</p>;
   return (
     <DashboardLayout>
       <div className="w-full lg:w-1/2 p-4">

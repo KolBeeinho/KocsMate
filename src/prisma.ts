@@ -1,4 +1,4 @@
-import { PrismaClient } from "../prisma/prisma/generated/client";
+import { PrismaClient } from "prisma/generated/client";
 
 export const prisma: PrismaClient =
   (global as any).prisma ||
@@ -73,5 +73,5 @@ async function assignPubToAdmin(pubId: string, adminEmail: string) {
   }
 }
 
-//assignPubToAdmin(, );
+//assignPubToAdmin(, ); //Véletlenszerű adminokkal feltöltés
 //#endregion

@@ -1,19 +1,18 @@
 import { Transition } from "@headlessui/react";
+import { Review } from "prisma/generated/client";
 import { useContext, useEffect, useState } from "react";
-import { Review } from "../../prisma/prisma/generated/client";
 import { components } from "../styles/styles";
 import useLoading from "../utils/hooks/useLoad";
 import { AuthContext } from "../utils/providers/AuthContext";
 const Search = () => {
   //Login részek kommentelve
   const authContext = useContext(AuthContext);
-  //const router = useRouter();
   if (!authContext) {
     return;
   }
   const { loading } = useLoading();
   const [transition, setTransition] = useState<boolean>(false);
-  const [pubs, setPubs] = useState<any[]>([]); // Az összes pub tárolása //& { products?: Product[] }
+  const [pubs, setPubs] = useState<any[]>([]); // Az összes pub tárolása //& { products?: Product[] } JAVíTANI!!!
   const [review, setReview] = useState<string>(""); // Tárolja az új véleményt
 
   useEffect(() => {

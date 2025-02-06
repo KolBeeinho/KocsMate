@@ -1,22 +1,14 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
-import { Pub, Review } from "../../../prisma/prisma/generated/client";
+import { Pub, Review } from "prisma/generated/client";
 import DashboardLayout from "../../components/dashboard/DashboardLayout";
-import { AuthContext } from "../../utils/providers/AuthContext";
+import { usePubContext } from "../../utils/providers/DashboardContext";
 
 const Reviews: NextPage = () => {
-  const authContext = useContext(AuthContext);
-  const router = useRouter();
-  const [pubData, setPubData] = useState<(Pub & { reviews: Review[] }) | null>(
-    null
-  );
+  const pubContext = usePubContext();
 
-  if (!authContext) {
-    return null;
-  }
+  if (!pubContext) return <p>Loading...</p>;
 
-  const { user } = authContext;
+  const { pubData, setPubData } = pubContext;
 
   const handleModerate = async (
     reviewId: string,
@@ -33,7 +25,7 @@ const Reviews: NextPage = () => {
 
       const data = await response.json();
       if (data.review) {
-        setPubData((prevData) => ({
+        setPubData((prevData: Pub & { reviews: Review[] }) => ({
           ...prevData!,
           reviews: (prevData?.reviews || []).map((review) =>
             review.id === reviewId
@@ -47,28 +39,6 @@ const Reviews: NextPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (!user || !user.business) {
-      router.push("/");
-    }
-  }, [user, router]);
-
-  useEffect(() => {
-    if (user?.id) {
-      // API hívás a pub adatainak lekérésére
-      fetch(`/api/getAdminPub?adminId=${user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setPubData(data.pub);
-        })
-        .catch((error) => console.error(error));
-    }
-  }, [user]);
-
-  if (!user || !pubData) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <DashboardLayout>
       <div className="w-full lg:w-1/2 review max-h-fit p-4">
@@ -77,7 +47,7 @@ const Reviews: NextPage = () => {
           <ul className="space-y-4">
             {pubData.reviews.map(
               (
-                review //nem lehet Review típus, mert pluszban lekérünk hozzá adatokat a User táblából
+                review: Review //nem lehet Review típus, mert pluszban lekérünk hozzá adatokat a User táblából, esetleg extends
               ) => (
                 <li
                   key={review.id}

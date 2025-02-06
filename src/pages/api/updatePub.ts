@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "../../../prisma/prisma/generated/client";
-import { Pub } from "../../../type"; //Saját típus használata JSONValue helyett
+import { PrismaClient } from "prisma/generated/client";
+import { Pub } from "types"; //?
 
 const prisma = new PrismaClient();
 

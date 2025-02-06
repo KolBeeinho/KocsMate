@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const SECRET_KEY = process.env.JWT_SECRET_KEY || "your_secret_key";
+const SECRET_KEY = process.env.JWT_SECRET_KEY || "";
 
 // interface Payload {
 //   userId: string;

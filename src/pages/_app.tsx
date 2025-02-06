@@ -4,6 +4,7 @@ import Head from "next/head";
 import "../styles/dashboard.css";
 import "../styles/styles.css";
 import { AuthProvider } from "../utils/providers/AuthContext";
+import { PubProvider } from "../utils/providers/DashboardContext";
 import { DeviceProvider } from "../utils/providers/DeviceContext";
 function KocsMate({ Component, pageProps }: AppProps) {
   return (
@@ -16,7 +17,9 @@ function KocsMate({ Component, pageProps }: AppProps) {
       <DeviceProvider>
         <SessionProvider session={pageProps.session}>
           <AuthProvider>
-            <Component {...pageProps} />
+            <PubProvider>
+              <Component {...pageProps} />
+            </PubProvider>
           </AuthProvider>
         </SessionProvider>
       </DeviceProvider>
