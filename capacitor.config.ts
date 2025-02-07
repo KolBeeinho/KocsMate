@@ -5,8 +5,8 @@ const config: CapacitorConfig = {
   appName: "KocsMate",
   webDir: "./src",
   server: {
-    //ha emulátort használsz, akkor 127.0.0.1 vagy localhost
-    hostname: "127.0.0.1",
+    url: "http://localhost:3000",
+    hostname: "127.0.0.1:3000",
     cleartext: true,
   },
 };

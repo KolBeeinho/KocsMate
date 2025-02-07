@@ -9,13 +9,13 @@ const BackButton: React.FC = () => {
 
   return (
     <div
-      className="fixed top-12 right-4 z-50 p-2 bg-[var(--butterscotch)] rounded-full shadow-md cursor-pointer"
+      className="fixed top-14 right-4 z-50 p-2 bg-[var(--butterscotch)] rounded-full shadow-md cursor-pointer"
       onClick={handleBack}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="30"
+        height="30"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

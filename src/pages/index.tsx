@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import PopUpOver18 from "src/components/mobile/popUpOver18";
-import IndexMobile from "../components/mobile/indexMobile";
 import AppleLogo from "../components/web/AppleLogo";
 import GoogleLogo from "../components/web/GoogleLogo";
 import isMobile from "../utils/checkOS";
@@ -22,7 +21,6 @@ export const Home: NextPage = () => {
     <>
       {isMobile() ? (
         <>
-          <IndexMobile />
           <LoginPage />
           <PopUpOver18 />
         </>

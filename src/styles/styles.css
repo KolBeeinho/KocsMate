@@ -13,7 +13,6 @@
   --szurke: #444554;
   --yinmn-blue: #2f5479ff;
 }
-
 body {
   padding: 0;
   margin: 0;
@@ -30,6 +29,7 @@ body {
 
   html {
     scroll-behavior: smooth;
+    background-color: var(--oxford-blue);
   }
   form {
     -webkit-user-select: none;

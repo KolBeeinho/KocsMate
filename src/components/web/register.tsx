@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
 import isMobile from "src/utils/checkOS";
 import checkIfUnderEightTeen from "../../utils/checkIfUnder18";
-import BackButton from "./BackButton";
+import MobileRegisterForm from "../mobile/MobileRegisterForm";
 import KocsMateLogo from "./KocsMateLogo";
 
 export default function Register() {
@@ -113,38 +113,13 @@ export default function Register() {
   ];
 
   return isMobile() ? (
-    <div className="flex min-h-screen justify-center items-center">
-      <BackButton />
-      <div className="w-full max-w-md p-8 rounded-2xl shadow-lg">
-        <KocsMateLogo size={50} className="self-start mx-2 mb-8" />
-        <h1 className="text-2xl font-bold text-center mb-6">Regisztráció</h1>
-        <form onSubmit={handleRegister}>
-          {fields.map((field) => (
-            <div key={field.name} className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {field.label}
-              </label>
-              <input
-                type={field.type}
-                name={field.name}
-                value={formData[field.name as keyof typeof formData]}
-                onChange={handleInputChange}
-                placeholder={field.placeholder}
-                className="w-full p-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-          ))}
-          {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
-          <button
-            type="submit"
-            disabled={submitProcess}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-blue-400"
-          >
-            {submitProcess ? "Regisztráció folyamatban..." : "Regisztráció"}
-          </button>
-        </form>
-      </div>
-    </div>
+    <MobileRegisterForm
+      formData={formData}
+      handleInputChange={handleInputChange}
+      handleRegister={handleRegister}
+      error={error}
+      submitProcess={submitProcess}
+    />
   ) : (
     <div className="flex min-h-screen justify-center items-center">
       <div className="w-full max-w-md p-8 rounded-2xl shadow-lg">

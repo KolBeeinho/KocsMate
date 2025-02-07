@@ -236,6 +236,7 @@ const MapComponent = ({ user }: Props) => {
               Submit Review
             </button>
             <button
+              title="close"
               onClick={handleCloseModal}
               className="absolute top-1 right-4 z-10 bg-red-500 p-2 rounded-full hover:bg-red-600 transition"
             >
