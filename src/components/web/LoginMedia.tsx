@@ -1,7 +1,6 @@
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import isMobile from "src/utils/checkOS";
-import BackButton from "./BackButton";
 export default function LoginButtons() {
   const platform = isMobile(true);
   const social_media = [
@@ -23,14 +22,14 @@ export default function LoginButtons() {
       id: "x",
       htmlId: "data-x-button",
       label: "Bejelentkezés X-szel",
-      logo: "Facebook.png",
+      logo: "X.png",
       disabled: true,
     },
     {
       id: "apple",
       htmlId: "data-apple-button",
       label: "Bejelentkezés iClouddal",
-      logo: "Facebook.png",
+      logo: "Apple.svg",
       disabled: true,
     },
   ];
@@ -39,7 +38,6 @@ export default function LoginButtons() {
   );
   return (
     <div>
-      <BackButton />
       {filteredSocialMedia.map((provider) => (
         <button
           title="social-media"
@@ -49,15 +47,32 @@ export default function LoginButtons() {
           id={provider.id}
           className="mx-4"
         >
-          <Image
-            src={`/images/${provider.logo}`}
-            width={40}
-            height={40}
-            draggable={false}
-            priority={true}
-            alt={`${provider.label} ikon`}
-            className="mx-auto"
-          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "40px",
+              height: "40px",
+              borderRadius: provider.id === "apple" ? "30%" : "0",
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              src={`/images/${provider.logo}`}
+              width={40}
+              height={40}
+              draggable={false}
+              priority={true}
+              alt={`${provider.label} ikon`}
+              style={{
+                objectFit: "contain",
+                transform:
+                  provider.id === "apple" ? "scale(1.25)" : "scale(0.85)",
+                transformOrigin: "center center",
+              }}
+            />
+          </div>
         </button>
       ))}
     </div>

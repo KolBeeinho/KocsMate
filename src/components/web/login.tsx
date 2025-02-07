@@ -5,6 +5,7 @@ import React, { FormEvent, useState } from "react";
 import isMobile from "src/utils/checkOS";
 import { components, formStyles } from "../../styles/styles";
 import useLoading from "../../utils/hooks/useLoad";
+import MobileLoginForm from "../mobile/MobileLoginForm";
 import PopUpOver18 from "../mobile/popUpOver18";
 import KocsMateLogo from "./KocsMateLogo";
 import LoginButtons from "./LoginMedia";
@@ -133,58 +134,13 @@ export default function Login() {
   ];
 
   return isMobile() ? (
-    <div className={`${formStyles.Container} mt-20 bg-[var(--oxford-blue)]`}>
-      <KocsMateLogo />
-      <form
-        onSubmit={handleLogin}
-        id="loginform"
-        className={`flex flex-col items-center mt-6 p-6 rounded-lg w-full max-w-md mx-auto gap-4`}
-      >
-        {fields.map((field) => (
-          <div key={field.name} className={`mb-4 w-[80%] relative`}>
-            <label className={`block text-[var(--butterscotch)] mb-2`}>
-              {field.label}:
-            </label>
-            <input
-              type={field.type}
-              name={field.name}
-              value={formData[field.name as keyof typeof formData]}
-              onChange={handleInputChange}
-              className={`w-full p-2 border border-glaucous rounded-md bg-[#FFFFFF] placeholder-[var(--oxford-blue)] text-placeholder:font-bold`}
-              placeholder={field.placeholder}
-            />
-          </div>
-        ))}
-        {error && <p className={`${formStyles.Error}`}>{error}</p>}
-        <button
-          type="submit"
-          className={`text-[var(--oxford-blue)] bg-[var(--butterscotch)] px-4 py-2.5 rounded-lg`}
-        >
-          {submitProcess ? "Bejelentkezés..." : "Bejelentkezés"}
-          {/* Animáció mehet majd */}
-        </button>
-        {/* <Link href={"/passresetreq"}>
-          <button
-            className={`text-[var(--oxford-blue)] bg-[var(--butterscotch)]`}
-          >
-            Elfelejtette a jelszót?
-          </button>
-        </Link> */}
-        <Link href={"/register"}>
-          <button className={`${components.button.homePageButton}`}>
-            Nem regisztrált még?
-          </button>
-        </Link>
-        <div className="fixed bottom-14">
-          <LoginButtons />
-        </div>
-        {/* <Link href={"/adminregister"}>
-          <button className={`${components.button.homePageButton}`}>
-            Kiemelt felhasználó?
-          </button>
-        </Link> */}
-      </form>
-    </div>
+    <MobileLoginForm
+      formData={formData}
+      handleInputChange={handleInputChange}
+      handleLogin={handleLogin}
+      error={error}
+      submitProcess={submitProcess}
+    />
   ) : (
     <div className={`${formStyles.Container}`}>
       <PopUpOver18 />
