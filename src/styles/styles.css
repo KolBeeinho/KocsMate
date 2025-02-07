@@ -2,14 +2,14 @@
 
 /* Colors */
 :root {
-  --oxford-blue: #141e30ff;
+  --oxford-blue: #14213d;
   --desert-sand: #dec5b4ff;
   --glaucous: #6f7fa7ff;
   --dark-red: #910002ff;
   --betu-szin: #eee5ceff;
-  --butterscotch: #df932aff;
+  --butterscotch: #fca311;
   --background: #ffcc4d;
-  --kek: #14213d;
+  --kek: #141e30ff;
   --szurke: #444554;
   --yinmn-blue: #2f5479ff;
 }
@@ -32,14 +32,14 @@ body {
     scroll-behavior: smooth;
   }
   form {
+    -webkit-user-select: none;
     user-select: none;
   }
   input {
     border: 2px solid var(--glaucous);
-    color: white !important;
+    color: var(--butterscotch) !important;
   }
   input::placeholder {
-    color: white;
     opacity: 0.5;
   }
   input:focus {
@@ -54,7 +54,9 @@ body {
 }
 @layer components {
   #loginform {
-    color: white !important;
+    color: var(
+      --butterscotch
+    ); /* Kurva anyádat Benedek ezt mi a faszért kellett így??? isten faszát az importantba bazdmeg */
   }
   .review {
     background-color: var(--butterscotch);

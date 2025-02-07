@@ -1,7 +1,9 @@
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import isMobile from "src/utils/checkOS";
 import BackButton from "./BackButton";
 export default function LoginButtons() {
+  const platform = isMobile(true);
   const social_media = [
     {
       id: "google",
@@ -32,17 +34,20 @@ export default function LoginButtons() {
       disabled: true,
     },
   ];
+  const filteredSocialMedia = social_media.filter(
+    (provider) => provider.id !== "apple" || platform === "ios"
+  );
   return (
     <div>
       <BackButton />
-      {social_media.map((provider) => (
+      {filteredSocialMedia.map((provider) => (
         <button
           title="social-media"
           key={provider.id}
           onClick={() => signIn(provider.id)}
           disabled={provider.disabled}
           id={provider.id}
-          style={{ margin: "10px" }}
+          className="mx-4"
         >
           <Image
             src={`/images/${provider.logo}`}
@@ -50,7 +55,7 @@ export default function LoginButtons() {
             height={40}
             draggable={false}
             priority={true}
-            alt="Our official company logo"
+            alt={`${provider.label} ikon`}
             className="mx-auto"
           />
         </button>
