@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { components, eulaStyle } from "../styles/styles";
+import BackButton from "src/components/web/BackButton";
+import { eulaStyle } from "../styles/styles";
 import isMobile from "../utils/checkOS";
-
 const Eula = () => {
   // majd átkerül más fájlba
   const sections = [
@@ -50,30 +50,37 @@ const Eula = () => {
   ];
 
   return (
-    <div
-      className={`${
-        isMobile() ? eulaStyle.mobileContainer : eulaStyle.container
-      }`}
-    >
-      <h2>EULA (Végfelhasználói Licencszerződés)</h2>
-      {sections.map((section, index) => (
-        <div key={index}>
-          <h3>{section.title}</h3>
-          <p>{section.content}</p>
-          {section.list && (
-            <ul>
-              {section.list.map((item, itemIndex) => (
-                <li key={itemIndex}>{item}</li>
-              ))}
-            </ul>
-          )}
-        </div>
-      ))}
-      <Link href={"/"}>
-        <button className={`mx-auto ${components.button.homePageButton}`}>
-          Vissza
-        </button>
-      </Link>
+    <div>
+      <BackButton />
+      <div
+        className={`${
+          isMobile() ? eulaStyle.mobileContainer : eulaStyle.container
+        }`}
+      >
+        <h2 className="text-2xl text-center">
+          EULA (Végfelhasználói Licencszerződés)
+        </h2>
+        {sections.map((section, index) => (
+          <div key={index}>
+            <h3 className="my-8 text-xl">{section.title}</h3>
+            <p>{section.content}</p>
+            {section.list && (
+              <ul>
+                {section.list.map((item, itemIndex) => (
+                  <li key={itemIndex}>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="w-full text-center flex justify-center mb-12">
+        <Link href={"/"}>
+          <button className="bg-[var(--butterscotch)] text-[var(--oxford-blue)] p-3 px-5 rounded-lg mt-4">
+            Vissza
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

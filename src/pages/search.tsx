@@ -38,7 +38,7 @@ const Search = () => {
   }, []);
 
   const { user, logout } = authContext;
-  console.log(user, user?.business);
+  // console.log(user, user?.business);
   return (
     <>
       {true ? ( //User kell majd

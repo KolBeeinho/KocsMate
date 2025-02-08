@@ -3,6 +3,7 @@ import { JsonValue } from "@prisma/client/runtime/library";
 import maplibregl from "maplibre-gl";
 import { User } from "next-auth";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { Image as ImageType, Pub } from "prisma/generated/client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Map, { Marker, NavigationControl } from "react-map-gl";
@@ -20,6 +21,17 @@ interface Props {
 }
 
 const MapComponent = ({ user }: Props) => {
+  const router = useRouter();
+  const { lat, lng } = router.query;
+  const isWithinBudapest = (lat: number, lng: number) => {
+    return lat >= 47.2 && lat <= 47.6 && lng >= 18.8 && lng <= 19.3;
+  };
+  const userLocation =
+    lat &&
+    lng &&
+    isWithinBudapest(parseFloat(lat as string), parseFloat(lng as string))
+      ? { lat: parseFloat(lat as string), lng: parseFloat(lng as string) }
+      : center;
   const [pubs, setPubs] = useState<(Pub & { images: ImageType[] })[]>([]);
   const [selectedPub, setSelectedPub] = useState<
     Pub & { images: ImageType[] }
@@ -35,7 +47,6 @@ const MapComponent = ({ user }: Props) => {
         const response = await fetch("/api/getPubs");
         if (response.ok) {
           const data = await response.json();
-          console.log(data.pubs);
           setPubs(data.pubs);
         } else {
           console.error("Error fetching pubs:", response.statusText);
@@ -128,8 +139,8 @@ const MapComponent = ({ user }: Props) => {
       <Map
         mapLib={maplibregl as any}
         initialViewState={{
-          longitude: center.lng,
-          latitude: center.lat,
+          longitude: userLocation.lng,
+          latitude: userLocation.lat,
           zoom: 12,
         }}
         style={{
