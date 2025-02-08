@@ -15,7 +15,7 @@ const KocsMateLogo = ({
       draggable={false}
       priority={true}
       alt="Our official company logo"
-      className={className} // Az osztályt most kívülről adod meg
+      className={className}
     />
   );
 };

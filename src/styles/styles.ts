@@ -3,7 +3,8 @@
 export const eulaStyle = {
   container: "text-center max-w-80",
   link: "w-full bg-butter-scotch font-bold p-2 mt-4 rounded-md hover:bg-glaucous transition duration-300 max-w-60",
-  mobileContainer: "p-10 pt-20 text-center text-[16px] space-y-4",
+  mobileContainer:
+    "p-10 pt-20 text-left text-[16px] space-y-4 text-[var(--butterscotch)] font-bold",
   mobileLink:
     "w-full bg-butter-scotch font-bold p-2 mt-4 rounded-md hover:bg-glaucous transition duration-300 max-w-60 ",
 };
